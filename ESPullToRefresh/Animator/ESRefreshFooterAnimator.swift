@@ -26,8 +26,24 @@
 import UIKit
 
 public class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol {
-    private let titleLabel: UILabel = UILabel.init(frame: CGRect.zero)
-    private let indicatorView: UIActivityIndicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .Gray)
+    static let loadingMoreDescription: String = "Loading more"
+    static let noMoreDataDescription: String  = "No more data"
+    static let loadingDescription: String     = "Loading..."
+    
+    private let titleLabel: UILabel = {
+        let label = UILabel.init(frame: CGRect.zero)
+        label.font = UIFont.systemFontOfSize(14.0)
+        label.textColor = UIColor.init(white: 160.0 / 255.0, alpha: 1.0)
+        label.textAlignment = .Center
+        label.text = ESRefreshFooterAnimator.loadingMoreDescription
+        return label
+    }()
+    
+    private let indicatorView: UIActivityIndicatorView = {
+        let indicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .Gray)
+        indicatorView.hidden = true
+        return indicatorView
+    }()
     
     public var animatorView: UIView {
         return self
@@ -37,12 +53,6 @@ public class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         super.init(frame: frame)
         addSubview(titleLabel)
         addSubview(indicatorView)
-        indicatorView.hidden = true
-        titleLabel.font = UIFont.systemFontOfSize(14.0)
-        titleLabel.textColor = UIColor.init(white: 160.0 / 255.0, alpha: 1.0)
-        titleLabel.textAlignment = .Center
-        titleLabel.frame = bounds
-        titleLabel.text = "下拉加载"
     }
     
     required public init(coder aDecoder: NSCoder) {
@@ -66,13 +76,14 @@ public class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     public func refresh(view: ESRefreshComponent, stateDidChange state: ESRefreshViewState) {
         switch state {
         case .Loading:
-            titleLabel.text = "加载中..."
-        case .PullToRefresh:
-            titleLabel.text = "下拉加载"
-        case .ReleaseToRefresh:
-            titleLabel.text = "下拉加载"
+            titleLabel.text = ESRefreshFooterAnimator.loadingDescription
+            break
         case .NoMoreData:
-            titleLabel.text = "暂无更多数据"
+            titleLabel.text = ESRefreshFooterAnimator.noMoreDataDescription
+            break
+        default:
+            titleLabel.text = ESRefreshFooterAnimator.loadingMoreDescription
+            break
         }
     }
     

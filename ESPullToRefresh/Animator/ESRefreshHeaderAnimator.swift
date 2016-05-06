@@ -28,7 +28,29 @@ import QuartzCore
 import UIKit
 
 public class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol {
-    private var imageView: UIImageView!
+    static let pullToRefreshDescription: String     = "Pull to refresh"
+    static let releaseToRefreshDescription: String  = "Release to refresh"
+    static let loadingDescription: String           = "Loading..."
+    
+    private let imageView: UIImageView = {
+        let imageView = UIImageView.init()
+        imageView.image = UIImage.init(named: "icon_pull_to_refresh_arrow")
+        return imageView
+    }()
+    private let titleLabel: UILabel = {
+        let label = UILabel.init(frame: CGRect.zero)
+        label.font = UIFont.systemFontOfSize(14.0)
+        label.textColor = UIColor.init(white: 160.0 / 255.0, alpha: 1.0)
+        label.textAlignment = .Left
+        label.text = ESRefreshHeaderAnimator.pullToRefreshDescription
+        return label
+    }()
+    
+    private let indicatorView: UIActivityIndicatorView = {
+        let indicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .Gray)
+        indicatorView.hidden = true
+        return indicatorView
+    }()
     
     public var animatorInsets: UIEdgeInsets = UIEdgeInsetsZero
     
@@ -38,9 +60,9 @@ public class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.clipsToBounds = true
-        imageView = UIImageView.init()
         self.addSubview(imageView)
+        self.addSubview(titleLabel)
+        self.addSubview(indicatorView)
     }
     
     required public init(coder aDecoder: NSCoder) {
@@ -48,23 +70,63 @@ public class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     }
     
     public func refreshAnimationDidBegin(view: ESRefreshComponent) {
-        imageView.startAnimating()
+        indicatorView.startAnimating()
+        indicatorView.hidden = false
+        imageView.hidden = true
+        titleLabel.text = ESRefreshHeaderAnimator.loadingDescription
+        UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseInOut, animations: { 
+            [weak self] in
+            self?.imageView.transform = CGAffineTransformMakeRotation(0.000001 - CGFloat(M_PI))
+            }) { (animated) in
+        }
     }
   
     public func refreshAnimationDidEnd(view: ESRefreshComponent) {
-        imageView.stopAnimating()
+        indicatorView.stopAnimating()
+        indicatorView.hidden = true
+        imageView.hidden = false
+        titleLabel.text = ESRefreshHeaderAnimator.pullToRefreshDescription
+        imageView.transform = CGAffineTransformIdentity
     }
     
     public func refresh(view: ESRefreshComponent, progressDidChange progress: CGFloat) {
-        let percent = max(0.0, min(1.0, progress * 1.2))
-        let s = CGSize.init(width: 139 * 0.7, height: 110 * 0.7)
-        let p = CGPoint.init(x: (self.bounds.size.width - s.width) / 2.0, y: (self.bounds.size.height / 2.0) * (1 + percent) - (s.height - 15 * 0.7) * percent)
-        imageView.alpha = percent
-        imageView.frame = CGRect.init(origin: p, size: s)
+        
+        
     }
     
     public func refresh(view: ESRefreshComponent, stateDidChange state: ESRefreshViewState) {
-        
+        switch state {
+        case .Loading:
+            titleLabel.text = ESRefreshHeaderAnimator.loadingDescription
+            break
+        case .ReleaseToRefresh:
+            titleLabel.text = ESRefreshHeaderAnimator.releaseToRefreshDescription
+            UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseInOut, animations: {
+                [weak self] in
+                self?.imageView.transform = CGAffineTransformMakeRotation(0.000001 - CGFloat(M_PI))
+                self?.layoutIfNeeded()
+            }) { (animated) in }
+            break
+        default:
+            titleLabel.text = ESRefreshHeaderAnimator.pullToRefreshDescription
+            UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseInOut, animations: {
+                [weak self] in
+                self?.imageView.transform = CGAffineTransformIdentity
+                self?.layoutIfNeeded()
+            }) { (animated) in }
+            break
+        }
     }
 
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        let s = self.bounds.size
+        let w = s.width
+        let h = s.height
+        
+        titleLabel.frame = CGRect.init(x: w / 2.0 - 36.0, y: 0.0, width: w - (w / 2.0 - 36.0), height: h)
+        indicatorView.center = CGPoint.init(x: titleLabel.frame.origin.x - 16.0, y: h / 2.0)
+        imageView.frame = CGRect.init(x: titleLabel.frame.origin.x - 28.0, y: (h - 18.0) / 2.0, width: 18.0, height: 18.0)
+    }
+    
 }

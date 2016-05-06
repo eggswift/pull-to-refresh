@@ -20,6 +20,12 @@
 		F69200581CDB9FAE0029EF47 /* ESRefreshAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69200521CDB9FAE0029EF47 /* ESRefreshAnimator.swift */; };
 		F69200591CDB9FAE0029EF47 /* ESRefreshComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69200531CDB9FAE0029EF47 /* ESRefreshComponent.swift */; };
 		F692005A1CDB9FAE0029EF47 /* ESRefreshProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69200541CDB9FAE0029EF47 /* ESRefreshProtocol.swift */; };
+		F6AA6C351CDC60CA00723622 /* icon_pull_to_refresh_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F6AA6C341CDC60CA00723622 /* icon_pull_to_refresh_arrow@2x.png */; };
+		F6AA6C391CDC64B500723622 /* DefaultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AA6C381CDC64B500723622 /* DefaultTableViewController.swift */; };
+		F6AA6C3C1CDC735400723622 /* DefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AA6C3A1CDC735400723622 /* DefaultTableViewCell.swift */; };
+		F6AA6C3D1CDC735400723622 /* DefaultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6AA6C3B1CDC735400723622 /* DefaultTableViewCell.xib */; };
+		F6AA6C401CDC80DD00723622 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AA6C3E1CDC80DD00723622 /* WebViewController.swift */; };
+		F6AA6C411CDC80DD00723622 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6AA6C3F1CDC80DD00723622 /* WebViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +65,12 @@
 		F69200521CDB9FAE0029EF47 /* ESRefreshAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshAnimator.swift; sourceTree = "<group>"; };
 		F69200531CDB9FAE0029EF47 /* ESRefreshComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshComponent.swift; sourceTree = "<group>"; };
 		F69200541CDB9FAE0029EF47 /* ESRefreshProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshProtocol.swift; sourceTree = "<group>"; };
+		F6AA6C341CDC60CA00723622 /* icon_pull_to_refresh_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_pull_to_refresh_arrow@2x.png"; sourceTree = "<group>"; };
+		F6AA6C381CDC64B500723622 /* DefaultTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTableViewController.swift; sourceTree = "<group>"; };
+		F6AA6C3A1CDC735400723622 /* DefaultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCell.swift; sourceTree = "<group>"; };
+		F6AA6C3B1CDC735400723622 /* DefaultTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DefaultTableViewCell.xib; sourceTree = "<group>"; };
+		F6AA6C3E1CDC80DD00723622 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		F6AA6C3F1CDC80DD00723622 /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +124,11 @@
 			children = (
 				F692000F1CDB9A530029EF47 /* AppDelegate.swift */,
 				F69200111CDB9A530029EF47 /* ViewController.swift */,
+				F6AA6C381CDC64B500723622 /* DefaultTableViewController.swift */,
+				F6AA6C3A1CDC735400723622 /* DefaultTableViewCell.swift */,
+				F6AA6C3B1CDC735400723622 /* DefaultTableViewCell.xib */,
+				F6AA6C3E1CDC80DD00723622 /* WebViewController.swift */,
+				F6AA6C3F1CDC80DD00723622 /* WebViewController.xib */,
 				F69200131CDB9A530029EF47 /* Main.storyboard */,
 				F69200161CDB9A530029EF47 /* Assets.xcassets */,
 				F69200181CDB9A530029EF47 /* LaunchScreen.storyboard */,
@@ -154,6 +171,7 @@
 		F692004E1CDB9FAE0029EF47 /* Animator */ = {
 			isa = PBXGroup;
 			children = (
+				F6AA6C341CDC60CA00723622 /* icon_pull_to_refresh_arrow@2x.png */,
 				F69200501CDB9FAE0029EF47 /* ESRefreshHeaderAnimator.swift */,
 				F692004F1CDB9FAE0029EF47 /* ESRefreshFooterAnimator.swift */,
 			);
@@ -267,6 +285,9 @@
 				F692001A1CDB9A530029EF47 /* LaunchScreen.storyboard in Resources */,
 				F69200171CDB9A530029EF47 /* Assets.xcassets in Resources */,
 				F69200151CDB9A530029EF47 /* Main.storyboard in Resources */,
+				F6AA6C411CDC80DD00723622 /* WebViewController.xib in Resources */,
+				F6AA6C3D1CDC735400723622 /* DefaultTableViewCell.xib in Resources */,
+				F6AA6C351CDC60CA00723622 /* icon_pull_to_refresh_arrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,13 +313,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				F69200591CDB9FAE0029EF47 /* ESRefreshComponent.swift in Sources */,
+				F6AA6C401CDC80DD00723622 /* WebViewController.swift in Sources */,
 				F69200581CDB9FAE0029EF47 /* ESRefreshAnimator.swift in Sources */,
 				F69200551CDB9FAE0029EF47 /* ESRefreshFooterAnimator.swift in Sources */,
 				F692005A1CDB9FAE0029EF47 /* ESRefreshProtocol.swift in Sources */,
 				F69200561CDB9FAE0029EF47 /* ESRefreshHeaderAnimator.swift in Sources */,
+				F6AA6C391CDC64B500723622 /* DefaultTableViewController.swift in Sources */,
 				F69200121CDB9A530029EF47 /* ViewController.swift in Sources */,
 				F69200571CDB9FAE0029EF47 /* ESPullToRefresh.swift in Sources */,
 				F69200101CDB9A530029EF47 /* AppDelegate.swift in Sources */,
+				F6AA6C3C1CDC735400723622 /* DefaultTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

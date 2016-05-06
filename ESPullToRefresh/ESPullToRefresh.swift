@@ -99,11 +99,17 @@ public class ESRefreshHeaderView: ESRefreshComponent {
                 self.animator.refresh(self, stateDidChange: .ReleaseToRefresh)
             }
             needUpdateProgress = true
-        } else if offsetWithoutInsets < 0 {
-            // Pull to refresh!
-            needUpdateProgress = (loading == false)
         }
-        
+        else if offsetWithoutInsets < 0 {
+            // Pull to refresh!
+            if loading == false {
+                self.animator.refresh(self, stateDidChange: .PullToRefresh)
+                needUpdateProgress = true
+            }
+        }
+        else {
+            
+        }
         defer {
             previousOffset = scrollView.contentOffset.y
             if needUpdateProgress == true {
@@ -119,12 +125,13 @@ public class ESRefreshHeaderView: ESRefreshComponent {
         }
         super.startAnimating()
         self.animator.refresh(self, progressDidChange: 1.0)
+        self.animator.refreshAnimationDidBegin(self)
         var insets = scrollView.contentInset
         insets.top += self.frame.size.height
         // we need to restore previous offset because we will animate scroll view insets and regular scroll view animating is not applied then
         scrollView.contentOffset.y = previousOffset
         scrollView.bounces = false
-        UIView.animateWithDuration(0.3, delay: 0, options: .CurveLinear, animations: {
+        UIView.animateWithDuration(0.2, delay: 0, options: .CurveLinear, animations: {
             scrollView.contentInset = insets
             scrollView.contentOffset = CGPoint.init(x: scrollView.contentOffset.x, y: -insets.top)
             }, completion: { (finished) in
@@ -135,7 +142,6 @@ public class ESRefreshHeaderView: ESRefreshComponent {
                         scrollView.contentOffset = CGPoint.init(x: scrollView.contentOffset.x, y: -insets.top)
                     })
                 }
-                self.animator.refreshAnimationDidBegin(self)
                 self.handler?()
         })
     }
@@ -402,6 +408,7 @@ extension UIScrollView {
     
     /* 提示暂无更多数据 */
     func noticeNoMoreData() {
+        refreshFooter?.loading = false
         refreshFooter?.noMoreData = true
     }
     
