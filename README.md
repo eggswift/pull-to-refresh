@@ -1,12 +1,13 @@
 # pull-to-refresh
 ESPullToRefresh is an easy way to give pull-to-refresh and loading-more to any UIScrollView. Using swift!
 
-Thanks to: [SVPullToRefresh](https://github.com/samvermette/SVPullToRefresh) by [Sam Vermette](https://github.com/samvermette)
-[EGOTableViewPullRefresh](https://github.com/enormego/EGOTableViewPullRefresh) by [enormego](http://www.enormego.com)
+Thanks to: [SVPullToRefresh](https://github.com/samvermette/SVPullToRefresh) by [Sam Vermette](https://github.com/samvermette), [EGOTableViewPullRefresh](https://github.com/enormego/EGOTableViewPullRefresh) by [enormego](http://www.enormego.com).
+ 
 They inspired me a lot.
 
+![](https://github.com/eggswift/pull-to-refresh/blob/master/example_meituan.gif)
 
-![](https://github.com/eggswift/pull-to-refresh/master/example_meituan.gif)
+注: 加载动画资源来自美团 iOS app。
 
 ## Requirements
 * Xcode 7 or later
@@ -31,21 +32,24 @@ pod "ESPullToRefresh"
 Input ESPullToRefresh folder into your project.
 
 ## Example usage
-# Add an pull-to-refresh header to UITableView:
+Add an pull-to-refresh header to UITableView:
 ``` swift
 self.tableView.es_addPullToRefresh {
 [weak self] in
-/// Do anything you want...
+/// Do anything you want
+/// ...
+/// Stop refresh when your job finished, it will reset refresh footer if completion is true
 self?.tableView.stopPullToRefresh(completion: true)
 }
 ```
 
-# Add an infinite-scrolling footer to UITableView:
+Add an infinite-scrolling footer to UITableView:
 ``` swift
 self.tableView.es_addInfiniteScrolling {
 [weak self] in
 /// Do anything you want...
-
+/// ...
+/// If common end
 self?.tableView.stopLoadingMore()
 /// If no more data
 self?.tableView.noticeNoMoreData()
@@ -57,57 +61,57 @@ self?.tableView.noticeNoMoreData()
 Add default pull to refresh animator:
 
 ``` swift
-func es_addPullToRefresh(handler: ESRefreshHandler) -> Void
+func es_addPullToRefresh(handler: ESRefreshHandler)
 ```
 
 Add default pull to refresh animator with custom height:
 
 ``` swift
-func es_addPullToRefresh(height headerH: CGFloat, handler: ESRefreshHandler) -> Void
+func es_addPullToRefresh(height headerH: CGFloat, handler: ESRefreshHandler)
 ```
 
 Add custom pull to refresh animator with custom height:
 
 ``` swift
-func es_addPullToRefresh(height headerH: CGFloat, animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler) -> Void
+func es_addPullToRefresh(height headerH: CGFloat, animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler)
 ```
 
 Add default infinite scrolling animator:
 
 ``` swift
-func es_addInfiniteScrolling(handler: ESRefreshHandler) -> Void
+func es_addInfiniteScrolling(handler: ESRefreshHandler)
 ```
 
 Add default infinite scrolling animator with custom height:
 
 ``` swift
-func es_addInfiniteScrolling(height footerH: CGFloat, handler: ESRefreshHandler) -> Void 
+func es_addInfiniteScrolling(height footerH: CGFloat, handler: ESRefreshHandler) 
 ```
 
 Add custom infinite scrolling animator with custom height:
 
 ``` swift
-func es_addInfiniteScrolling(height footerH: CGFloat, animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler) -> Void
+func es_addInfiniteScrolling(height footerH: CGFloat, animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler)
 ```
 
 Remove refresh:
 
 ``` swift
-func removeRefreshHeader() -> Void
-func removeRefreshFooter() -> Void
+func removeRefreshHeader()
+func removeRefreshFooter()
 ```
 
 Start manual refresh:
 
 ``` swift
-func startPullToRefresh() -> Void
+func startPullToRefresh()
 ```
 
 Stop refresh:
 
 ``` swift
-func stopPullToRefresh(completion completion: Bool, ignoreFooter: Bool) -> Void
-func stopPullToRefresh(completion completion: Bool) -> Void
+func stopPullToRefresh(completion completion: Bool, ignoreFooter: Bool)
+func stopPullToRefresh(completion completion: Bool)
 ```
 
 ## Contribution
@@ -118,7 +122,7 @@ You are welcome to contribute to the project by forking the repo, modifying the 
 
 The MIT License (MIT)
 
-Copyright (c) 2013-2015 eggswift https://github.com/eggswift/pull-to-refresh
+Copyright (c) 2013-2015 eggswift (https://github.com/eggswift/pull-to-refresh)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
