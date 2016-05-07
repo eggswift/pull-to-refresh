@@ -13,7 +13,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     let dataArray = [
                         "Default",
-                        "美团网 Meituan.com "
+                        "美团网 (Meituan.com)"
                     ]
     
     override func viewDidLoad() {

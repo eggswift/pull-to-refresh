@@ -26,10 +26,22 @@
 import Foundation
 import UIKit
 
+/**
+ *  ESRefreshProtocol 动画事件处理回调协议
+ *  通过ESRefreshProtocol 你可以自定义刷新动画或任何效果
+ */
 public protocol ESRefreshProtocol {
     // Swift 的 mutating 关键字修饰方法是为了能在该方法中修改 struct 或是 enum 的变量
     // http://swifter.tips/protocol-mutation/ by ONEVCAT
+    /**
+     刷新动作开始执行方法
+     你可以在这里实现你的刷新动画逻辑，它会在每次刷新动画需要开始时执行一次
+    */
     mutating func refreshAnimationDidBegin(view: ESRefreshComponent)
+    /**
+     刷新动作停止执行方法
+     你可以在这里重置你的刷新控件UI，比如停止UIImageView的动画或一些刷新时开启的Timer等，它会在每次动画需要结束时执行一次
+     */
     mutating func refreshAnimationDidEnd(view: ESRefreshComponent)
     mutating func refresh(view: ESRefreshComponent, progressDidChange progress: CGFloat)
     mutating func refresh(view: ESRefreshComponent, stateDidChange state: ESRefreshViewState)

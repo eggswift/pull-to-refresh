@@ -14,6 +14,7 @@ class WebViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "https://github.com/eggswift"
         self.webView.loadRequest(NSURLRequest.init(URL: NSURL.init(string: "https://github.com/eggswift")!))
     }
 

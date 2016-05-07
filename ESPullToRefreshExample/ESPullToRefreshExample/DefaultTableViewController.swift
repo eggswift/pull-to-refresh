@@ -15,14 +15,14 @@ class DefaultTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.registerNib(UINib.init(nibName: "DefaultTableViewCell", bundle: nil), forCellReuseIdentifier: "DefaultTableViewCell")
-        self.tableView.addHeaderRefresh {
+        self.tableView.es_addPullToRefresh {
             [weak self] in
             let minseconds = 3.0 * Double(NSEC_PER_SEC)
             let dtime = dispatch_time(DISPATCH_TIME_NOW, Int64(minseconds))
             dispatch_after(dtime, dispatch_get_main_queue() , {
                 self?.page = 1
                 self?.array.removeAll()
-                for _ in 1...20 {
+                for _ in 1...16{
                     self?.array.append(" ")
                 }
                 self?.tableView.reloadData()
@@ -30,14 +30,14 @@ class DefaultTableViewController: UITableViewController {
             })
         }
         
-        self.tableView.addFooterRefresh {
+        self.tableView.es_addInfiniteScrolling {
             [weak self] in
             let minseconds = 3.0 * Double(NSEC_PER_SEC)
             let dtime = dispatch_time(DISPATCH_TIME_NOW, Int64(minseconds))
             dispatch_after(dtime, dispatch_get_main_queue() , {
                 self?.page += 1
                 if self?.page <= 3 {
-                    for _ in 1...20 {
+                    for _ in 1...16{
                         self?.array.append(" ")
                     }
                     self?.tableView.reloadData()

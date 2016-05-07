@@ -28,12 +28,12 @@
 //  scrolling functionalities as a UIScrollView category.
 //
 //  As Use:
-//  scrollView.addHeaderRefresh(height: 68.0) {
+//  scrollView.es_addPullToRefresh(height: 68.0) {
 //      sleep(3.0)
 //      // 回调事件完成后使用stopPullToRefresh()重置刷新视图状态
 //      scrollView.stopPullToRefresh(refreshSuccess: false or true)
 //  }
-//  scrollView.addFooterRefresh(height: 60.0) {
+//  scrollView.es_addInfiniteScrolling(height: 60.0) {
 //      sleep(3.0)
 //      // 回调事件完成后使用stopLoadingMore()重置加载更多视图状态
 //      scrollView.stopLoadingMore()
@@ -44,7 +44,7 @@
 //  通过startPullToRefresh()函数手动开始刷新事件
 //  scrollView.startPullToRefresh()
 //
-//  你可以通过addHeaderRefresh(height:animator:handler:) 或 addHeaderRefresh(height:animator:handler:)函数自定义上拉下拉刷新动画效果, animator必须遵守 ESRefreshProtocol, ESRefreshAnimatorProtocol这两个协议以保证可用。
+//  你可以通过es_addPullToRefresh(height:animator:handler:) 或 es_addPullToRefresh(height:animator:handler:)函数自定义上拉下拉刷新动画效果, animator必须遵守 ESRefreshProtocol, ESRefreshAnimatorProtocol这两个协议以保证可用。
 //
 
 import Foundation
@@ -80,8 +80,8 @@ extension UIScrollView {
      
      - parameter handler: 回调
      */
-    func addHeaderRefresh(handler: ESRefreshHandler) -> Void {
-        self.addHeaderRefresh(height: kESRefreshHeaderDefaultHeight, handler: handler)
+    func es_addPullToRefresh(handler: ESRefreshHandler) -> Void {
+        self.es_addPullToRefresh(height: kESRefreshHeaderDefaultHeight, handler: handler)
     }
     
     /**
@@ -90,7 +90,7 @@ extension UIScrollView {
      - parameter headerH: 设置header的高度
      - parameter handler: 回调
      */
-    func addHeaderRefresh(height headerH: CGFloat, handler: ESRefreshHandler) -> Void {
+    func es_addPullToRefresh(height headerH: CGFloat, handler: ESRefreshHandler) -> Void {
         removeRefreshHeader()
         refreshHeader = ESRefreshHeaderView(frame: CGRect.init(x: 0.0, y: -headerH /* - contentInset.top */, width: bounds.size.width, height: headerH), handler: handler)
         addSubview(refreshHeader!)
@@ -103,7 +103,7 @@ extension UIScrollView {
      - parameter animator: 自定义动画视图
      - parameter handler:  回调
      */
-    func addHeaderRefresh(height headerH: CGFloat, animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler) -> Void {
+    func es_addPullToRefresh(height headerH: CGFloat, animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler) -> Void {
         removeRefreshHeader()
         refreshHeader = ESRefreshHeaderView(frame: CGRect.init(x: 0.0, y: -headerH /* - contentInset.top */, width: bounds.size.width, height: headerH), handler: handler, customAnimator: animator)
         addSubview(refreshHeader!)
@@ -114,8 +114,8 @@ extension UIScrollView {
      
      - parameter handler: 回调
      */
-    func addFooterRefresh(handler: ESRefreshHandler) -> Void {
-        self.addFooterRefresh(height: kESRefreshFooterDefaultHeight, handler: handler)
+    func es_addInfiniteScrolling(handler: ESRefreshHandler) -> Void {
+        self.es_addInfiniteScrolling(height: kESRefreshFooterDefaultHeight, handler: handler)
     }
     /**
      添加加载更多
@@ -123,7 +123,7 @@ extension UIScrollView {
      - parameter footerH: 设置footer的高度
      - parameter handler: 回调
      */
-    func addFooterRefresh(height footerH: CGFloat, handler: ESRefreshHandler) -> Void {
+    func es_addInfiniteScrolling(height footerH: CGFloat, handler: ESRefreshHandler) -> Void {
         removeRefreshFooter()
         refreshFooter = ESRefreshFooterView(frame: CGRect.init(x: 0.0, y: contentSize.height + contentInset.bottom, width: bounds.size.width, height: footerH), handler: handler)
         addSubview(refreshFooter!)
@@ -136,7 +136,7 @@ extension UIScrollView {
      - parameter animator: 自定义动画视图
      - parameter handler:  回调
      */
-    func addFooterRefresh(height footerH: CGFloat, animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler) -> Void {
+    func es_addInfiniteScrolling(height footerH: CGFloat, animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler) -> Void {
         removeRefreshFooter()
         refreshFooter = ESRefreshFooterView(frame: CGRect.init(x: 0.0, y: contentSize.height + contentInset.bottom, width: bounds.size.width, height: footerH), handler: handler, customAnimator: animator)
         addSubview(refreshFooter!)
@@ -240,7 +240,7 @@ public class ESRefreshHeaderView: ESRefreshComponent {
         defer {
             previousOffset = scrollView.contentOffset.y
             if needUpdateProgress == true {
-                let percent = max(0.0, min(1.0, -offsetWithoutInsets / self.bounds.size.height)) /* 0 ~ 1.0 */
+                let percent = -offsetWithoutInsets / self.bounds.size.height
                 self.animator.refresh(self, progressDidChange: percent)
             }
         }
