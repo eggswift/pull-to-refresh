@@ -1,21 +1,23 @@
 //
-//  DefaultTableViewController.swift
+//  MeituanTableViewController.swift
 //  ESPullToRefreshExample
 //
-//  Created by lihao on 16/5/6.
+//  Created by lihao on 16/5/7.
 //  Copyright © 2016年 egg swift. All rights reserved.
 //
 
 import UIKit
 
-class DefaultTableViewController: UITableViewController {
+class MeituanTableViewController: UITableViewController {
     var array = [String]()
     var page = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.init(red: 240/255.0, green: 239/255.0, blue: 237/255.0, alpha: 1.0)
         self.tableView.registerNib(UINib.init(nibName: "DefaultTableViewCell", bundle: nil), forCellReuseIdentifier: "DefaultTableViewCell")
-        self.tableView.addHeaderRefresh {
+        
+        self.tableView.addHeaderRefresh(height: 56.0, animator: MTRefreshHeaderAnimator.init(frame: CGRect.zero)) {
             [weak self] in
             let minseconds = 3.0 * Double(NSEC_PER_SEC)
             let dtime = dispatch_time(DISPATCH_TIME_NOW, Int64(minseconds))
@@ -30,7 +32,7 @@ class DefaultTableViewController: UITableViewController {
             })
         }
         
-        self.tableView.addFooterRefresh {
+        self.tableView.addFooterRefresh(height: 48.0, animator: MTRefreshFooterAnimator.init(frame: CGRect.zero)) {
             [weak self] in
             let minseconds = 3.0 * Double(NSEC_PER_SEC)
             let dtime = dispatch_time(DISPATCH_TIME_NOW, Int64(minseconds))
@@ -48,7 +50,7 @@ class DefaultTableViewController: UITableViewController {
             })
         }
     }
-
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.tableView.startPullToRefresh()
@@ -58,11 +60,11 @@ class DefaultTableViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return array.count
     }
-
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 140.0
     }
@@ -76,7 +78,7 @@ class DefaultTableViewController: UITableViewController {
         cell.backgroundColor = UIColor.init(white: 250.0 / 255.0, alpha: 1.0)
         return cell
     }
-
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let vc = WebViewController.init()

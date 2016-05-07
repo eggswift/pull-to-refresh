@@ -3,6 +3,7 @@
 //
 //  Created by egg swift on 16/4/7.
 //  Copyright (c) 2013-2015 ESPullToRefresh (https://github.com/eggswift/pull-to-refresh)
+//  Icon from http://www.iconfont.cn
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal

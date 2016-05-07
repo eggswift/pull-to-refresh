@@ -28,9 +28,11 @@ import UIKit
 
 public class ESRefreshAnimator: ESRefreshProtocol, ESRefreshAnimatorProtocol {
     public var animatorView: UIView
+    public var animatorInsets: UIEdgeInsets
     
     public init() {
         animatorView = UIView()
+        animatorInsets = UIEdgeInsetsZero
     }
     
     public func refreshAnimationDidBegin(view: ESRefreshComponent) {

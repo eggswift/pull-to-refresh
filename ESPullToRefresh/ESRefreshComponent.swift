@@ -55,23 +55,23 @@ public class ESRefreshComponent: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        autoresizingMask = [.FlexibleWidth]
-        configUI()
+        autoresizingMask = [.FlexibleLeftMargin, .FlexibleWidth, .FlexibleRightMargin]
     }
     
-    public convenience init(frame: CGRect, handler: ESRefreshHandler) {
+    convenience public init(frame: CGRect, handler: ESRefreshHandler) {
         self.init(frame: frame)
         self.handler = handler
+        self.animator = ESRefreshAnimator.init()
     }
     
-    public convenience init(frame: CGRect, handler: ESRefreshHandler, customAnimator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>) {
+    convenience public init(frame: CGRect, handler: ESRefreshHandler, customAnimator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>) {
         self.init(frame: frame)
         self.handler = handler
         self.animator = animator
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
     
     deinit {
@@ -80,17 +80,37 @@ public class ESRefreshComponent: UIView {
     
     override public func willMoveToSuperview(newSuperview: UIView?) {
         super.willMoveToSuperview(newSuperview)
-        // 删除老superView的监听事件
+        /// Remove observer from superview
         removeObserver()
-        // 添加新的superView的监听事件
+        /// Add observer to new superview
         addObserver(newSuperview)
     }
     
     override public func didMoveToSuperview() {
         super.didMoveToSuperview()
-        // 更新当前scrollView属性
         self.scrollView = self.superview as? UIScrollView
+        if let _ = animator {
+            let v = animator.animatorView
+            if v.superview == nil {
+                let inset = animator.animatorInsets
+                self.addSubview(v)
+                v.frame = CGRect.init(x: inset.left,
+                                      y: inset.right,
+                                      width: self.bounds.size.width - inset.left - inset.right,
+                                      height: self.bounds.size.height - inset.top - inset.bottom)
+                v.autoresizingMask = [.FlexibleLeftMargin,
+                                      .FlexibleWidth,
+                                      .FlexibleRightMargin,
+                                      .FlexibleTopMargin,
+                                      .FlexibleHeight,
+                                      .FlexibleBottomMargin]
+            }
+        }
     }
+    
+}
+
+extension ESRefreshComponent /* KVO methods */ {
     
     private func addObserver(view: UIView?) {
         if let scrollView = view as? UIScrollView {
@@ -106,7 +126,6 @@ public class ESRefreshComponent: UIView {
         }
     }
     
-    //MARK: KVO methods
     override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if context == &ESRefreshComponent.context {
             guard userInteractionEnabled == true && hidden == false else {
@@ -122,32 +141,27 @@ public class ESRefreshComponent: UIView {
         }
     }
     
-    // 开始刷新动画
+}
+
+extension ESRefreshComponent /* Action */ {
+
     func startAnimating() -> Void {
         animating = true
     }
     
-    // 结束刷新动画
     func stopAnimating() -> Void {
         animating = false
     }
-    
-    // 初始化时配置方法
-    func configUI() {
-        if let _ = animator {
-            self.addSubview(animator.animatorView)
-            self.animator.animatorView.autoresizingMask = [.FlexibleWidth]
-        }
-    }
 
-    //  scrollView contentSize 变化响应事件
+    //  ScrollView contentSize change action
     func sizeChangeAction(object object: AnyObject?, change: [String : AnyObject]?) {
         
     }
     
-    //  scrollView offset 变化响应事件
+    //  ScrollView offset change action
     func offsetChangeAction(object object: AnyObject?, change: [String : AnyObject]?) {
         
     }
     
 }
+

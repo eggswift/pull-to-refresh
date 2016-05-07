@@ -49,6 +49,8 @@ public class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         return self
     }
     
+    public var animatorInsets: UIEdgeInsets = UIEdgeInsetsZero
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(titleLabel)

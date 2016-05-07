@@ -37,4 +37,5 @@ public protocol ESRefreshProtocol {
 
 public protocol ESRefreshAnimatorProtocol {
     var animatorView: UIView {get}
+    var animatorInsets: UIEdgeInsets {set get}
 }
