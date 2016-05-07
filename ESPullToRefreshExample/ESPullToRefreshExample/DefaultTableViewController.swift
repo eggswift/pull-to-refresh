@@ -22,7 +22,7 @@ class DefaultTableViewController: UITableViewController {
             dispatch_after(dtime, dispatch_get_main_queue() , {
                 self?.page = 1
                 self?.array.removeAll()
-                for _ in 1...16{
+                for _ in 1...8{
                     self?.array.append(" ")
                 }
                 self?.tableView.reloadData()
@@ -37,7 +37,7 @@ class DefaultTableViewController: UITableViewController {
             dispatch_after(dtime, dispatch_get_main_queue() , {
                 self?.page += 1
                 if self?.page <= 3 {
-                    for _ in 1...16{
+                    for _ in 1...8{
                         self?.array.append(" ")
                     }
                     self?.tableView.reloadData()
