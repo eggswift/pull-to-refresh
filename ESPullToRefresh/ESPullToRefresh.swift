@@ -112,7 +112,7 @@ extension UIScrollView {
     func es_stopPullToRefresh(completion completion: Bool, ignoreFooter: Bool) {
         es_header?.loading = false
         if completion {
-            es_footer?.es_resetNoMoreData()
+            es_footer?.resetNoMoreData()
         }
         es_footer?.hidden = ignoreFooter
     }
@@ -352,12 +352,12 @@ public class ESRefreshFooterView: ESRefreshComponent {
     
     //MARK: 提供外界访问的
     /** 提示没有更多的数据 */
-    public func  es_noticeNoMoreData() {
+    public func  noticeNoMoreData() {
         self.noMoreData = true
     }
     
     /** 重置没有更多的数据（消除没有更多数据的状态） */
-    public func es_resetNoMoreData() {
+    public func resetNoMoreData() {
         self.noMoreData = false
     }
     
