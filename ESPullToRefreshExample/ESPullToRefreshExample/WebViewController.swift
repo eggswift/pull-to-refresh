@@ -21,15 +21,15 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         }
         self.webView.scrollView.bounces = true
         self.webView.scrollView.alwaysBounceVertical = true
-        self.webView.scrollView.startPullToRefresh()
+        self.webView.scrollView.es_startPullToRefresh()
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
-        self.webView.scrollView.stopPullToRefresh(completion: true)
+        self.webView.scrollView.es_stopPullToRefresh(completion: true)
     }
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
-        self.webView.scrollView.stopPullToRefresh(completion: false)
+        self.webView.scrollView.es_stopPullToRefresh(completion: false)
     }
 
 }

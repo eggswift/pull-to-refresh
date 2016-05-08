@@ -2,7 +2,7 @@
 //  ESPullToRefresh.swift
 //
 //  Created by egg swift on 16/4/7.
-//  Copyright (c) 2013-2015 ESPullToRefresh (https://github.com/eggswift/pull-to-refresh)
+//  Copyright (c) 2013-2016 ESPullToRefresh (https://github.com/eggswift/pull-to-refresh)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,38 +23,14 @@
 //  THE SOFTWARE.
 //
 
-//
-//  ESPullToRefresh is a simple to use very generic pull-to-refresh and infinite 
-//  scrolling functionalities as a UIScrollView category.
-//
-//  As Use:
-//  scrollView.es_addPullToRefresh(height: 68.0) {
-//      sleep(3.0)
-//      // 回调事件完成后使用stopPullToRefresh()重置刷新视图状态
-//      scrollView.stopPullToRefresh(refreshSuccess: false or true)
-//  }
-//  scrollView.es_addInfiniteScrolling(height: 60.0) {
-//      sleep(3.0)
-//      // 回调事件完成后使用stopLoadingMore()重置加载更多视图状态
-//      scrollView.stopLoadingMore()
-//      // 回调事件完成后使用noticeNoMoreData()设置当前‘暂无更多数据’状态
-//      scrollView.noticeNoMoreData()
-//  }
-//
-//  通过startPullToRefresh()函数手动开始刷新事件
-//  scrollView.startPullToRefresh()
-//
-//  你可以通过es_addPullToRefresh(height:animator:handler:) 或 es_addPullToRefresh(height:animator:handler:)函数自定义上拉下拉刷新动画效果, animator必须遵守 ESRefreshProtocol, ESRefreshAnimatorProtocol这两个协议以保证可用。
-//
-
 import Foundation
 import UIKit
 
 public enum ESRefreshViewState {
-    case Loading            // 正在加载
-    case PullToRefresh      // 正在滑动状态
-    case ReleaseToRefresh   // 松手开始刷新状态
-    case NoMoreData         // 暂无数据
+    case Loading
+    case PullToRefresh
+    case ReleaseToRefresh
+    case NoMoreData
 }
 
 var kESRefreshHeaderKey: String = ""
@@ -64,128 +40,99 @@ var kESRefreshFooterDefaultHeight: CGFloat = 42.0
 
 extension UIScrollView {
     
-    /// Pull to Refresh
-    var refreshHeader: ESRefreshHeaderView? {
+    /// Pull-to-refresh associated property
+    var es_header: ESRefreshHeaderView? {
         get { return (objc_getAssociatedObject(self, &kESRefreshHeaderKey) as? ESRefreshHeaderView) }
         set(newValue) { objc_setAssociatedObject(self, &kESRefreshHeaderKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN) }
     }
-    /// Infinitiy scroll
-    var refreshFooter: ESRefreshFooterView? {
+    /// Infinitiy scroll associated property
+    var es_footer: ESRefreshFooterView? {
         get { return (objc_getAssociatedObject(self, &kESRefreshFooterKey) as? ESRefreshFooterView) }
         set(newValue) { objc_setAssociatedObject(self, &kESRefreshFooterKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN) }
     }
     
-    /**
-     添加刷新
-     
-     - parameter handler: 回调
-     */
+
+    /// Add pull-to-refresh
     func es_addPullToRefresh(handler: ESRefreshHandler) -> Void {
         self.es_addPullToRefresh(height: kESRefreshHeaderDefaultHeight, handler: handler)
     }
-    
-    /**
-     添加刷新
-     
-     - parameter headerH: 设置header的高度
-     - parameter handler: 回调
-     */
+
     func es_addPullToRefresh(height headerH: CGFloat, handler: ESRefreshHandler) -> Void {
-        removeRefreshHeader()
-        refreshHeader = ESRefreshHeaderView(frame: CGRect.init(x: 0.0, y: -headerH /* - contentInset.top */, width: bounds.size.width, height: headerH), handler: handler)
-        addSubview(refreshHeader!)
+        es_removeRefreshHeader()
+        let header = ESRefreshHeaderView(frame: CGRect.init(x: 0.0, y: -headerH /* - contentInset.top */, width: bounds.size.width, height: headerH), handler: handler)
+        es_header = header
+        addSubview(es_header!)
     }
     
-    /**
-     添加刷新
-     
-     - parameter headerH:  设置header的高度
-     - parameter animator: 自定义动画视图
-     - parameter handler:  回调
-     */
     func es_addPullToRefresh(height headerH: CGFloat, animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler) -> Void {
-        removeRefreshHeader()
-        refreshHeader = ESRefreshHeaderView(frame: CGRect.init(x: 0.0, y: -headerH /* - contentInset.top */, width: bounds.size.width, height: headerH), handler: handler, customAnimator: animator)
-        addSubview(refreshHeader!)
+        es_removeRefreshHeader()
+        let header = ESRefreshHeaderView(frame: CGRect.init(x: 0.0, y: -headerH /* - contentInset.top */, width: bounds.size.width, height: headerH), handler: handler, customAnimator: animator)
+        es_header = header
+        addSubview(es_header!)
     }
     
-    /**
-     添加加载更多
-     
-     - parameter handler: 回调
-     */
+    /// Add infinite-scrolling
     func es_addInfiniteScrolling(handler: ESRefreshHandler) -> Void {
         self.es_addInfiniteScrolling(height: kESRefreshFooterDefaultHeight, handler: handler)
     }
-    /**
-     添加加载更多
-     
-     - parameter footerH: 设置footer的高度
-     - parameter handler: 回调
-     */
+
     func es_addInfiniteScrolling(height footerH: CGFloat, handler: ESRefreshHandler) -> Void {
-        removeRefreshFooter()
-        refreshFooter = ESRefreshFooterView(frame: CGRect.init(x: 0.0, y: contentSize.height + contentInset.bottom, width: bounds.size.width, height: footerH), handler: handler)
-        addSubview(refreshFooter!)
+        es_removeRefreshFooter()
+        let footer = ESRefreshFooterView(frame: CGRect.init(x: 0.0, y: contentSize.height + contentInset.bottom, width: bounds.size.width, height: footerH), handler: handler)
+        es_footer = footer
+        addSubview(es_footer!)
     }
-    
-    /**
-     添加加载更多
-     
-     - parameter footerH:  设置footer的高度
-     - parameter animator: 自定义动画视图
-     - parameter handler:  回调
-     */
+
     func es_addInfiniteScrolling(height footerH: CGFloat, animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler) -> Void {
-        removeRefreshFooter()
-        refreshFooter = ESRefreshFooterView(frame: CGRect.init(x: 0.0, y: contentSize.height + contentInset.bottom, width: bounds.size.width, height: footerH), handler: handler, customAnimator: animator)
-        addSubview(refreshFooter!)
+        es_removeRefreshFooter()
+        let footer = ESRefreshFooterView(frame: CGRect.init(x: 0.0, y: contentSize.height + contentInset.bottom, width: bounds.size.width, height: footerH), handler: handler, customAnimator: animator)
+        es_footer = footer
+        addSubview(es_footer!)
     }
     
-    func removeRefreshHeader() {
-        refreshHeader?.loading = false
-        refreshHeader?.removeFromSuperview()
-        refreshHeader = nil
+    /// Remove
+    func es_removeRefreshHeader() {
+        es_header?.loading = false
+        es_header?.removeFromSuperview()
+        es_header = nil
     }
     
-    func removeRefreshFooter() {
-        refreshFooter?.loading = false
-        refreshFooter?.removeFromSuperview()
-        refreshFooter = nil
+    func es_removeRefreshFooter() {
+        es_footer?.loading = false
+        es_footer?.removeFromSuperview()
+        es_footer = nil
     }
     
-    /* 开始刷新 */
-    func startPullToRefresh() {
-        refreshHeader?.loading = true
+    /// Manual refresh
+    func es_startPullToRefresh() {
+        es_header?.loading = true
     }
     
     /// Stop pull to refresh
-    func stopPullToRefresh(completion completion: Bool, ignoreFooter: Bool) {
-        refreshHeader?.loading = false
+    func es_stopPullToRefresh(completion completion: Bool, ignoreFooter: Bool) {
+        es_header?.loading = false
         if completion {
-            refreshFooter?.resetNoMoreData()
+            es_footer?.es_resetNoMoreData()
         }
-        refreshFooter?.hidden = ignoreFooter
+        es_footer?.hidden = ignoreFooter
     }
     
-    func stopPullToRefresh(completion completion: Bool) {
-        stopPullToRefresh(completion: completion, ignoreFooter: false)
+    func es_stopPullToRefresh(completion completion: Bool) {
+        es_stopPullToRefresh(completion: completion, ignoreFooter: false)
     }
     
-    /* 提示暂无更多数据 */
-    func noticeNoMoreData() {
-        refreshFooter?.loading = false
-        refreshFooter?.noMoreData = true
+    /// Footer notice method
+    func  es_noticeNoMoreData() {
+        es_footer?.loading = false
+        es_footer?.noMoreData = true
     }
     
-    /* 重置加载更多 */
-    func resetNoMoreData() {
-        refreshFooter?.noMoreData = false
+    func es_resetNoMoreData() {
+        es_footer?.noMoreData = false
     }
     
-    /* 停止加载更多动画 */
-    func stopLoadingMore() {
-        refreshFooter?.loading = false
+    func es_stopLoadingMore() {
+        es_footer?.loading = false
     }
     
 }
@@ -405,12 +352,12 @@ public class ESRefreshFooterView: ESRefreshComponent {
     
     //MARK: 提供外界访问的
     /** 提示没有更多的数据 */
-    public func noticeNoMoreData() {
+    public func  es_noticeNoMoreData() {
         self.noMoreData = true
     }
     
     /** 重置没有更多的数据（消除没有更多数据的状态） */
-    public func resetNoMoreData() {
+    public func es_resetNoMoreData() {
         self.noMoreData = false
     }
     

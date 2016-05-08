@@ -2,7 +2,7 @@
 //  ESRefreshProtocol.swift
 //
 //  Created by egg swift on 16/4/7.
-//  Copyright (c) 2013-2015 ESPullToRefresh (https://github.com/eggswift/pull-to-refresh)
+//  Copyright (c) 2013-2016 ESPullToRefresh (https://github.com/eggswift/pull-to-refresh)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -27,20 +27,21 @@ import Foundation
 import UIKit
 
 /**
- *  ESRefreshProtocol 动画事件处理回调协议
- *  通过ESRefreshProtocol 你可以自定义刷新动画或任何效果
+ *  ESRefreshProtocol     
+ *  Animation event handling callback protocol
+ *  You can customize the refresh or custom animation effects
  */
 public protocol ESRefreshProtocol {
-    // Swift 的 mutating 关键字修饰方法是为了能在该方法中修改 struct 或是 enum 的变量
+    // Mutating is to be able to modify or enum struct variable in the method
     // http://swifter.tips/protocol-mutation/ by ONEVCAT
     /**
-     刷新动作开始执行方法
-     你可以在这里实现你的刷新动画逻辑，它会在每次刷新动画需要开始时执行一次
+     Refresh operation begins execution method
+     You can refresh your animation logic here, it will need to start the animation each time a refresh
     */
     mutating func refreshAnimationDidBegin(view: ESRefreshComponent)
     /**
-     刷新动作停止执行方法
-     你可以在这里重置你的刷新控件UI，比如停止UIImageView的动画或一些刷新时开启的Timer等，它会在每次动画需要结束时执行一次
+     Refresh operation stop execution method
+     Here you can reset your refresh control UI, such as a Stop UIImageView animations or some opened Timer refresh, etc., it will be executed once each time the need to end the animation
      */
     mutating func refreshAnimationDidEnd(view: ESRefreshComponent)
     mutating func refresh(view: ESRefreshComponent, progressDidChange progress: CGFloat)

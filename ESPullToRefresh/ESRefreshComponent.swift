@@ -2,7 +2,7 @@
 //  ESRefreshComponent.swift
 //
 //  Created by egg swift on 16/4/7.
-//  Copyright (c) 2013-2015 ESPullToRefresh (https://github.com/eggswift/pull-to-refresh)
+//  Copyright (c) 2013-2016 ESPullToRefresh (https://github.com/eggswift/pull-to-refresh)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -35,20 +35,16 @@ public class ESRefreshComponent: UIView {
     private static let contentSizeKeyPath = "contentSize"
     
     public weak var scrollView: UIScrollView?
-    /// 刷新事件的回调函数
+    /// @param handler Refresh callback method
     public var handler: ESRefreshHandler?
-    /// @param animator 刷新控件的动画处理视图，自定义必须遵守以下两个协议
+    /// @param animator Animated view refresh controls, custom must comply with the following two protocol
     public var animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>!
-    /// 设置是否为加载状态
     public var animating: Bool = false
     public var loading: Bool = false {
         didSet {
             if loading != oldValue {
-                if loading {
-                    startAnimating()
-                } else {
-                    stopAnimating()
-                }
+                if loading { startAnimating() }
+                else { stopAnimating() }
             }
         }
     }
