@@ -4,7 +4,6 @@ ESPullToRefresh is an easy way to give pull-to-refresh and loading-more to any U
 Thanks to: [SVPullToRefresh](https://github.com/samvermette/SVPullToRefresh) by [Sam Vermette](https://github.com/samvermette),  [EGOTableViewPullRefresh](https://github.com/enormego/EGOTableViewPullRefresh) by [enormego](http://www.enormego.com),  they inspired me a lot.
 
 ![](https://github.com/eggswift/pull-to-refresh/blob/master/example_default.gif)
-
 ![](https://github.com/eggswift/pull-to-refresh/blob/master/example_meituan.gif)
 
 注: 加载动画资源来自美团 iOS app。
