@@ -1,7 +1,7 @@
 # pull-to-refresh
 ESPullToRefresh is an easy way to give pull-to-refresh and loading-more to any UIScrollView. Using swift!
 
-Thanks to: [SVPullToRefresh](https://github.com/samvermette/SVPullToRefresh) by [Sam Vermette](https://github.com/samvermette),  [EGOTableViewPullRefresh](https://github.com/enormego/EGOTableViewPullRefresh) by [enormego](http://www.enormego.com).  They inspired me a lot.
+Thanks to: [SVPullToRefresh](https://github.com/samvermette/SVPullToRefresh) by [Sam Vermette](https://github.com/samvermette),  [EGOTableViewPullRefresh](https://github.com/enormego/EGOTableViewPullRefresh) by [enormego](http://www.enormego.com),  they inspired me a lot.
 
 ![](https://github.com/eggswift/pull-to-refresh/blob/master/example_default.gif)
 
