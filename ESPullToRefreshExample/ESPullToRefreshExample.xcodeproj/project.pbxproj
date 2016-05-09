@@ -163,8 +163,8 @@
 				F6AA6C3E1CDC80DD00723622 /* WebViewController.swift */,
 				F6AA6C3F1CDC80DD00723622 /* WebViewController.xib */,
 				F69200131CDB9A530029EF47 /* Main.storyboard */,
-				F69200161CDB9A530029EF47 /* Assets.xcassets */,
 				F69200181CDB9A530029EF47 /* LaunchScreen.storyboard */,
+				F69200161CDB9A530029EF47 /* Assets.xcassets */,
 				F692001B1CDB9A530029EF47 /* Info.plist */,
 			);
 			path = ESPullToRefreshExample;
