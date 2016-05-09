@@ -29,6 +29,9 @@
 		F6AA6C351CDC60CA00723622 /* icon_pull_to_refresh_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F6AA6C341CDC60CA00723622 /* icon_pull_to_refresh_arrow@2x.png */; };
 		F6AA6C401CDC80DD00723622 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AA6C3E1CDC80DD00723622 /* WebViewController.swift */; };
 		F6AA6C411CDC80DD00723622 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6AA6C3F1CDC80DD00723622 /* WebViewController.xib */; };
+		F6AE47311CE062CA0006C017 /* WeChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AE47301CE062CA0006C017 /* WeChatTableViewController.swift */; };
+		F6AE47331CE062F00006C017 /* WCRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AE47321CE062F00006C017 /* WCRefreshHeaderAnimator.swift */; };
+		F6AE47371CE089480006C017 /* WeChatTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AE47361CE089480006C017 /* WeChatTableHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +80,9 @@
 		F6AA6C341CDC60CA00723622 /* icon_pull_to_refresh_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_pull_to_refresh_arrow@2x.png"; sourceTree = "<group>"; };
 		F6AA6C3E1CDC80DD00723622 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		F6AA6C3F1CDC80DD00723622 /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
+		F6AE47301CE062CA0006C017 /* WeChatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeChatTableViewController.swift; sourceTree = "<group>"; };
+		F6AE47321CE062F00006C017 /* WCRefreshHeaderAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WCRefreshHeaderAnimator.swift; sourceTree = "<group>"; };
+		F6AE47361CE089480006C017 /* WeChatTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeChatTableHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,7 @@
 			children = (
 				F63613771CDEDC8F00AA9AF7 /* Default */,
 				F636136E1CDD9CA000AA9AF7 /* Meituan */,
+				F6AE472F1CE0628B0006C017 /* WeChat */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -126,9 +133,9 @@
 		F63613771CDEDC8F00AA9AF7 /* Default */ = {
 			isa = PBXGroup;
 			children = (
+				F636137A1CDEDC8F00AA9AF7 /* DefaultTableViewController.swift */,
 				F63613781CDEDC8F00AA9AF7 /* DefaultTableViewCell.swift */,
 				F63613791CDEDC8F00AA9AF7 /* DefaultTableViewCell.xib */,
-				F636137A1CDEDC8F00AA9AF7 /* DefaultTableViewController.swift */,
 			);
 			path = Default;
 			sourceTree = "<group>";
@@ -209,6 +216,16 @@
 				F692004F1CDB9FAE0029EF47 /* ESRefreshFooterAnimator.swift */,
 			);
 			path = Animator;
+			sourceTree = "<group>";
+		};
+		F6AE472F1CE0628B0006C017 /* WeChat */ = {
+			isa = PBXGroup;
+			children = (
+				F6AE47301CE062CA0006C017 /* WeChatTableViewController.swift */,
+				F6AE47321CE062F00006C017 /* WCRefreshHeaderAnimator.swift */,
+				F6AE47361CE089480006C017 /* WeChatTableHeaderView.swift */,
+			);
+			path = WeChat;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,8 +364,11 @@
 			files = (
 				F69200591CDB9FAE0029EF47 /* ESRefreshComponent.swift in Sources */,
 				F63613721CDD9CD900AA9AF7 /* MTRefreshFooterAnimator.swift in Sources */,
+				F6AE47311CE062CA0006C017 /* WeChatTableViewController.swift in Sources */,
 				F63613761CDEDC5F00AA9AF7 /* MeituanTableViewController.swift in Sources */,
 				F6AA6C401CDC80DD00723622 /* WebViewController.swift in Sources */,
+				F6AE47371CE089480006C017 /* WeChatTableHeaderView.swift in Sources */,
+				F6AE47331CE062F00006C017 /* WCRefreshHeaderAnimator.swift in Sources */,
 				F69200581CDB9FAE0029EF47 /* ESRefreshAnimator.swift in Sources */,
 				F69200551CDB9FAE0029EF47 /* ESRefreshFooterAnimator.swift in Sources */,
 				F636137B1CDEDC8F00AA9AF7 /* DefaultTableViewCell.swift in Sources */,

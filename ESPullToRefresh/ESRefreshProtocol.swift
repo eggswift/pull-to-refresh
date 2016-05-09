@@ -49,6 +49,10 @@ public protocol ESRefreshProtocol {
 }
 
 public protocol ESRefreshAnimatorProtocol {
-    var animatorView: UIView {get}
-    var animatorInsets: UIEdgeInsets {set get}
+    var view: UIView {get}
+    var insets: UIEdgeInsets {set get}
+    var trigger: CGFloat {set get}
+    var executeIncremental: CGFloat {set get}
+    
+    
 }

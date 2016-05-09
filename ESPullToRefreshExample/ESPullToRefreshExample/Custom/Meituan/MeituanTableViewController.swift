@@ -14,10 +14,11 @@ class MeituanTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.translatesAutoresizingMaskIntoConstraints = false
         self.view.backgroundColor = UIColor.init(red: 240/255.0, green: 239/255.0, blue: 237/255.0, alpha: 1.0)
         self.tableView.registerNib(UINib.init(nibName: "DefaultTableViewCell", bundle: nil), forCellReuseIdentifier: "DefaultTableViewCell")
         
-        self.tableView.es_addPullToRefresh(height: 56.0, animator: MTRefreshHeaderAnimator.init(frame: CGRect.zero)) {
+        self.tableView.es_addPullToRefresh(animator: MTRefreshHeaderAnimator.init(frame: CGRect.zero)) {
             [weak self] in
             let minseconds = 3.0 * Double(NSEC_PER_SEC)
             let dtime = dispatch_time(DISPATCH_TIME_NOW, Int64(minseconds))
@@ -32,7 +33,7 @@ class MeituanTableViewController: UITableViewController {
             })
         }
         
-        self.tableView.es_addInfiniteScrolling(height: 48.0, animator: MTRefreshFooterAnimator.init(frame: CGRect.zero)) {
+        self.tableView.es_addInfiniteScrolling(animator: MTRefreshFooterAnimator.init(frame: CGRect.zero)) {
             [weak self] in
             let minseconds = 3.0 * Double(NSEC_PER_SEC)
             let dtime = dispatch_time(DISPATCH_TIME_NOW, Int64(minseconds))

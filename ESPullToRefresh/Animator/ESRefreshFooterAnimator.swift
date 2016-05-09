@@ -30,6 +30,11 @@ public class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     static let noMoreDataDescription: String  = "No more data"
     static let loadingDescription: String     = "Loading..."
     
+    public var view: UIView { return self }
+    public var insets: UIEdgeInsets = UIEdgeInsetsZero
+    public var trigger: CGFloat = 42.0
+    public var executeIncremental: CGFloat = 42.0
+    
     private let titleLabel: UILabel = {
         let label = UILabel.init(frame: CGRect.zero)
         label.font = UIFont.systemFontOfSize(14.0)
@@ -45,12 +50,6 @@ public class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         return indicatorView
     }()
     
-    public var animatorView: UIView {
-        return self
-    }
-    
-    public var animatorInsets: UIEdgeInsets = UIEdgeInsetsZero
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(titleLabel)
@@ -63,11 +62,13 @@ public class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     
     public func refreshAnimationDidBegin(view: ESRefreshComponent) {
         indicatorView.startAnimating()
+        titleLabel.text = ESRefreshFooterAnimator.loadingDescription
         indicatorView.hidden = false
     }
     
     public func refreshAnimationDidEnd(view: ESRefreshComponent) {
         indicatorView.stopAnimating()
+        titleLabel.text = ESRefreshFooterAnimator.loadingMoreDescription
         indicatorView.hidden = true
     }
     
@@ -95,6 +96,7 @@ public class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         let w = s.width
         let h = s.height
         let s1 = titleLabel.sizeThatFits(self.bounds.size)
+        
         titleLabel.frame = CGRect.init(x: (w - s1.width) / 2.0 + 8.0, y: (h - s1.height) / 2.0, width: s1.width, height: s1.height)
         indicatorView.center = CGPoint.init(x: titleLabel.frame.origin.x - 18.0, y: h / 2.0)
     }

@@ -13,17 +13,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     let dataArray = [
                         "Default",
-                        "美团网 (Meituan.com)"
+                        "美团网 (Meituan.com)",
+                        "WeChat"
                     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.translucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 254/255.0, green: 73/255.0, blue: 42/255.0, alpha: 1.0)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(), NSFontAttributeName: UIFont.init(name: "ChalkboardSE-Bold", size: 17.0)!]
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationItem.title = "Example"
+        self.navigationController?.navigationBar.shadowImage = UIImage.init()
+        
         tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: "UITableViewCell")
+        // Header like WeChat
+        let header = HeaderView.init(frame: CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: self.view.bounds.size.width, height: 64)))
+        self.tableView.tableHeaderView = header
     }
     
     // MARK: UITableViewDataSource
@@ -37,7 +43,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("UITableViewCell")
-        cell?.textLabel?.textColor = UIColor.darkTextColor()
+        cell?.textLabel?.textColor = UIColor.init(white: 0.0, alpha: 0.6)
+        cell?.textLabel?.font = UIFont.init(name: "ChalkboardSE-Bold", size: 18.0)
         cell?.textLabel?.text = "\(indexPath.row + 1).   " + dataArray[indexPath.row]
         return cell!
     }
@@ -56,12 +63,42 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         case 1:
             vc = MeituanTableViewController.init()
             break
+        case 2:
+            vc = WeChatTableViewController.init()
+            break
         default:
 
             break
         }
         vc.title = dataArray[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+}
+
+
+private class HeaderView: UIView {
+    let label: UILabel = {
+        let label = UILabel.init(frame: CGRect.zero)
+        label.text = "pull-to-refresh"
+        label.textAlignment = .Center
+        label.font = UIFont.init(name: "ChalkboardSE-Bold", size: 20.0)
+        label.textColor = UIColor.init(white: 0.0, alpha: 0.6)
+        return label
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.addSubview(label)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        label.frame = self.bounds
     }
     
 }

@@ -33,6 +33,11 @@ public class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     static let releaseToRefreshDescription: String  = "Release to refresh"
     static let loadingDescription: String           = "Loading..."
     
+    public var insets: UIEdgeInsets = UIEdgeInsetsZero
+    public var trigger: CGFloat = 60.0
+    public var executeIncremental: CGFloat = 60.0
+    public var view: UIView { return self }
+    
     private let imageView: UIImageView = {
         let imageView = UIImageView.init()
         imageView.image = UIImage.init(named: "icon_pull_to_refresh_arrow")
@@ -52,12 +57,6 @@ public class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         indicatorView.hidden = true
         return indicatorView
     }()
-    
-    public var animatorInsets: UIEdgeInsets = UIEdgeInsetsZero
-    
-    public var animatorView: UIView {
-        return self
-    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -91,7 +90,7 @@ public class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     }
     
     public func refresh(view: ESRefreshComponent, progressDidChange progress: CGFloat) {
-        
+        // Do nothing
         
     }
     

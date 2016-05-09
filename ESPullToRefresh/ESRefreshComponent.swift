@@ -86,9 +86,9 @@ public class ESRefreshComponent: UIView {
         super.didMoveToSuperview()
         self.scrollView = self.superview as? UIScrollView
         if let _ = animator {
-            let v = animator.animatorView
+            let v = animator.view
             if v.superview == nil {
-                let inset = animator.animatorInsets
+                let inset = animator.insets
                 self.addSubview(v)
                 v.frame = CGRect.init(x: inset.left,
                                       y: inset.right,

@@ -10,10 +10,12 @@ import UIKit
 
 public class MTRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol {
     
-    public var animatorView: UIView {
+    public var view: UIView {
         return self
     }
-    public var animatorInsets: UIEdgeInsets = UIEdgeInsetsZero
+    public var insets: UIEdgeInsets = UIEdgeInsetsZero
+    public var trigger: CGFloat = 48.0
+    public var executeIncremental: CGFloat = 48.0
     
     private let topLine: UIView = {
         let topLine = UIView.init(frame: CGRect.zero)
