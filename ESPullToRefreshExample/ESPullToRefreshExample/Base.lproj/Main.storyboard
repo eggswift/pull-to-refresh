@@ -24,7 +24,7 @@
         <!--View Controller-->
         <scene sceneID="dVi-id-5y0">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="L1M-GO-x81" customClass="ViewController" customModule="ESPullToRefreshExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="L1M-GO-x81" customClass="ViewController" customModule="ESRefresh" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="k1U-Ec-h86"/>
                         <viewControllerLayoutGuide type="bottom" id="CYD-Xz-70y"/>

@@ -58,7 +58,7 @@
 		F63613781CDEDC8F00AA9AF7 /* DefaultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCell.swift; sourceTree = "<group>"; };
 		F63613791CDEDC8F00AA9AF7 /* DefaultTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DefaultTableViewCell.xib; sourceTree = "<group>"; };
 		F636137A1CDEDC8F00AA9AF7 /* DefaultTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTableViewController.swift; sourceTree = "<group>"; };
-		F692000C1CDB9A530029EF47 /* ESPullToRefreshExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ESPullToRefreshExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F692000C1CDB9A530029EF47 /* ESRefresh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ESRefresh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F692000F1CDB9A530029EF47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F69200111CDB9A530029EF47 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F69200141CDB9A530029EF47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -154,7 +154,7 @@
 		F692000D1CDB9A530029EF47 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F692000C1CDB9A530029EF47 /* ESPullToRefreshExample.app */,
+				F692000C1CDB9A530029EF47 /* ESRefresh.app */,
 				F69200201CDB9A530029EF47 /* ESPullToRefreshExampleTests.xctest */,
 				F692002B1CDB9A530029EF47 /* ESPullToRefreshExampleUITests.xctest */,
 			);
@@ -245,7 +245,7 @@
 			);
 			name = ESPullToRefreshExample;
 			productName = ESPullToRefreshExample;
-			productReference = F692000C1CDB9A530029EF47 /* ESPullToRefreshExample.app */;
+			productReference = F692000C1CDB9A530029EF47 /* ESRefresh.app */;
 			productType = "com.apple.product-type.application";
 		};
 		F692001F1CDB9A530029EF47 /* ESPullToRefreshExampleTests */ = {
@@ -526,7 +526,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = eggswift.ESPullToRefreshExample;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ESRefresh;
 			};
 			name = Debug;
 		};
@@ -538,7 +538,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = eggswift.ESPullToRefreshExample;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ESRefresh;
 			};
 			name = Release;
 		};
