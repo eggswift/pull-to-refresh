@@ -1,14 +1,11 @@
-# pull-to-refresh
-ESPullToRefresh is an easy way to give pull-to-refresh and loading-more to any UIScrollView. Using swift!
+# ESPullToRefresh  [中文介绍](https://github.com/eggswift/pull-to-refresh/blob/master/README_CN.md)
 
-Thanks to: [SVPullToRefresh](https://github.com/samvermette/SVPullToRefresh) by [Sam Vermette](https://github.com/samvermette),  [EGOTableViewPullRefresh](https://github.com/enormego/EGOTableViewPullRefresh) by [enormego](http://www.enormego.com),  they inspired me a lot.
+ESPullToRefresh is an easy-to-use component that give `pull-to-refresh` and `infinite-scrolling` implemention for developers. By extension to UIScrollView, you can easily add pull-to-refresh and infinite-scrolling for any subclass of UIScrollView. If you want to customize its UI style, you just need conform the specified protocol.
 
-![](https://github.com/eggswift/pull-to-refresh/blob/master/example_default.gif)
-![](https://github.com/eggswift/pull-to-refresh/blob/master/example_meituan.gif)
-
-注: 加载动画资源来自美团 iOS app。
+Thanks to: [SVPullToRefresh](https://github.com/samvermette/SVPullToRefresh) by [Sam Vermette](https://github.com/samvermette),  [EGOTableViewPullRefresh](https://github.com/enormego/EGOTableViewPullRefresh) by [enormego](http://www.enormego.com),  these projects inspired me a lot.
 
 ## Requirements
+
 * Xcode 7 or later
 * iOS 8.0 or later
 * ARC
@@ -16,11 +13,12 @@ Thanks to: [SVPullToRefresh](https://github.com/samvermette/SVPullToRefresh) by 
 
 ## Demo
 
-Open and run the ESPullToRefreshExample project in Xcode to see ESPullToRefresh in action.
+Download and run the ESPullToRefreshExample project in Xcode to see ESPullToRefresh in action.
+
 
 ## Installation
 
-### CocoaPods
+### 使用CocoaPods
 
 ``` ruby
 pod "ESPullToRefresh"
@@ -28,90 +26,82 @@ pod "ESPullToRefresh"
 
 ### Manual
 
-Input ESPullToRefresh folder into your project.
+``` ruby
+git clone https://github.com/eggswift/pull-to-refresh.git
+open ESPullToRefresh
+```
 
-## Example usage
-Add an pull-to-refresh header to UITableView:
+## Start usage
+
+### Default style:
+
+#### As effect:
+
+![](https://github.com/eggswift/pull-to-refresh/blob/master/example_default.gif)
+
+
+
+Add default pull-to-refresh
 ``` swift
 self.tableView.es_addPullToRefresh {
 [weak self] in
-/// Do anything you want
+/// Do anything you want...
 /// ...
 /// Stop refresh when your job finished, it will reset refresh footer if completion is true
-self?.tableView.stopPullToRefresh(completion: true)
+self?.tableView.es_stopPullToRefresh(completion: true)
+/// Set ignore footer or not
+self?.tableView.es_stopPullToRefresh(completion: true, ignoreFooter: false)
+})
 }
 ```
 
-Add an infinite-scrolling footer to UITableView:
+Add default infinite-scrolling
 ``` swift
 self.tableView.es_addInfiniteScrolling {
 [weak self] in
 /// Do anything you want...
 /// ...
 /// If common end
-self?.tableView.stopLoadingMore()
+self?.tableView.es_stopLoadingMore()
 /// If no more data
-self?.tableView.noticeNoMoreData()
+self?.tableView.es_noticeNoMoreData()
+})
 }
 ```
 
-### Description
+ 
+### Customize Style
 
-Add default pull to refresh animator:
+#### As effect:
 
+![](https://github.com/eggswift/pull-to-refresh/blob/master/example_meituan.gif)
+
+注: Loading resources are from Meituan(Meituan.com) iOS app。
+
+![](https://github.com/eggswift/pull-to-refresh/blob/master/example_wechat.gif)
+
+
+`ESPullToRefresh`通过`ESRefreshProtocol`和`ESRefreshAnimatorProtocol`来约束刷新组件的使用，自定义的组件必须遵守这两个协议，并实现协议中的方法。
+
+Add customize pull-to-refresh
 ``` swift
-func es_addPullToRefresh(handler: ESRefreshHandler)
+func es_addPullToRefresh(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, 
+handler: ESRefreshHandler)
 ```
 
-Add default pull to refresh animator with custom height:
-
+Add customize infinite-scrolling
 ``` swift
-func es_addPullToRefresh(height headerH: CGFloat, handler: ESRefreshHandler)
+func es_addInfiniteScrolling(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, 
+handler: ESRefreshHandler)
 ```
 
-Add custom pull to refresh animator with custom height:
+### Remove
 
 ``` swift
-func es_addPullToRefresh(height headerH: CGFloat, animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler)
+func es_removeRefreshHeader()
+func es_removeRefreshFooter()
 ```
 
-Add default infinite scrolling animator:
-
-``` swift
-func es_addInfiniteScrolling(handler: ESRefreshHandler)
-```
-
-Add default infinite scrolling animator with custom height:
-
-``` swift
-func es_addInfiniteScrolling(height footerH: CGFloat, handler: ESRefreshHandler) 
-```
-
-Add custom infinite scrolling animator with custom height:
-
-``` swift
-func es_addInfiniteScrolling(height footerH: CGFloat, animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler)
-```
-
-Remove refresh:
-
-``` swift
-func removeRefreshHeader()
-func removeRefreshFooter()
-```
-
-Start manual refresh:
-
-``` swift
-func startPullToRefresh()
-```
-
-Stop refresh:
-
-``` swift
-func stopPullToRefresh(completion completion: Bool, ignoreFooter: Bool)
-func stopPullToRefresh(completion completion: Bool)
-```
 
 ## Contribution
 
