@@ -1,7 +1,7 @@
 # pull-to-refresh
 ESPullToRefresh是一个非常易于开发者使用的下拉刷新和加载更多组件。通过一个UIScrollView的扩展，可以轻松为UIScrollView的所有子类添加下拉刷新功能。 如果你想定制自己的UI样式，只要实现制定的协议方法即可。
 
-感谢: [SVPullToRefresh](https://github.com/samvermette/SVPullToRefresh) by [Sam Vermette](https://github.com/samvermette),  [EGOTableViewPullRefresh](https://github.com/enormego/EGOTableViewPullRefresh) by [enormego](http://www.enormego.com), 这些开源项目给了我很多灵感。
+感谢: [SVPullToRefresh](https://github.com/samvermette/SVPullToRefresh) by [Sam Vermette](https://github.com/samvermette),  [EGOTableViewPullRefresh](https://github.com/enormego/EGOTableViewPullRefresh) by [enormego](http://www.enormego.com),  这些开源项目给了我很多灵感。
 
 ## Requirements
 * Xcode 7 or later
@@ -11,7 +11,7 @@ ESPullToRefresh是一个非常易于开发者使用的下拉刷新和加载更�
 
 ## Demo
 
-打开并运行ESPullToRefreshExample工程，你可以看到一些使用ESPullToRefresh实现的自定义下拉刷新和加载更多例子。
+下载后运行ESPullToRefreshExample工程，你可以看到一些使用ESPullToRefresh实现的自定义下拉刷新和加载更多例子。
 
 
 ## Installation
@@ -38,6 +38,8 @@ open ESPullToRefresh
 ![](https://github.com/eggswift/pull-to-refresh/blob/master/example_default.gif)
 
 
+
+设置默认下拉刷新组件
 ``` swift
 self.tableView.es_addPullToRefresh {
     [weak self] in
@@ -51,7 +53,7 @@ self.tableView.es_addPullToRefresh {
 }
 ```
 
-Add an infinite-scrolling footer to UITableView:
+设置默认加载更多组件
 ``` swift
 self.tableView.es_addInfiniteScrolling {
     [weak self] in
@@ -65,25 +67,29 @@ self.tableView.es_addInfiniteScrolling {
 }
 ```
 
+
 ### 使用自定义样式
 
 #### 效果如下:
 
 ![](https://github.com/eggswift/pull-to-refresh/blob/master/example_meituan.gif)
+
 注: 加载动画资源来自美团 iOS app。
 
 ![](https://github.com/eggswift/pull-to-refresh/blob/master/example_wechat.gif)
 
-ESPullToRefresh通过ESRefreshProtocol和ESRefreshAnimatorProtocol来约束刷新组件的使用，自定义的刷新组建必须遵守这两个协议，并实现协议中的方法。
+`ESPullToRefresh`通过`ESRefreshProtocol`和`ESRefreshAnimatorProtocol`来约束刷新组件的使用，自定义的刷新组建必须遵守这两个协议，并实现协议中的方法。
 
 设置自定义下拉刷新组件
 ``` swift
-func es_addPullToRefresh(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler)
+func es_addPullToRefresh(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, 
+handler: ESRefreshHandler)
 ```
 
 设置自定义加载更多组件
 ``` swift
-func es_addInfiniteScrolling(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler)
+func es_addInfiniteScrolling(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, 
+handler: ESRefreshHandler)
 ```
 
 ### 移除方法
