@@ -37,7 +37,7 @@ open ESPullToRefresh
 
 #### 效果如下:
 
-![](https://github.com/eggswift/pull-to-refresh/blob/master/example_default.gif)
+![](example_default.gif)
 
 
 
@@ -74,11 +74,11 @@ self.tableView.es_addInfiniteScrolling {
 
 #### 效果如下:
 
-![](https://github.com/eggswift/pull-to-refresh/blob/master/example_meituan.gif)
+![](example_meituan.gif)
 
 注: 加载动画资源来自美团 iOS app。
 
-![](https://github.com/eggswift/pull-to-refresh/blob/master/example_wechat.gif)
+![](example_wechat.gif)
 
 
 `ESPullToRefresh`通过`ESRefreshProtocol`和`ESRefreshAnimatorProtocol`来约束刷新组件的使用，自定义的组件必须遵守这两个协议，并实现协议中的方法。

@@ -1,4 +1,4 @@
-# ESPullToRefresh  [中文介绍](https://github.com/eggswift/pull-to-refresh/blob/master/README_CN.md)
+# ESPullToRefresh  [中文介绍](README_CN.md)
 
 ESPullToRefresh is an easy-to-use component that give `pull-to-refresh` and `infinite-scrolling` implemention for developers. By extension to UIScrollView, you can easily add pull-to-refresh and infinite-scrolling for any subclass of UIScrollView. If you want to customize its UI style, you just need conform the specified protocol.
 
