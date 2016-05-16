@@ -37,7 +37,7 @@ open ESPullToRefresh
 
 #### As effect:
 
-![](https://github.com/eggswift/pull-to-refresh/blob/master/example_default.gif)
+![](example_default.gif)
 
 
 
@@ -69,16 +69,16 @@ self?.tableView.es_noticeNoMoreData()
 }
 ```
 
- 
+
 ### Customize Style
 
 #### As effect:
 
-![](https://github.com/eggswift/pull-to-refresh/blob/master/example_meituan.gif)
+![](example_meituan.gif)
 
 注: 加载动画资源来自美团 iOS app。
 
-![](https://github.com/eggswift/pull-to-refresh/blob/master/example_wechat.gif)
+![](example_wechat.gif)
 
 
 Customize refresh need conform the `ESRefreshProtocol` and `ESRefreshAnimatorProtocol` protocol.
