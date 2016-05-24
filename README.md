@@ -1,6 +1,8 @@
-# ESPullToRefresh  [中文介绍](README_CN.md)
----
-[![Travis](https://img.shields.io/travis/eggwift/ESPullToRefresh.svg)](https://travis-ci.org/eggswift/pull-to-refresh)
+# ESPullToRefresh
+###[中文介绍](README_CN.md)
+<br/>
+
+<!--[![Travis](https://img.shields.io/travis/eggwift/ESPullToRefresh.svg)](https://travis-ci.org/eggswift/pull-to-refresh)-->
 [![CocoaPods](https://img.shields.io/cocoapods/v/ESPullToRefresh.svg)](http://cocoapods.org/pods/pull-to-refresh)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Swift 2.2](https://img.shields.io/badge/Swift-2.1-orange.svg?style=flat)](https://developer.apple.com/swift/)
@@ -8,7 +10,7 @@
 [![Twitter](https://img.shields.io/badge/Weibo-@李昊_____-orange.svg?style=flat)](http://weibo.com/5120522686/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1)
 
 
-ESPullToRefresh is an easy-to-use component that give `pull-to-refresh` and `infinite-scrolling` implemention for developers. By extension to UIScrollView, you can easily add pull-to-refresh and infinite-scrolling for any subclass of UIScrollView. If you want to customize its UI style, you just need conform the specified protocol.
+**ESPullToRefresh** is an easy-to-use component that give **pull-to-refresh** and **infinite-scrolling** implemention for developers. By extension to UIScrollView, you can easily add pull-to-refresh and infinite-scrolling for any subclass of UIScrollView. If you want to customize its UI style, you just need conform the specified protocol.
 
 Thanks to: [SVPullToRefresh](https://github.com/samvermette/SVPullToRefresh) by [Sam Vermette](https://github.com/samvermette),  [EGOTableViewPullRefresh](https://github.com/enormego/EGOTableViewPullRefresh) by [enormego](http://www.enormego.com),  these projects inspired me a lot.
 
@@ -89,7 +91,7 @@ self?.tableView.es_noticeNoMoreData()
 ![](example_wechat.gif)
 
 
-Customize refresh need conform the `ESRefreshProtocol` and `ESRefreshAnimatorProtocol` protocol.
+Customize refresh need conform the **ESRefreshProtocol** and **ESRefreshAnimatorProtocol** protocol.
 
 Add customize pull-to-refresh
 ``` swift

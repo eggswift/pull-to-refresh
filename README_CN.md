@@ -1,6 +1,16 @@
 # ESPullToRefresh
+###[中文介绍](README_CN.md)
+<br/>
 
-ESPullToRefresh是一个非常易于开发者使用的下拉刷新和加载更多组件。通过一个UIScrollView的扩展，可以轻松为UIScrollView的所有子类添加下拉刷新功能。 如果你想定制组件的UI样式，只要实现指定的协议方法即可。
+<!--[![Travis](https://img.shields.io/travis/eggwift/ESPullToRefresh.svg)](https://travis-ci.org/eggswift/pull-to-refresh)-->
+[![CocoaPods](https://img.shields.io/cocoapods/v/ESPullToRefresh.svg)](http://cocoapods.org/pods/pull-to-refresh)
+[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Swift 2.2](https://img.shields.io/badge/Swift-2.1-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![Twitter](https://img.shields.io/badge/Twitter-@lihao_iOS-blue.svg?style=flat)](https://twitter.com/lihao_iOS)
+[![Twitter](https://img.shields.io/badge/Weibo-@李昊_____-orange.svg?style=flat)](http://weibo.com/5120522686/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1)
+
+
+**ESPullToRefresh**是一个非常易于开发者使用的下拉刷新和加载更多组件。通过一个UIScrollView的扩展，可以轻松为UIScrollView的所有子类添加下拉刷新功能。 如果你想定制组件的UI样式，只要实现指定的协议方法即可。
 
 感谢: [SVPullToRefresh](https://github.com/samvermette/SVPullToRefresh) by [Sam Vermette](https://github.com/samvermette),  [EGOTableViewPullRefresh](https://github.com/enormego/EGOTableViewPullRefresh) by [enormego](http://www.enormego.com),  这些开源项目给了我很多灵感。
 
@@ -81,7 +91,7 @@ self.tableView.es_addInfiniteScrolling {
 ![](example_wechat.gif)
 
 
-`ESPullToRefresh`通过`ESRefreshProtocol`和`ESRefreshAnimatorProtocol`来约束刷新组件的使用，自定义的组件必须遵守这两个协议，并实现协议中的方法。
+**ESPullToRefresh**通过**ESRefreshProtocol**和**ESRefreshAnimatorProtocol**来约束刷新组件的使用，自定义的组件必须遵守这两个协议，并实现协议中的方法。
 
 设置自定义下拉刷新组件
 ``` swift
