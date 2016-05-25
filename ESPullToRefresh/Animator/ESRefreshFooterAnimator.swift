@@ -56,7 +56,7 @@ public class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         addSubview(indicatorView)
     }
     
-    required public init(coder aDecoder: NSCoder) {
+    public required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -90,7 +90,7 @@ public class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         }
     }
     
-    override public func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         let s = self.bounds.size
         let w = s.width

@@ -36,7 +36,7 @@ public enum ESRefreshViewState {
 private var kESRefreshHeaderKey: String = ""
 private var kESRefreshFooterKey: String = ""
 
-extension UIScrollView {
+public extension UIScrollView {
     
     /// Pull-to-refresh associated property
     var esHeader: ESRefreshHeaderView? {
@@ -140,19 +140,19 @@ public class ESRefreshHeaderView: ESRefreshComponent {
     private var bounces: Bool = false
     private var scrollViewInsets: UIEdgeInsets = UIEdgeInsetsZero
     
-    convenience public init(frame: CGRect, handler: ESRefreshHandler) {
+    public convenience init(frame: CGRect, handler: ESRefreshHandler) {
         self.init(frame: frame)
         self.handler = handler
         self.animator = ESRefreshHeaderAnimator.init()
     }
     
-    override public func didMoveToSuperview() {
+    public override func didMoveToSuperview() {
         super.didMoveToSuperview()
         bounces = scrollView?.bounces ?? false
         scrollViewInsets = scrollView?.contentInset ?? UIEdgeInsetsZero
     }
     
-    override func offsetChangeAction(object object: AnyObject?, change: [String : AnyObject]?) {
+    public override func offsetChangeAction(object object: AnyObject?, change: [String : AnyObject]?) {
         guard let scrollView = scrollView else { return }
         super.offsetChangeAction(object: object, change: change)
         var update = false // Check needs re-set animator's progress or not.
@@ -189,7 +189,7 @@ public class ESRefreshHeaderView: ESRefreshComponent {
         }
     }
     
-    override func startAnimating() {
+    public override func startAnimating() {
         guard let scrollView = scrollView else { return }
         super.startAnimating()
         self.animator.refreshAnimationDidBegin(self)
@@ -214,7 +214,7 @@ public class ESRefreshHeaderView: ESRefreshComponent {
         })
     }
     
-    override func stopAnimating() {
+    public override func stopAnimating() {
         guard let scrollView = scrollView else {
             return
         }
@@ -260,7 +260,7 @@ public class ESRefreshFooterView: ESRefreshComponent {
         }
     }
     
-    convenience public init(frame: CGRect, handler: ESRefreshHandler) {
+    public convenience init(frame: CGRect, handler: ESRefreshHandler) {
         self.init(frame: frame)
         self.handler = handler
         self.animator = ESRefreshFooterAnimator.init()
@@ -277,7 +277,7 @@ public class ESRefreshFooterView: ESRefreshComponent {
         self.frame = rect
     }
  
-    override func sizeChangeAction(object object: AnyObject?, change: [String : AnyObject]?) {
+    public override func sizeChangeAction(object object: AnyObject?, change: [String : AnyObject]?) {
         guard let scrollView = scrollView else { return }
         super.sizeChangeAction(object: object, change: change)
         let targetY = scrollView.contentSize.height + scrollViewInsets.bottom
@@ -288,7 +288,7 @@ public class ESRefreshFooterView: ESRefreshComponent {
         }
     }
     
-    override func offsetChangeAction(object object: AnyObject?, change: [String : AnyObject]?) {
+    public override func offsetChangeAction(object object: AnyObject?, change: [String : AnyObject]?) {
         guard let scrollView = scrollView else { return }
         super.offsetChangeAction(object: object, change: change)
         if self.loading == true  || self.noMoreData == true || animating == true || hidden == true {
@@ -314,7 +314,7 @@ public class ESRefreshFooterView: ESRefreshComponent {
         }
     }
     
-    override func startAnimating() {
+    public override func startAnimating() {
         if let _ = scrollView {
             super.startAnimating()
             self.animator.refreshAnimationDidBegin(self)
@@ -331,7 +331,7 @@ public class ESRefreshFooterView: ESRefreshComponent {
         }
     }
     
-    override func stopAnimating() {
+    public override func stopAnimating() {
         guard let _ = scrollView else {
             return
         }

@@ -57,7 +57,7 @@ public class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         return indicatorView
     }()
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         titleLabel.text = pullToRefreshDescription
         self.addSubview(imageView)
@@ -65,7 +65,7 @@ public class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         self.addSubview(indicatorView)
     }
     
-    required public init(coder aDecoder: NSCoder) {
+    public required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     

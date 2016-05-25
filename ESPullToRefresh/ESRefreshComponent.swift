@@ -49,24 +49,24 @@ public class ESRefreshComponent: UIView {
         }
     }
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         autoresizingMask = [.FlexibleLeftMargin, .FlexibleWidth, .FlexibleRightMargin]
     }
     
-    convenience public init(frame: CGRect, handler: ESRefreshHandler) {
+    public convenience init(frame: CGRect, handler: ESRefreshHandler) {
         self.init(frame: frame)
         self.handler = handler
         self.animator = ESRefreshAnimator.init()
     }
     
-    convenience public init(frame: CGRect, handler: ESRefreshHandler, customAnimator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>) {
+    public convenience init(frame: CGRect, handler: ESRefreshHandler, customAnimator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>) {
         self.init(frame: frame)
         self.handler = handler
         self.animator = animator
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -74,7 +74,7 @@ public class ESRefreshComponent: UIView {
         removeObserver()
     }
     
-    override public func willMoveToSuperview(newSuperview: UIView?) {
+    public override func willMoveToSuperview(newSuperview: UIView?) {
         super.willMoveToSuperview(newSuperview)
         /// Remove observer from superview
         removeObserver()
@@ -82,7 +82,7 @@ public class ESRefreshComponent: UIView {
         addObserver(newSuperview)
     }
     
-    override public func didMoveToSuperview() {
+    public override func didMoveToSuperview() {
         super.didMoveToSuperview()
         self.scrollView = self.superview as? UIScrollView
         if let _ = animator {
@@ -106,7 +106,7 @@ public class ESRefreshComponent: UIView {
     
 }
 
-extension ESRefreshComponent /* KVO methods */ {
+public extension ESRefreshComponent /* KVO methods */ {
     
     private func addObserver(view: UIView?) {
         if let scrollView = view as? UIScrollView {
@@ -122,7 +122,7 @@ extension ESRefreshComponent /* KVO methods */ {
         }
     }
     
-    override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if context == &ESRefreshComponent.context {
             guard userInteractionEnabled == true && hidden == false else {
                 return
@@ -139,23 +139,23 @@ extension ESRefreshComponent /* KVO methods */ {
     
 }
 
-extension ESRefreshComponent /* Action */ {
+public extension ESRefreshComponent /* Action */ {
 
-    func startAnimating() -> Void {
+    public func startAnimating() -> Void {
         animating = true
     }
     
-    func stopAnimating() -> Void {
+    public func stopAnimating() -> Void {
         animating = false
     }
 
     //  ScrollView contentSize change action
-    func sizeChangeAction(object object: AnyObject?, change: [String : AnyObject]?) {
+    public func sizeChangeAction(object object: AnyObject?, change: [String : AnyObject]?) {
         
     }
     
     //  ScrollView offset change action
-    func offsetChangeAction(object object: AnyObject?, change: [String : AnyObject]?) {
+    public func offsetChangeAction(object object: AnyObject?, change: [String : AnyObject]?) {
         
     }
     
