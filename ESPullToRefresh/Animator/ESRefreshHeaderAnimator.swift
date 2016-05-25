@@ -29,9 +29,9 @@ import QuartzCore
 import UIKit
 
 public class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol {
-    static let pullToRefreshDescription: String     = "Pull to refresh"
-    static let releaseToRefreshDescription: String  = "Release to refresh"
-    static let loadingDescription: String           = "Loading..."
+    public let pullToRefreshDescription: String     = "Pull to refresh"
+    public let releaseToRefreshDescription: String  = "Release to refresh"
+    public let loadingDescription: String           = "Loading..."
     
     public var insets: UIEdgeInsets = UIEdgeInsetsZero
     public var trigger: CGFloat = 60.0
@@ -48,7 +48,6 @@ public class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         label.font = UIFont.systemFontOfSize(14.0)
         label.textColor = UIColor.init(white: 160.0 / 255.0, alpha: 1.0)
         label.textAlignment = .Left
-        label.text = ESRefreshHeaderAnimator.pullToRefreshDescription
         return label
     }()
     
@@ -60,6 +59,7 @@ public class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        titleLabel.text = pullToRefreshDescription
         self.addSubview(imageView)
         self.addSubview(titleLabel)
         self.addSubview(indicatorView)
@@ -73,7 +73,7 @@ public class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         indicatorView.startAnimating()
         indicatorView.hidden = false
         imageView.hidden = true
-        titleLabel.text = ESRefreshHeaderAnimator.loadingDescription
+        titleLabel.text = loadingDescription
         UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseInOut, animations: { 
             [weak self] in
             self?.imageView.transform = CGAffineTransformMakeRotation(0.000001 - CGFloat(M_PI))
@@ -85,7 +85,7 @@ public class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         indicatorView.stopAnimating()
         indicatorView.hidden = true
         imageView.hidden = false
-        titleLabel.text = ESRefreshHeaderAnimator.pullToRefreshDescription
+        titleLabel.text = pullToRefreshDescription
         imageView.transform = CGAffineTransformIdentity
     }
     
@@ -97,10 +97,10 @@ public class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     public func refresh(view: ESRefreshComponent, stateDidChange state: ESRefreshViewState) {
         switch state {
         case .Loading:
-            titleLabel.text = ESRefreshHeaderAnimator.loadingDescription
+            titleLabel.text = loadingDescription
             break
         case .ReleaseToRefresh:
-            titleLabel.text = ESRefreshHeaderAnimator.releaseToRefreshDescription
+            titleLabel.text = releaseToRefreshDescription
             UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseInOut, animations: {
                 [weak self] in
                 self?.imageView.transform = CGAffineTransformMakeRotation(0.000001 - CGFloat(M_PI))
@@ -108,7 +108,7 @@ public class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
             }) { (animated) in }
             break
         default:
-            titleLabel.text = ESRefreshHeaderAnimator.pullToRefreshDescription
+            titleLabel.text = pullToRefreshDescription
             UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseInOut, animations: {
                 [weak self] in
                 self?.imageView.transform = CGAffineTransformIdentity

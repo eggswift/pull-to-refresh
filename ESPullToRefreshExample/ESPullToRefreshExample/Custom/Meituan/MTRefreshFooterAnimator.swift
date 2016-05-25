@@ -10,6 +10,10 @@ import UIKit
 
 public class MTRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol {
     
+    public let loadingMoreDescription: String = "Loading more"
+    public let noMoreDataDescription: String  = "No more data"
+    public let loadingDescription: String     = "Loading..."
+    
     public var view: UIView {
         return self
     }
@@ -32,7 +36,6 @@ public class MTRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         label.font = UIFont.systemFontOfSize(14.0)
         label.textColor = UIColor.init(white: 160.0 / 255.0, alpha: 1.0)
         label.textAlignment = .Center
-        label.text = ESRefreshFooterAnimator.loadingMoreDescription
         return label
     }()
     private let indicatorView: UIActivityIndicatorView = {
@@ -44,6 +47,7 @@ public class MTRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.whiteColor()
+        titleLabel.text = loadingMoreDescription
         addSubview(titleLabel)
         addSubview(indicatorView)
         addSubview(topLine)
@@ -71,13 +75,13 @@ public class MTRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     public func refresh(view: ESRefreshComponent, stateDidChange state: ESRefreshViewState) {
         switch state {
         case .Loading:
-            titleLabel.text = ESRefreshFooterAnimator.loadingDescription
+            titleLabel.text = loadingDescription
             break
         case .NoMoreData:
-            titleLabel.text = ESRefreshFooterAnimator.noMoreDataDescription
+            titleLabel.text = noMoreDataDescription
             break
         default:
-            titleLabel.text = ESRefreshFooterAnimator.loadingMoreDescription
+            titleLabel.text = loadingMoreDescription
             break
         }
     }

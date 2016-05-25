@@ -19,13 +19,13 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         self.webView.scrollView.es_addPullToRefresh { [weak self] in
             self?.webView.loadRequest(NSURLRequest.init(URL: NSURL.init(string: "https://github.com/eggswift")!))
         }
-        self.webView.scrollView.bounces = true
-        self.webView.scrollView.alwaysBounceVertical = true
         self.webView.scrollView.es_startPullToRefresh()
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
         self.webView.scrollView.es_stopPullToRefresh(completion: true)
+        self.webView.scrollView.bounces = true
+        self.webView.scrollView.alwaysBounceVertical = true
     }
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {

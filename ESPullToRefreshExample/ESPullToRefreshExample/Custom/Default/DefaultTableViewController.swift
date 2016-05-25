@@ -16,6 +16,11 @@ class DefaultTableViewController: UITableViewController {
         super.viewDidLoad()
         self.view.translatesAutoresizingMaskIntoConstraints = false
         self.tableView.registerNib(UINib.init(nibName: "DefaultTableViewCell", bundle: nil), forCellReuseIdentifier: "DefaultTableViewCell")
+        
+        for _ in 1...8{
+            self.array.append(" ")
+        }
+        
         self.tableView.es_addPullToRefresh {
             [weak self] in
             let minseconds = 3.0 * Double(NSEC_PER_SEC)

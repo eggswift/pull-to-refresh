@@ -49,6 +49,7 @@ public class MTRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
                         images.append(aImage)
                     }
                 }
+                self.imageView.animationDuration = 0.5
                 self.imageView.animationRepeatCount = 0
                 self.imageView.animationImages = images
                 self.imageView.startAnimating()
@@ -79,6 +80,7 @@ public class MTRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
                     images.append(aImage)
                 }
             }
+            imageView.animationDuration = 0.2
             imageView.animationRepeatCount = 1
             imageView.animationImages = images
             imageView.image = UIImage.init(named: "icon_pull_animation_1")
@@ -91,6 +93,7 @@ public class MTRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
                     images.append(aImage)
                 }
             }
+            imageView.animationDuration = 0.2
             imageView.animationRepeatCount = 1
             imageView.animationImages = images
             imageView.image = UIImage.init(named: "icon_pull_animation_5")

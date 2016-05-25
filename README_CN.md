@@ -1,6 +1,5 @@
 # ESPullToRefresh
 ###[中文介绍](README_CN.md)
-<br/>
 
 <!--[![Travis](https://img.shields.io/travis/eggwift/ESPullToRefresh.svg)](https://travis-ci.org/eggswift/pull-to-refresh)-->
 [![CocoaPods](https://img.shields.io/cocoapods/v/ESPullToRefresh.svg)](http://cocoapods.org/pods/pull-to-refresh)
@@ -26,12 +25,18 @@
 下载后运行ESPullToRefreshExample工程，你可以看到一些使用ESPullToRefresh实现的自定义下拉刷新和加载更多例子。
 
 
-## Installation
+## 如何安装
 
-### 使用CocoaPods
+### CocoaPods
 
 ``` ruby
 pod "ESPullToRefresh"
+```
+
+### Carthage
+
+```ruby
+github "eggswift/ESPullToRefresh"
 ```
 
 ### 手动安装

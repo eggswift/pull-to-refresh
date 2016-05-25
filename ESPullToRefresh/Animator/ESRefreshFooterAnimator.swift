@@ -26,10 +26,10 @@
 import UIKit
 
 public class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol {
-    static let loadingMoreDescription: String = "Loading more"
-    static let noMoreDataDescription: String  = "No more data"
-    static let loadingDescription: String     = "Loading..."
-    
+    public let loadingMoreDescription: String = "Loading more"
+    public let noMoreDataDescription: String  = "No more data"
+    public let loadingDescription: String     = "Loading..."
+
     public var view: UIView { return self }
     public var insets: UIEdgeInsets = UIEdgeInsetsZero
     public var trigger: CGFloat = 42.0
@@ -40,7 +40,6 @@ public class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         label.font = UIFont.systemFontOfSize(14.0)
         label.textColor = UIColor.init(white: 160.0 / 255.0, alpha: 1.0)
         label.textAlignment = .Center
-        label.text = ESRefreshFooterAnimator.loadingMoreDescription
         return label
     }()
     
@@ -52,6 +51,7 @@ public class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        titleLabel.text = loadingMoreDescription
         addSubview(titleLabel)
         addSubview(indicatorView)
     }
@@ -62,13 +62,13 @@ public class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     
     public func refreshAnimationDidBegin(view: ESRefreshComponent) {
         indicatorView.startAnimating()
-        titleLabel.text = ESRefreshFooterAnimator.loadingDescription
+        titleLabel.text = loadingDescription
         indicatorView.hidden = false
     }
     
     public func refreshAnimationDidEnd(view: ESRefreshComponent) {
         indicatorView.stopAnimating()
-        titleLabel.text = ESRefreshFooterAnimator.loadingMoreDescription
+        titleLabel.text = loadingMoreDescription
         indicatorView.hidden = true
     }
     
@@ -79,13 +79,13 @@ public class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     public func refresh(view: ESRefreshComponent, stateDidChange state: ESRefreshViewState) {
         switch state {
         case .Loading:
-            titleLabel.text = ESRefreshFooterAnimator.loadingDescription
+            titleLabel.text = loadingDescription
             break
         case .NoMoreData:
-            titleLabel.text = ESRefreshFooterAnimator.noMoreDataDescription
+            titleLabel.text = noMoreDataDescription
             break
         default:
-            titleLabel.text = ESRefreshFooterAnimator.loadingMoreDescription
+            titleLabel.text = loadingMoreDescription
             break
         }
     }

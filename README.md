@@ -1,6 +1,5 @@
 # ESPullToRefresh
 ###[中文介绍](README_CN.md)
-<br/>
 
 <!--[![Travis](https://img.shields.io/travis/eggwift/ESPullToRefresh.svg)](https://travis-ci.org/eggswift/pull-to-refresh)-->
 [![CocoaPods](https://img.shields.io/cocoapods/v/ESPullToRefresh.svg)](http://cocoapods.org/pods/pull-to-refresh)
@@ -28,24 +27,29 @@ Download and run the ESPullToRefreshExample project in Xcode to see ESPullToRefr
 
 ## Installation
 
-### 使用CocoaPods
+### CocoaPods
 
 ``` ruby
 pod "ESPullToRefresh"
 ```
 
-### Manual
+### Carthage
+
+```ruby
+github "eggswift/ESPullToRefresh"
+```
+
+### Manually
 
 ``` ruby
 git clone https://github.com/eggswift/pull-to-refresh.git
 open ESPullToRefresh
 ```
 
-## Start usage
+## Usage
 
 ### Default style:
 
-#### As effect:
 
 ![](example_default.gif)
 
@@ -86,7 +90,7 @@ self?.tableView.es_noticeNoMoreData()
 
 ![](example_meituan.gif)
 
-注: 加载动画资源来自美团 iOS app。
+***注: 加载动画资源来自美团 iOS app。***
 
 ![](example_wechat.gif)
 
@@ -94,12 +98,14 @@ self?.tableView.es_noticeNoMoreData()
 Customize refresh need conform the **ESRefreshProtocol** and **ESRefreshAnimatorProtocol** protocol.
 
 Add customize pull-to-refresh
+
 ``` swift
 func es_addPullToRefresh(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, 
 handler: ESRefreshHandler)
 ```
 
 Add customize infinite-scrolling
+
 ``` swift
 func es_addInfiniteScrolling(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, 
 handler: ESRefreshHandler)
@@ -121,7 +127,7 @@ You are welcome to contribute to the project by forking the repo, modifying the 
 
 The MIT License (MIT)
 
-Copyright (c) 2013-2015 eggswift (https://github.com/eggswift/pull-to-refresh)
+Copyright (c) 2013-2015 eggswift
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
