@@ -49,7 +49,7 @@ public class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         return indicatorView
     }()
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         titleLabel.text = loadingMoreDescription
         addSubview(titleLabel)

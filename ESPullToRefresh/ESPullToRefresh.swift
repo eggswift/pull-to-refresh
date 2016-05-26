@@ -39,19 +39,19 @@ private var kESRefreshFooterKey: String = ""
 public extension UIScrollView {
     
     /// Pull-to-refresh associated property
-    var esHeader: ESRefreshHeaderView? {
+    public var esHeader: ESRefreshHeaderView? {
         get { return (objc_getAssociatedObject(self, &kESRefreshHeaderKey) as? ESRefreshHeaderView) }
         set(newValue) { objc_setAssociatedObject(self, &kESRefreshHeaderKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN) }
     }
     /// Infinitiy scroll associated property
-    var esFooter: ESRefreshFooterView? {
+    public var esFooter: ESRefreshFooterView? {
         get { return (objc_getAssociatedObject(self, &kESRefreshFooterKey) as? ESRefreshFooterView) }
         set(newValue) { objc_setAssociatedObject(self, &kESRefreshFooterKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN) }
     }
     
 
     /// Add pull-to-refresh
-    func es_addPullToRefresh(handler handler: ESRefreshHandler) -> Void {
+    public func es_addPullToRefresh(handler handler: ESRefreshHandler) -> Void {
         es_removeRefreshHeader()
         let header = ESRefreshHeaderView(frame: CGRect.zero, handler: handler)
         let headerH = header.animator.executeIncremental
@@ -60,7 +60,7 @@ public extension UIScrollView {
         addSubview(esHeader!)
     }
     
-    func es_addPullToRefresh(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler) -> Void {
+    public func es_addPullToRefresh(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler) -> Void {
         es_removeRefreshHeader()
         let header = ESRefreshHeaderView(frame: CGRect.zero, handler: handler, customAnimator: animator)
         let headerH = animator.executeIncremental
@@ -70,7 +70,7 @@ public extension UIScrollView {
     }
     
     /// Add infinite-scrolling
-    func es_addInfiniteScrolling(handler handler: ESRefreshHandler) -> Void {
+    public func es_addInfiniteScrolling(handler handler: ESRefreshHandler) -> Void {
         es_removeRefreshFooter()
         let footer = ESRefreshFooterView(frame: CGRect.zero, handler: handler)
         let footerH = footer.animator.executeIncremental
@@ -79,7 +79,7 @@ public extension UIScrollView {
         addSubview(esFooter!)
     }
 
-    func es_addInfiniteScrolling(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler) -> Void {
+    public func es_addInfiniteScrolling(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler) -> Void {
         es_removeRefreshFooter()
         let footer = ESRefreshFooterView(frame: CGRect.zero, handler: handler, customAnimator: animator)
         let footerH = footer.animator.executeIncremental
@@ -89,25 +89,25 @@ public extension UIScrollView {
     }
     
     /// Remove
-    func es_removeRefreshHeader() {
+    public func es_removeRefreshHeader() {
         esHeader?.loading = false
         esHeader?.removeFromSuperview()
         esHeader = nil
     }
     
-    func es_removeRefreshFooter() {
+    public func es_removeRefreshFooter() {
         esFooter?.loading = false
         esFooter?.removeFromSuperview()
         esFooter = nil
     }
     
     /// Manual refresh
-    func es_startPullToRefresh() {
+    public func es_startPullToRefresh() {
         esHeader?.loading = true
     }
     
     /// Stop pull to refresh
-    func es_stopPullToRefresh(completion completion: Bool, ignoreFooter: Bool) {
+    public func es_stopPullToRefresh(completion completion: Bool, ignoreFooter: Bool) {
         esHeader?.loading = false
         if completion {
             esFooter?.resetNoMoreData()
@@ -115,21 +115,21 @@ public extension UIScrollView {
         esFooter?.hidden = ignoreFooter
     }
     
-    func es_stopPullToRefresh(completion completion: Bool) {
+    public func es_stopPullToRefresh(completion completion: Bool) {
         es_stopPullToRefresh(completion: completion, ignoreFooter: false)
     }
     
     /// Footer notice method
-    func  es_noticeNoMoreData() {
+    public func  es_noticeNoMoreData() {
         esFooter?.loading = false
         esFooter?.noMoreData = true
     }
     
-    func es_resetNoMoreData() {
+    public func es_resetNoMoreData() {
         esFooter?.noMoreData = false
     }
     
-    func es_stopLoadingMore() {
+    public func es_stopLoadingMore() {
         esFooter?.loading = false
     }
     
