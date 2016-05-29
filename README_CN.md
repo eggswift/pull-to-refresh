@@ -1,5 +1,5 @@
 # ESPullToRefresh
-###[中文介绍](README_CN.md)
+###[For English](README.md)
 
 <!--[![Travis](https://img.shields.io/travis/eggwift/ESPullToRefresh.svg)](https://travis-ci.org/eggswift/pull-to-refresh)-->
 [![CocoaPods](https://img.shields.io/cocoapods/v/ESPullToRefresh.svg)](http://cocoapods.org/pods/pull-to-refresh)
@@ -13,12 +13,18 @@
 
 感谢: [SVPullToRefresh](https://github.com/samvermette/SVPullToRefresh) by [Sam Vermette](https://github.com/samvermette),  [EGOTableViewPullRefresh](https://github.com/enormego/EGOTableViewPullRefresh) by [enormego](http://www.enormego.com),  这些开源项目给了我很多灵感。
 
-## Requirements
+## 支持环境
 
 * Xcode 7 or later
 * iOS 8.0 or later
 * ARC
 * Swift 2.0
+
+## 特性
+
+* 支持`UIScrollView`和其所有子类`UICollectionView` `UITableView` `UITextView`
+* 支持下拉刷新和上拉加载更多
+* 支持定制自己所需的样式
 
 ## Demo
 

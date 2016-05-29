@@ -20,6 +20,12 @@ Thanks to: [SVPullToRefresh](https://github.com/samvermette/SVPullToRefresh) by 
 * ARC
 * Swift 2.0
 
+## Features
+
+* Support `UIScrollView` and its subclasses `UICollectionView` `UITableView` `UITextView`
+* Pull-Down to refresh and Pull-Up to load more
+* Support customize your own style(s)
+
 ## Demo
 
 Download and run the ESPullToRefreshExample project in Xcode to see ESPullToRefresh in action.
@@ -90,7 +96,7 @@ self?.tableView.es_noticeNoMoreData()
 
 ![](example_meituan.gif)
 
-***注: 加载动画资源来自美团 iOS app。***
+**PS: Load effect is from MeiTuan iOS app.**
 
 ![](example_wechat.gif)
 
