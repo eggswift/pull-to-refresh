@@ -64,28 +64,28 @@ open ESPullToRefresh
 Add default pull-to-refresh
 ``` swift
 self.tableView.es_addPullToRefresh {
-[weak self] in
-/// Do anything you want...
-/// ...
-/// Stop refresh when your job finished, it will reset refresh footer if completion is true
-self?.tableView.es_stopPullToRefresh(completion: true)
-/// Set ignore footer or not
-self?.tableView.es_stopPullToRefresh(completion: true, ignoreFooter: false)
-})
+	[weak self] in
+	/// Do anything you want...
+	/// ...
+	/// Stop refresh when your job finished, it will reset refresh footer if completion is true
+	self?.tableView.es_stopPullToRefresh(completion: true)
+	/// Set ignore footer or not
+	self?.tableView.es_stopPullToRefresh(completion: true, ignoreFooter: false)
+	})
 }
 ```
 
 Add default infinite-scrolling
 ``` swift
 self.tableView.es_addInfiniteScrolling {
-[weak self] in
-/// Do anything you want...
-/// ...
-/// If common end
-self?.tableView.es_stopLoadingMore()
-/// If no more data
-self?.tableView.es_noticeNoMoreData()
-})
+	[weak self] in
+	/// Do anything you want...
+	/// ...
+	/// If common end
+	self?.tableView.es_stopLoadingMore()
+	/// If no more data
+	self?.tableView.es_noticeNoMoreData()
+	})
 }
 ```
 
@@ -106,15 +106,13 @@ Customize refresh need conform the **ESRefreshProtocol** and **ESRefreshAnimator
 Add customize pull-to-refresh
 
 ``` swift
-func es_addPullToRefresh(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, 
-handler: ESRefreshHandler)
+func es_addPullToRefresh(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler)
 ```
 
 Add customize infinite-scrolling
 
 ``` swift
-func es_addInfiniteScrolling(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, 
-handler: ESRefreshHandler)
+func es_addInfiniteScrolling(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler)
 ```
 
 ### Remove

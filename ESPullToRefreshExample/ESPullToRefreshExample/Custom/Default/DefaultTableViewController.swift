@@ -35,6 +35,8 @@ class DefaultTableViewController: UITableViewController {
                 self?.tableView.es_stopPullToRefresh(completion: true)
             })
         }
+        self.tableView.refreshIdentifier = NSStringFromClass(DefaultTableViewController) // Set refresh identifier
+        self.tableView.expriedTimeInterval = 20.0 // 20 second alive.
         
         self.tableView.es_addInfiniteScrolling {
             [weak self] in
@@ -57,7 +59,7 @@ class DefaultTableViewController: UITableViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.tableView.es_startPullToRefresh()
+        self.tableView.es_autoPullToRefresh()
     }
     
     // MARK: - Table view data source

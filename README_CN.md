@@ -11,7 +11,7 @@
 
 **ESPullToRefresh**是一个非常易于开发者使用的下拉刷新和加载更多组件。通过一个UIScrollView的扩展，可以轻松为UIScrollView的所有子类添加下拉刷新功能。 如果你想定制组件的UI样式，只要实现指定的协议方法即可。
 
-感谢: [SVPullToRefresh](https://github.com/samvermette/SVPullToRefresh) by [Sam Vermette](https://github.com/samvermette),  [EGOTableViewPullRefresh](https://github.com/enormego/EGOTableViewPullRefresh) by [enormego](http://www.enormego.com),  这些开源项目给了我很多灵感。
+感谢：[SVPullToRefresh](https://github.com/samvermette/SVPullToRefresh) 和  [EGOTableViewPullRefresh](https://github.com/enormego/EGOTableViewPullRefresh)，这些开源项目给了我很多灵感。
 
 ## 支持环境
 
@@ -22,9 +22,10 @@
 
 ## 特性
 
-* 支持`UIScrollView`和其所有子类`UICollectionView` `UITableView` `UITextView`
-* 支持下拉刷新和上拉加载更多
-* 支持定制自己所需的样式
+* 支持UIScrollView及其子类UICollectionView、UITableView、UIWebView等；
+* 支持下拉刷新和上拉加载更多；
+* 支持定制自己所需的样式；
+* 支持刷新时间缓存，设置过期时间并策略刷新。
 
 ## Demo
 
@@ -63,7 +64,7 @@ open ESPullToRefresh
 
 
 设置默认下拉刷新组件
-``` swift
+```swift
 self.tableView.es_addPullToRefresh {
     [weak self] in
     /// 在这里做刷新相关事件
@@ -106,15 +107,28 @@ self.tableView.es_addInfiniteScrolling {
 
 设置自定义下拉刷新组件
 ``` swift
-func es_addPullToRefresh(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, 
-handler: ESRefreshHandler)
+func es_addPullToRefresh(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler)
 ```
 
 设置自定义加载更多组件
 ``` swift
-func es_addInfiniteScrolling(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, 
-handler: ESRefreshHandler)
+func es_addInfiniteScrolling(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler)
 ```
+
+### 设置过期时间和自动刷新
+
+ESPullToRefresh支持缓存最近刷新时间和刷新过期时间间隔，您需要为UIScrollView子类设置'refreshIdentifier'标示。
+``` swift
+scrollView.refreshIdentifier = "Your Identifier" // 设置当前ScrollView的标识
+scrollView.expriedTimeInterval = 20.0 // 设置过期时间间隔
+```
+你可以通过'es_autoPullToRefresh()' 方法，当上次刷新时间超过过期时间间隔时自动刷新。
+``` swift
+scrollView.es_autoPullToRefresh()
+
+let expried = scrollView.espried // 获取是否过期
+```
+
 
 ### 移除方法
 

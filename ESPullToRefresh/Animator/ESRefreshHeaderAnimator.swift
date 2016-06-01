@@ -29,9 +29,9 @@ import QuartzCore
 import UIKit
 
 public class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol {
-    public let pullToRefreshDescription: String     = "Pull to refresh"
-    public let releaseToRefreshDescription: String  = "Release to refresh"
-    public let loadingDescription: String           = "Loading..."
+    public var pullToRefreshDescription: String     = "Pull to refresh"
+    public var releaseToRefreshDescription: String  = "Release to refresh"
+    public var loadingDescription: String           = "Loading..."
     
     public var insets: UIEdgeInsets = UIEdgeInsetsZero
     public var trigger: CGFloat = 60.0

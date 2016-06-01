@@ -41,6 +41,8 @@ class WeChatTableViewController: UITableViewController {
                 self?.tableView.es_stopPullToRefresh(completion: true)
             })
         }
+        self.tableView.refreshIdentifier = NSStringFromClass(DefaultTableViewController) // Set refresh identifier
+        self.tableView.expriedTimeInterval = 20.0 // 20 second alive.
         
         self.tableView.es_addInfiniteScrolling() {
             [weak self] in
@@ -59,12 +61,12 @@ class WeChatTableViewController: UITableViewController {
                 }
             })
         }
-        self.tableView.esFooter?.backgroundColor = UIColor.whiteColor() // Custom footer background color
+        self.tableView.es_footer?.backgroundColor = UIColor.whiteColor() // Custom footer background color
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.tableView.es_startPullToRefresh()
+        self.tableView.es_autoPullToRefresh()
     }
     
     // MARK: - Table view data source

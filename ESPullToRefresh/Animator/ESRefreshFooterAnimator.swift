@@ -26,9 +26,9 @@
 import UIKit
 
 public class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol {
-    public let loadingMoreDescription: String = "Loading more"
-    public let noMoreDataDescription: String  = "No more data"
-    public let loadingDescription: String     = "Loading..."
+    public var loadingMoreDescription: String = "Loading more"
+    public var noMoreDataDescription: String  = "No more data"
+    public var loadingDescription: String     = "Loading..."
 
     public var view: UIView { return self }
     public var insets: UIEdgeInsets = UIEdgeInsetsZero
