@@ -232,15 +232,13 @@ public class ESRefreshHeaderView: ESRefreshComponent {
                     update = true
                 }
             }
-        }
-        else if offsetWithoutInsets < 0 {
+        } else if offsetWithoutInsets < 0 {
             // Pull to refresh!
             if loading == false && animating == false {
                 self.animator.refresh(self, stateDidChange: .PullToRefresh)
                 update = true
             }
-        }
-        else {
+        } else {
             
         }
         defer {
