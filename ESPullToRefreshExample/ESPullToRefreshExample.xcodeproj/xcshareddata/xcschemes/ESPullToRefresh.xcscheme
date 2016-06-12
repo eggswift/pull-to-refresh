@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F692000B1CDB9A530029EF47"
-               BuildableName = "ESRefresh.app"
-               BlueprintName = "ESPullToRefreshExample"
+               BlueprintIdentifier = "F690772C1D0D0AE300BE91FE"
+               BuildableName = "ESPullToRefresh.framework"
+               BlueprintName = "ESPullToRefresh"
                ReferencedContainer = "container:ESPullToRefreshExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,36 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F692001F1CDB9A530029EF47"
-               BuildableName = "ESPullToRefreshExampleTests.xctest"
-               BlueprintName = "ESPullToRefreshExampleTests"
-               ReferencedContainer = "container:ESPullToRefreshExample.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F692002A1CDB9A530029EF47"
-               BuildableName = "ESPullToRefreshExampleUITests.xctest"
-               BlueprintName = "ESPullToRefreshExampleUITests"
-               ReferencedContainer = "container:ESPullToRefreshExample.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F692000B1CDB9A530029EF47"
-            BuildableName = "ESRefresh.app"
-            BlueprintName = "ESPullToRefreshExample"
-            ReferencedContainer = "container:ESPullToRefreshExample.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -71,16 +42,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F692000B1CDB9A530029EF47"
-            BuildableName = "ESRefresh.app"
-            BlueprintName = "ESPullToRefreshExample"
+            BlueprintIdentifier = "F690772C1D0D0AE300BE91FE"
+            BuildableName = "ESPullToRefresh.framework"
+            BlueprintName = "ESPullToRefresh"
             ReferencedContainer = "container:ESPullToRefreshExample.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -90,16 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F692000B1CDB9A530029EF47"
-            BuildableName = "ESRefresh.app"
-            BlueprintName = "ESPullToRefreshExample"
+            BlueprintIdentifier = "F690772C1D0D0AE300BE91FE"
+            BuildableName = "ESPullToRefresh.framework"
+            BlueprintName = "ESPullToRefresh"
             ReferencedContainer = "container:ESPullToRefreshExample.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

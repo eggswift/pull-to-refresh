@@ -157,7 +157,7 @@ extension UIScrollView /* Date Manager */ {
         set { self.es_header?.refreshIdentifier = newValue }
     }
     
-    // If you setted refreshIdentifier and expriedTimeInterval, return nearest refresh expried or not. Default is false.
+    /// If you setted refreshIdentifier and expriedTimeInterval, return nearest refresh expried or not. Default is false.
     public var expried: Bool {
         get {
             if let key = self.es_header?.refreshIdentifier {
@@ -182,7 +182,7 @@ extension UIScrollView /* Date Manager */ {
         }
     }
     
-    // Auto cached last refresh date when you setted refreshIdentifier.
+    /// Auto cached last refresh date when you setted refreshIdentifier.
     public var lastRefreshDate: NSDate? {
         get {
             if let key = self.es_header?.refreshIdentifier {
@@ -329,9 +329,8 @@ public class ESRefreshFooterView: ESRefreshComponent {
     
     public override func didMoveToSuperview() {
         super.didMoveToSuperview()
-        // 缓存superview的状态
+        // Cache superview's contentInset etc.
         scrollViewInsets = scrollView?.contentInset ?? UIEdgeInsetsZero
-        // 设置contentInset
         scrollView?.contentInset.bottom = scrollViewInsets.bottom + self.bounds.size.height
         var rect = self.frame
         rect.origin.y = scrollView?.contentSize.height ?? 0.0
@@ -402,13 +401,12 @@ public class ESRefreshFooterView: ESRefreshComponent {
         super.stopAnimating()
     }
     
-    //MARK: 提供外界访问的
-    /** 提示没有更多的数据 */
-    public func  noticeNoMoreData() {
+    /// Change to no-more-data status.
+    public func noticeNoMoreData() {
         self.noMoreData = true
     }
     
-    /** 重置没有更多的数据（消除没有更多数据的状态） */
+    /// Reset no-more-data status.
     public func resetNoMoreData() {
         self.noMoreData = false
     }
