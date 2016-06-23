@@ -40,6 +40,7 @@
 		F6AE47311CE062CA0006C017 /* WeChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AE47301CE062CA0006C017 /* WeChatTableViewController.swift */; };
 		F6AE47331CE062F00006C017 /* WCRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AE47321CE062F00006C017 /* WCRefreshHeaderAnimator.swift */; };
 		F6AE47371CE089480006C017 /* WeChatTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AE47361CE089480006C017 /* WeChatTableHeaderView.swift */; };
+		F6E433C41D1BB36700307E8A /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E433C31D1BB36700307E8A /* TextViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -86,6 +87,7 @@
 		F6AE47301CE062CA0006C017 /* WeChatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeChatTableViewController.swift; sourceTree = "<group>"; };
 		F6AE47321CE062F00006C017 /* WCRefreshHeaderAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WCRefreshHeaderAnimator.swift; sourceTree = "<group>"; };
 		F6AE47361CE089480006C017 /* WeChatTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeChatTableHeaderView.swift; sourceTree = "<group>"; };
+		F6E433C31D1BB36700307E8A /* TextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 		F636136D1CDD9C9100AA9AF7 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				F6E433C21D1BB34800307E8A /* TextView */,
 				F63613771CDEDC8F00AA9AF7 /* Default */,
 				F636136E1CDD9CA000AA9AF7 /* Meituan */,
 				F6AE472F1CE0628B0006C017 /* WeChat */,
@@ -222,6 +225,14 @@
 				F6AE47361CE089480006C017 /* WeChatTableHeaderView.swift */,
 			);
 			path = WeChat;
+			sourceTree = "<group>";
+		};
+		F6E433C21D1BB34800307E8A /* TextView */ = {
+			isa = PBXGroup;
+			children = (
+				F6E433C31D1BB36700307E8A /* TextViewController.swift */,
+			);
+			path = TextView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -371,6 +382,7 @@
 				F69077181D0D0A7F00BE91FE /* ESPullToRefresh.swift in Sources */,
 				F690770E1D0D0A7F00BE91FE /* ESRefreshHeaderAnimator.swift in Sources */,
 				F636137D1CDEDC8F00AA9AF7 /* DefaultTableViewController.swift in Sources */,
+				F6E433C41D1BB36700307E8A /* TextViewController.swift in Sources */,
 				F69200101CDB9A530029EF47 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -558,6 +570,7 @@
 				F69077341D0D0AE300BE91FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F69200071CDB9A530029EF47 /* Build configuration list for PBXProject "ESPullToRefreshExample" */ = {
 			isa = XCConfigurationList;

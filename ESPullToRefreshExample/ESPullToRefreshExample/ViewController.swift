@@ -14,7 +14,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let dataArray = [
                         "Default",
                         "美团网 (Meituan.com)",
-                        "WeChat"
+                        "WeChat",
+                        "TextView"
                     ]
     
     override func viewDidLoad() {
@@ -62,15 +63,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         switch indexPath.row {
         case 0:
             vc = DefaultTableViewController.init()
-            break
         case 1:
             vc = MeituanTableViewController.init()
-            break
         case 2:
             vc = WeChatTableViewController.init()
-            break
+        case 3:
+            vc = TextViewController.init()
         default:
-
             break
         }
         vc.title = dataArray[indexPath.row]
