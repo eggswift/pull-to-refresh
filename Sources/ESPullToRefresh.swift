@@ -392,13 +392,21 @@ public class ESRefreshFooterView: ESRefreshComponent {
     }
     
     public override func stopAnimating() {
-        guard let _ = scrollView else {
+        guard let scrollView = scrollView else {
             return
         }
+        scrollView.userInteractionEnabled = false
         self.animator.refreshAnimationDidEnd(self)
         self.animator.refresh(self, stateDidChange: .PullToRefresh)
-        self.animator.refresh(self, progressDidChange: 0.0)
-        super.stopAnimating()
+        UIView .animateWithDuration(0.3, delay: 0, options: .CurveLinear, animations: { 
+            self.animator.refresh(self, progressDidChange: 0.0)
+            }) { (finished) in
+                super.stopAnimating()
+        }
+        var contentOffset = scrollView.contentOffset
+        contentOffset.y = min(contentOffset.y, scrollView.contentSize.height - scrollView.frame.size.height)
+        scrollView.setContentOffset(contentOffset, animated: false)
+        scrollView.userInteractionEnabled = true
     }
     
     /// Change to no-more-data status.

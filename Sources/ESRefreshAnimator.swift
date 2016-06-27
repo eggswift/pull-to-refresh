@@ -27,11 +27,15 @@ import Foundation
 import UIKit
 
 public class ESRefreshAnimator: ESRefreshProtocol, ESRefreshAnimatorProtocol {
+    // The view that called when component refresh, returns a custom view or self if 'self' is the customized views.
     public var view: UIView
+    // Customized inset.
     public var insets: UIEdgeInsets
+    // Refresh event is executed threshold required y offset, set a value greater than 0.0, the default is 60.0
     public var trigger: CGFloat = 60.0
+    // Offset y refresh event executed by this parameter you can customize the animation to perform when you refresh the view of reservations height
     public var executeIncremental: CGFloat = 60.0
-    
+        
     public init() {
         view = UIView()
         insets = UIEdgeInsetsZero
