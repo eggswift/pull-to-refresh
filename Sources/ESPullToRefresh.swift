@@ -327,9 +327,12 @@ public class ESRefreshFooterView: ESRefreshComponent {
         self.animator = ESRefreshFooterAnimator.init()
     }
     
+    /**
+      In didMoveToSuperview, it will cache superview(UIScrollView)'s contentInset and update self's frame.
+      It called ESRefreshComponent's didMoveToSuperview.
+     */
     public override func didMoveToSuperview() {
         super.didMoveToSuperview()
-        // Cache superview's contentInset etc.
         scrollViewInsets = scrollView?.contentInset ?? UIEdgeInsetsZero
         scrollView?.contentInset.bottom = scrollViewInsets.bottom + self.bounds.size.height
         var rect = self.frame
@@ -395,7 +398,6 @@ public class ESRefreshFooterView: ESRefreshComponent {
         guard let scrollView = scrollView else {
             return
         }
-        scrollView.userInteractionEnabled = false
         self.animator.refreshAnimationDidEnd(self)
         self.animator.refresh(self, stateDidChange: .PullToRefresh)
         UIView .animateWithDuration(0.3, delay: 0, options: .CurveLinear, animations: { 
@@ -403,10 +405,13 @@ public class ESRefreshFooterView: ESRefreshComponent {
             }) { (finished) in
                 super.stopAnimating()
         }
-        var contentOffset = scrollView.contentOffset
-        contentOffset.y = min(contentOffset.y, scrollView.contentSize.height - scrollView.frame.size.height)
-        scrollView.setContentOffset(contentOffset, animated: false)
-        scrollView.userInteractionEnabled = true
+        // Stop deceleration of UIScrollView. When the button tap event is caught, you read what the [scrollView contentOffset].x is, and set the offset to this value with animation OFF. 
+        // http://stackoverflow.com/questions/2037892/stop-deceleration-of-uiscrollview
+        if scrollView.decelerating {
+            var contentOffset = scrollView.contentOffset
+            contentOffset.y = min(contentOffset.y, scrollView.contentSize.height - scrollView.frame.size.height)
+            scrollView.setContentOffset(contentOffset, animated: false)
+        }
     }
     
     /// Change to no-more-data status.
