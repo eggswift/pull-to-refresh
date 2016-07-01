@@ -254,9 +254,14 @@ public class ESRefreshHeaderView: ESRefreshComponent {
         guard let scrollView = scrollView else { return }
         super.startAnimating()
         self.animator.refreshAnimationDidBegin(self)
+        
+        // 缓存scrollview当前的contentInset, 并根据animator的executeIncremental属性计算刷新时所需要的contentInset，它将在接下来的动画中应用。
+        // Tips: 这里将self.scrollViewInsets.top更新，也可以将scrollViewInsets整个更新，因为left、right、bottom属性都没有用到，如果接下来的迭代需要使用这三个属性的话，这里可能需要额外的处理。
         var insets = scrollView.contentInset
+        self.scrollViewInsets.top = insets.top
         insets.top += animator.executeIncremental
-        // we need to restore previous offset because we will animate scroll view insets and regular scroll view animating is not applied then
+        
+        // We need to restore previous offset because we will animate scroll view insets and regular scroll view animating is not applied then.
         scrollView.contentOffset.y = previousOffset
         scrollView.bounces = false
         UIView.animateWithDuration(0.2, delay: 0, options: .CurveLinear, animations: {
@@ -264,13 +269,6 @@ public class ESRefreshHeaderView: ESRefreshComponent {
             scrollView.contentOffset = CGPoint.init(x: scrollView.contentOffset.x, y: -insets.top)
             }, completion: { (finished) in
                 self.animator.refresh(self, stateDidChange: .Loading) // Loading state
-                // Navigation will automatically add 64, we are here to deal with part of the logic
-                if scrollView.contentInset.top != insets.top || scrollView.contentOffset.x != -insets.top {
-                    UIView .animateWithDuration(0.2, animations: {
-                        scrollView.contentInset = insets
-                        scrollView.contentOffset = CGPoint.init(x: scrollView.contentOffset.x, y: -insets.top)
-                    })
-                }
                 self.handler?()
         })
     }
