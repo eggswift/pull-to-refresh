@@ -244,7 +244,7 @@ public class ESRefreshHeaderView: ESRefreshComponent {
         defer {
             previousOffset = scrollView.contentOffset.y
             if update == true {
-                let percent = -offsetWithoutInsets / self.animator.trigger
+                let percent = -(previousOffset + scrollViewInsets.top) / self.animator.trigger
                 self.animator.refresh(self, progressDidChange: percent)
             }
         }
@@ -423,3 +423,4 @@ public class ESRefreshFooterView: ESRefreshComponent {
     }
     
 }
+

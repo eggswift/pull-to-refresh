@@ -15,7 +15,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                         "Default",
                         "美团网 (Meituan.com)",
                         "WeChat",
-                        "TextView"
+                        "TextView",
+                        "Day",
                     ]
     
     override func viewDidLoad() {
@@ -69,6 +70,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             vc = WeChatTableViewController.init()
         case 3:
             vc = TextViewController.init()
+        case 4:
+            vc = ESRefreshDayTableViewController.init()
         default:
             break
         }
