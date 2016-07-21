@@ -16,7 +16,7 @@ Thanks to: [SVPullToRefresh](https://github.com/samvermette/SVPullToRefresh) by 
 ## Requirements
 
 * Xcode 7 or later
-* iOS 8.0 or later
+* iOS 7.0 or later
 * ARC
 * Swift 2.0
 
