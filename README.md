@@ -61,7 +61,14 @@ open ESPullToRefresh
 
 
 
+Add `ESPullToRefresh` to your project
+
+```swift
+import ESPullToRefresh
+```
+
 Add default pull-to-refresh
+
 ``` swift
 self.tableView.es_addPullToRefresh {
 	[weak self] in
@@ -71,7 +78,6 @@ self.tableView.es_addPullToRefresh {
 	self?.tableView.es_stopPullToRefresh(completion: true)
 	/// Set ignore footer or not
 	self?.tableView.es_stopPullToRefresh(completion: true, ignoreFooter: false)
-	})
 }
 ```
 
@@ -85,7 +91,6 @@ self.tableView.es_addInfiniteScrolling {
 	self?.tableView.es_stopLoadingMore()
 	/// If no more data
 	self?.tableView.es_noticeNoMoreData()
-	})
 }
 ```
 

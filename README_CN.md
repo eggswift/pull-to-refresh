@@ -63,7 +63,14 @@ open ESPullToRefresh
 
 
 
+将ESPullToRefresh导入至你的工程
+
+```swift
+import ESPullToRefresh
+```
+
 设置默认下拉刷新组件
+
 ```swift
 self.tableView.es_addPullToRefresh {
     [weak self] in
@@ -73,7 +80,6 @@ self.tableView.es_addPullToRefresh {
     self?.tableView.es_stopPullToRefresh(completion: true)
     /// 设置ignoreFooter来处理不需要显示footer的情况
     self?.tableView.es_stopPullToRefresh(completion: true, ignoreFooter: false)
-    })
 }
 ```
 
@@ -87,7 +93,6 @@ self.tableView.es_addInfiniteScrolling {
     self?.tableView.es_stopLoadingMore()
     /// 通过es_noticeNoMoreData()设置footer暂无数据状态
     self?.tableView.es_noticeNoMoreData()
-    })
 }
 ```
 
