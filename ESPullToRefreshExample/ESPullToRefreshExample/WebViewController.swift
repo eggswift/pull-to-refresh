@@ -18,10 +18,8 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         super.viewDidLoad()
         
         if let _ = self.webViewXib {
-            print("xib")
             self.webView = self.webViewXib
         } else {
-            print("code")
             self.webView = UIWebView()
             self.webView.frame = self.view.bounds
             self.view.addSubview(self.webView!)
