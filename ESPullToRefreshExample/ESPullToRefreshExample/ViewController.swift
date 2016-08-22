@@ -8,6 +8,10 @@
 
 import UIKit
 
+public enum ESRefreshExampleType {
+    case Default, Meituan, WeChat
+}
+
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     

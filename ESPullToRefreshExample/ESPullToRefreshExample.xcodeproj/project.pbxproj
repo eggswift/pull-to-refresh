@@ -13,6 +13,7 @@
 		F636137B1CDEDC8F00AA9AF7 /* DefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63613781CDEDC8F00AA9AF7 /* DefaultTableViewCell.swift */; };
 		F636137C1CDEDC8F00AA9AF7 /* DefaultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F63613791CDEDC8F00AA9AF7 /* DefaultTableViewCell.xib */; };
 		F636137D1CDEDC8F00AA9AF7 /* DefaultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F636137A1CDEDC8F00AA9AF7 /* DefaultTableViewController.swift */; };
+		F64456001D65A2F10094D58E /* ESRefreshTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64455FF1D65A2F10094D58E /* ESRefreshTableViewController.swift */; };
 		F690770B1D0D0A7F00BE91FE /* ESRefreshFooterAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69077011D0D0A7F00BE91FE /* ESRefreshFooterAnimator.swift */; };
 		F690770E1D0D0A7F00BE91FE /* ESRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69077021D0D0A7F00BE91FE /* ESRefreshHeaderAnimator.swift */; };
 		F69077111D0D0A7F00BE91FE /* icon_pull_to_refresh_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F69077031D0D0A7F00BE91FE /* icon_pull_to_refresh_arrow@2x.png */; };
@@ -65,6 +66,7 @@
 		F63613781CDEDC8F00AA9AF7 /* DefaultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCell.swift; sourceTree = "<group>"; };
 		F63613791CDEDC8F00AA9AF7 /* DefaultTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DefaultTableViewCell.xib; sourceTree = "<group>"; };
 		F636137A1CDEDC8F00AA9AF7 /* DefaultTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTableViewController.swift; sourceTree = "<group>"; };
+		F64455FF1D65A2F10094D58E /* ESRefreshTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshTableViewController.swift; sourceTree = "<group>"; };
 		F690763F1D0D065300BE91FE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F69077011D0D0A7F00BE91FE /* ESRefreshFooterAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshFooterAnimator.swift; sourceTree = "<group>"; };
 		F69077021D0D0A7F00BE91FE /* ESRefreshHeaderAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshHeaderAnimator.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 		F636136D1CDD9C9100AA9AF7 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				F64455FF1D65A2F10094D58E /* ESRefreshTableViewController.swift */,
 				F6F63A3D1D3C75000017F621 /* Day */,
 				F63613771CDEDC8F00AA9AF7 /* Default */,
 				F636136E1CDD9CA000AA9AF7 /* Meituan */,
@@ -388,6 +391,7 @@
 				F690770B1D0D0A7F00BE91FE /* ESRefreshFooterAnimator.swift in Sources */,
 				F6AE47371CE089480006C017 /* WeChatTableHeaderView.swift in Sources */,
 				F6F63A3F1D3C75750017F621 /* ESRefreshDayHeaderAnimator.swift in Sources */,
+				F64456001D65A2F10094D58E /* ESRefreshTableViewController.swift in Sources */,
 				F6AE47331CE062F00006C017 /* WCRefreshHeaderAnimator.swift in Sources */,
 				F636137B1CDEDC8F00AA9AF7 /* DefaultTableViewCell.swift in Sources */,
 				F69077141D0D0A7F00BE91FE /* ESPullToRefresh+Manager.swift in Sources */,
