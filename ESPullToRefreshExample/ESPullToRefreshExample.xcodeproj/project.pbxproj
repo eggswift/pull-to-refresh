@@ -314,9 +314,11 @@
 				TargetAttributes = {
 					F690772C1D0D0AE300BE91FE = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 					F692000B1CDB9A530029EF47 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -443,6 +445,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.eggswift.ESPullToRefresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -462,6 +465,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.eggswift.ESPullToRefresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -563,6 +567,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = eggswift.ESPullToRefreshExample;
 				PRODUCT_NAME = ESRefresh;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -577,6 +582,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = eggswift.ESPullToRefreshExample;
 				PRODUCT_NAME = ESRefresh;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};

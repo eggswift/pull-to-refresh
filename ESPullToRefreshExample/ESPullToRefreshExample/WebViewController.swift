@@ -43,8 +43,14 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         self.webView.scrollView.alwaysBounceVertical = true
     }
     
+    #if swift(>=2.3)
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
+        self.webView.scrollView.es_stopPullToRefresh(completion: false)
+    }
+    #else
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
         self.webView.scrollView.es_stopPullToRefresh(completion: false)
     }
+    #endif
 
 }
