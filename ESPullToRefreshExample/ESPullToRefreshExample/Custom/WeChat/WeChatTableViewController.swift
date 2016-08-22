@@ -16,7 +16,7 @@ class WeChatTableViewController: UITableViewController {
         super.viewDidLoad()
         self.view.translatesAutoresizingMaskIntoConstraints = false
         self.view.backgroundColor = UIColor.init(red: 46/255.0, green: 49/255.0, blue: 50/255.0, alpha: 1.0)
-        self.tableView.registerNib(UINib.init(nibName: "DefaultTableViewCell", bundle: nil), forCellReuseIdentifier: "DefaultTableViewCell")
+        self.tableView.register(UINib.init(nibName: "DefaultTableViewCell", bundle: nil), forCellReuseIdentifier: "DefaultTableViewCell")
         
         // Header like WeChat
         let header = WeChatTableHeaderView.init(frame: CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: self.view.bounds.size.width, height: 260)))
@@ -27,11 +27,9 @@ class WeChatTableViewController: UITableViewController {
             self.array.append(" ")
         }
         
-        self.tableView.es_addPullToRefresh(animator: WCRefreshHeaderAnimator.init(frame: CGRect.zero)) {
+        let _ = self.tableView.es_addPullToRefresh(animator: WCRefreshHeaderAnimator.init(frame: CGRect.zero)) {
             [weak self] in
-            let minseconds = 3.0 * Double(NSEC_PER_SEC)
-            let dtime = dispatch_time(DISPATCH_TIME_NOW, Int64(minseconds))
-            dispatch_after(dtime, dispatch_get_main_queue() , {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 self?.page = 1
                 self?.array.removeAll()
                 for _ in 1...8{
@@ -39,18 +37,16 @@ class WeChatTableViewController: UITableViewController {
                 }
                 self?.tableView.reloadData()
                 self?.tableView.es_stopPullToRefresh(completion: true)
-            })
+            }
         }
-        self.tableView.refreshIdentifier = NSStringFromClass(DefaultTableViewController) // Set refresh identifier
+        self.tableView.refreshIdentifier = NSStringFromClass(DefaultTableViewController.self) // Set refresh identifier
         self.tableView.expriedTimeInterval = 20.0 // 20 second alive.
         
-        self.tableView.es_addInfiniteScrolling() {
+        let _ = self.tableView.es_addInfiniteScrolling() {
             [weak self] in
-            let minseconds = 3.0 * Double(NSEC_PER_SEC)
-            let dtime = dispatch_time(DISPATCH_TIME_NOW, Int64(minseconds))
-            dispatch_after(dtime, dispatch_get_main_queue() , {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 self?.page += 1
-                if self?.page <= 3 {
+                if self?.page ?? 0 <= 3 {
                     for _ in 1...8{
                         self?.array.append(" ")
                     }
@@ -59,45 +55,45 @@ class WeChatTableViewController: UITableViewController {
                 } else {
                     self?.tableView.es_noticeNoMoreData()
                 }
-            })
+            }
         }
-        self.tableView.es_footer?.backgroundColor = UIColor.whiteColor() // Custom footer background color
+        self.tableView.es_footer?.backgroundColor = UIColor.white // Custom footer background color
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.tableView.es_autoPullToRefresh()
     }
     
     // MARK: - Table view data source
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return array.count
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 100.0
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CGFloat.min
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
     }
     
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return CGFloat.min
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("DefaultTableViewCell", forIndexPath: indexPath)
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultTableViewCell", for: indexPath as IndexPath)
         cell.backgroundColor = UIColor.init(white: 250.0 / 255.0, alpha: 1.0)
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         let vc = WebViewController.init()
         self.navigationController?.pushViewController(vc, animated: true)
     }

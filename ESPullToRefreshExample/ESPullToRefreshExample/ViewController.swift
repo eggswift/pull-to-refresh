@@ -9,7 +9,7 @@
 import UIKit
 
 public enum ESRefreshExampleType {
-    case Default, Meituan, WeChat
+    case defaulttype, meituan, wechat
 }
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -25,57 +25,66 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.translucent = false
+        self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 254/255.0, green: 73/255.0, blue: 42/255.0, alpha: 1.0)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(), NSFontAttributeName: UIFont.init(name: "ChalkboardSE-Bold", size: 17.0)!]
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white, NSFontAttributeName: UIFont.init(name: "ChalkboardSE-Bold", size: 17.0)!]
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationItem.title = "Example"
         self.navigationController?.navigationBar.shadowImage = UIImage.init()
         
-        tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: "UITableViewCell")
+        tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "UITableViewCell")
     }
     
     // MARK: UITableViewDataSource
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataArray.count
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60.0
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("UITableViewCell")
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell")
         cell?.textLabel?.textColor = UIColor.init(white: 0.0, alpha: 0.6)
         cell?.textLabel?.font = UIFont.init(name: "ChalkboardSE-Bold", size: 18.0)
         cell?.textLabel?.text = "\(indexPath.row + 1).   " + dataArray[indexPath.row]
         return cell!
     }
     
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.5
     }
     
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.bounds.size.width, height: 0.5))
-        view.backgroundColor = UIColor.lightGrayColor()
+        view.backgroundColor = UIColor.lightGray
         return view
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         var vc: UIViewController!
         switch indexPath.row {
         case 0:
-            vc = DefaultTableViewController.init()
+            vc = ESRefreshTableViewController.init(style: .plain)
+            if let vc = vc as? ESRefreshTableViewController {
+                vc.type = .defaulttype
+            }
         case 1:
-            vc = MeituanTableViewController.init()
+            vc = ESRefreshTableViewController.init(style: .plain)
+            if let vc = vc as? ESRefreshTableViewController {
+                vc.type = .meituan
+            }
         case 2:
-            vc = WeChatTableViewController.init()
+            vc = ESRefreshTableViewController.init(style: .plain)
+            if let vc = vc as? ESRefreshTableViewController {
+                vc.type = .meituan
+            }
         case 3:
             vc = TextViewController.init()
         case 4:
-            vc = ESRefreshDayTableViewController.init()
+            vc = ESRefreshTableViewController.init(style: .plain)
         default:
             break
         }
@@ -90,7 +99,7 @@ private class HeaderView: UIView {
     let label: UILabel = {
         let label = UILabel.init(frame: CGRect.zero)
         label.text = "pull-to-refresh"
-        label.textAlignment = .Center
+        label.textAlignment = .center
         label.font = UIFont.init(name: "ChalkboardSE-Bold", size: 20.0)
         label.textColor = UIColor.init(white: 0.0, alpha: 0.6)
         return label

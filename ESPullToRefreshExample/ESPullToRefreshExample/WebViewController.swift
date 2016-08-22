@@ -29,10 +29,10 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         
         let url = "https://github.com/eggswift"
         self.title = url
-        let request = NSURLRequest(URL: NSURL(string: url)!)
+        let request = NSURLRequest.init(url: NSURL(string: url)! as URL)
         
         self.webView.scrollView.es_addPullToRefresh { [weak self] in
-            self!.webView.loadRequest(request)
+            self!.webView.loadRequest(request as URLRequest)
         }
         self.webView.scrollView.es_startPullToRefresh()
     }

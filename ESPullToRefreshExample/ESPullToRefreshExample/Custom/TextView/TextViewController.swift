@@ -22,40 +22,36 @@ class TextViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         textView = UITextView.init(frame: self.view.bounds)
-        textView.editable = false
+        textView.isEditable = false
         textView.textColor = UIColor.init(white: 0.3, alpha: 1.0)
-        textView.textAlignment = .Justified
+        textView.textAlignment = .justified
         textView.textContainerInset = UIEdgeInsets.init(top: 12, left: 8, bottom: 12, right: 8)
         self.view.addSubview(textView)
         
-        textView.es_addPullToRefresh { 
+        let _ = textView.es_addPullToRefresh {
             [weak self] in
             guard let weakSelf = self else {
                 return
             }
             print("一次刷新" + "num = \(weakSelf.num)")
-            let minseconds = 3.0 * Double(NSEC_PER_SEC)
-            let dtime = dispatch_time(DISPATCH_TIME_NOW, Int64(minseconds))
-            dispatch_after(dtime, dispatch_get_main_queue() , {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 weakSelf.num = 0
                 let style = NSMutableParagraphStyle.init()
                 style.lineSpacing = 0.0
                 style.firstLineHeadIndent = 10.0
-                style.alignment = .Justified
+                style.alignment = .justified
                 weakSelf.textView.attributedText = NSAttributedString.init(string: weakSelf.text1, attributes: [NSParagraphStyleAttributeName : style, NSFontAttributeName: UIFont.init(name: "ChalkboardSE-Bold", size: 16.0)!, NSForegroundColorAttributeName: UIColor.init(white: 0.3, alpha: 1.0)])
                 weakSelf.textView.es_stopPullToRefresh(completion: true)
-            })
+            }
         }
         
-        textView.es_addInfiniteScrolling {
+        let _ = textView.es_addInfiniteScrolling {
             [weak self] in
             guard let weakSelf = self else {
                 return
             }
             print("一次加载" + "num = \(weakSelf.num)")
-            let minseconds = 3.0 * Double(NSEC_PER_SEC)
-            let dtime = dispatch_time(DISPATCH_TIME_NOW, Int64(minseconds))
-            dispatch_after(dtime, dispatch_get_main_queue() , {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 weakSelf.num += 1
                 var str: String = weakSelf.text1
                 if weakSelf.num >= 1 {
@@ -82,16 +78,16 @@ class TextViewController: UIViewController {
                     let style = NSMutableParagraphStyle.init()
                     style.lineSpacing = 0.0
                     style.firstLineHeadIndent = 10.0
-                    style.alignment = .Justified
+                    style.alignment = .justified
                     weakSelf.textView.attributedText = NSAttributedString.init(string: str, attributes: [NSParagraphStyleAttributeName : style, NSFontAttributeName: UIFont.init(name: "ChalkboardSE-Bold", size: 16.0)!, NSForegroundColorAttributeName: UIColor.init(white: 0.3, alpha: 1.0)])
 
                     weakSelf.textView.es_stopLoadingMore()
                 }
-            })
+            }
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.textView.es_startPullToRefresh()
     }

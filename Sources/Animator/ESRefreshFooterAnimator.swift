@@ -25,27 +25,27 @@
 
 import UIKit
 
-public class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol {
-    public var loadingMoreDescription: String = "Loading more"
-    public var noMoreDataDescription: String  = "No more data"
-    public var loadingDescription: String     = "Loading..."
+open class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol {
+    open var loadingMoreDescription: String = "Loading more"
+    open var noMoreDataDescription: String  = "No more data"
+    open var loadingDescription: String     = "Loading..."
 
-    public var view: UIView { return self }
-    public var insets: UIEdgeInsets = UIEdgeInsetsZero
-    public var trigger: CGFloat = 42.0
-    public var executeIncremental: CGFloat = 42.0
+    open var view: UIView { return self }
+    open var insets: UIEdgeInsets = UIEdgeInsets.zero
+    open var trigger: CGFloat = 42.0
+    open var executeIncremental: CGFloat = 42.0
     
-    private let titleLabel: UILabel = {
+    fileprivate let titleLabel: UILabel = {
         let label = UILabel.init(frame: CGRect.zero)
-        label.font = UIFont.systemFontOfSize(14.0)
+        label.font = UIFont.systemFont(ofSize: 14.0)
         label.textColor = UIColor.init(white: 160.0 / 255.0, alpha: 1.0)
-        label.textAlignment = .Center
+        label.textAlignment = .center
         return label
     }()
     
-    private let indicatorView: UIActivityIndicatorView = {
-        let indicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .Gray)
-        indicatorView.hidden = true
+    fileprivate let indicatorView: UIActivityIndicatorView = {
+        let indicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
+        indicatorView.isHidden = true
         return indicatorView
     }()
     
@@ -60,28 +60,28 @@ public class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func refreshAnimationDidBegin(view: ESRefreshComponent) {
+    open func refreshAnimationDidBegin(_ view: ESRefreshComponent) {
         indicatorView.startAnimating()
         titleLabel.text = loadingDescription
-        indicatorView.hidden = false
+        indicatorView.isHidden = false
     }
     
-    public func refreshAnimationDidEnd(view: ESRefreshComponent) {
+    open func refreshAnimationDidEnd(_ view: ESRefreshComponent) {
         indicatorView.stopAnimating()
         titleLabel.text = loadingMoreDescription
-        indicatorView.hidden = true
+        indicatorView.isHidden = true
     }
     
-    public func refresh(view: ESRefreshComponent, progressDidChange progress: CGFloat) {
+    open func refresh(view: ESRefreshComponent, progressDidChange progress: CGFloat) {
         // do nothing
     }
     
-    public func refresh(view: ESRefreshComponent, stateDidChange state: ESRefreshViewState) {
+    open func refresh(view: ESRefreshComponent, stateDidChange state: ESRefreshViewState) {
         switch state {
-        case .Loading:
+        case .loading:
             titleLabel.text = loadingDescription
             break
-        case .NoMoreData:
+        case .noMoreData:
             titleLabel.text = noMoreDataDescription
             break
         default:
@@ -90,7 +90,7 @@ public class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         }
     }
     
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         let s = self.bounds.size
         let w = s.width
