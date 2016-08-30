@@ -33,7 +33,6 @@ class TextViewController: UIViewController {
             guard let weakSelf = self else {
                 return
             }
-            print("一次刷新" + "num = \(weakSelf.num)")
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 weakSelf.num = 0
                 let style = NSMutableParagraphStyle.init()
@@ -50,7 +49,6 @@ class TextViewController: UIViewController {
             guard let weakSelf = self else {
                 return
             }
-            print("一次加载" + "num = \(weakSelf.num)")
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 weakSelf.num += 1
                 var str: String = weakSelf.text1

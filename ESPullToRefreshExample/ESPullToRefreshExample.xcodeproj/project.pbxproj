@@ -32,6 +32,9 @@
 		F69200151CDB9A530029EF47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F69200131CDB9A530029EF47 /* Main.storyboard */; };
 		F69200171CDB9A530029EF47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F69200161CDB9A530029EF47 /* Assets.xcassets */; };
 		F692001A1CDB9A530029EF47 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F69200181CDB9A530029EF47 /* LaunchScreen.storyboard */; };
+		F69FF8281D7539E200C4A4B6 /* ESRefreshCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69FF8271D7539E200C4A4B6 /* ESRefreshCollectionViewController.swift */; };
+		F69FF82B1D753A1300C4A4B6 /* ESRefreshCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69FF8291D753A1300C4A4B6 /* ESRefreshCollectionViewCell.swift */; };
+		F69FF82C1D753A1300C4A4B6 /* ESRefreshCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69FF82A1D753A1300C4A4B6 /* ESRefreshCollectionViewCell.xib */; };
 		F6AA6C401CDC80DD00723622 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AA6C3E1CDC80DD00723622 /* WebViewController.swift */; };
 		F6AA6C411CDC80DD00723622 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6AA6C3F1CDC80DD00723622 /* WebViewController.xib */; };
 		F6AB6EA51D6AF82100AC33BE /* ESRefreshTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AB6EA31D6AF82100AC33BE /* ESRefreshTableViewCell.swift */; };
@@ -78,6 +81,9 @@
 		F69200161CDB9A530029EF47 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F69200191CDB9A530029EF47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F692001B1CDB9A530029EF47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F69FF8271D7539E200C4A4B6 /* ESRefreshCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshCollectionViewController.swift; sourceTree = "<group>"; };
+		F69FF8291D753A1300C4A4B6 /* ESRefreshCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshCollectionViewCell.swift; sourceTree = "<group>"; };
+		F69FF82A1D753A1300C4A4B6 /* ESRefreshCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ESRefreshCollectionViewCell.xib; sourceTree = "<group>"; };
 		F6AA6C3E1CDC80DD00723622 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		F6AA6C3F1CDC80DD00723622 /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 		F6AB6EA31D6AF82100AC33BE /* ESRefreshTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshTableViewCell.swift; sourceTree = "<group>"; };
@@ -112,6 +118,9 @@
 				F64455FF1D65A2F10094D58E /* ESRefreshTableViewController.swift */,
 				F6AB6EA31D6AF82100AC33BE /* ESRefreshTableViewCell.swift */,
 				F6AB6EA41D6AF82100AC33BE /* ESRefreshTableViewCell.xib */,
+				F69FF8271D7539E200C4A4B6 /* ESRefreshCollectionViewController.swift */,
+				F69FF8291D753A1300C4A4B6 /* ESRefreshCollectionViewCell.swift */,
+				F69FF82A1D753A1300C4A4B6 /* ESRefreshCollectionViewCell.xib */,
 				F6F63A3D1D3C75000017F621 /* Day */,
 				F636136E1CDD9CA000AA9AF7 /* Meituan */,
 				F6AE472F1CE0628B0006C017 /* WeChat */,
@@ -146,8 +155,8 @@
 		F69077001D0D0A7F00BE91FE /* Animator */ = {
 			isa = PBXGroup;
 			children = (
-				F69077011D0D0A7F00BE91FE /* ESRefreshFooterAnimator.swift */,
 				F69077021D0D0A7F00BE91FE /* ESRefreshHeaderAnimator.swift */,
+				F69077011D0D0A7F00BE91FE /* ESRefreshFooterAnimator.swift */,
 				F69077031D0D0A7F00BE91FE /* icon_pull_to_refresh_arrow@2x.png */,
 			);
 			path = Animator;
@@ -337,6 +346,7 @@
 				F692001A1CDB9A530029EF47 /* LaunchScreen.storyboard in Resources */,
 				F6AB6EA61D6AF82100AC33BE /* ESRefreshTableViewCell.xib in Resources */,
 				F69200171CDB9A530029EF47 /* Assets.xcassets in Resources */,
+				F69FF82C1D753A1300C4A4B6 /* ESRefreshCollectionViewCell.xib in Resources */,
 				F69200151CDB9A530029EF47 /* Main.storyboard in Resources */,
 				F6AA6C411CDC80DD00723622 /* WebViewController.xib in Resources */,
 				F69077111D0D0A7F00BE91FE /* icon_pull_to_refresh_arrow@2x.png in Resources */,
@@ -368,12 +378,14 @@
 				F690771B1D0D0A7F00BE91FE /* ESRefreshAnimator.swift in Sources */,
 				F63613721CDD9CD900AA9AF7 /* MTRefreshFooterAnimator.swift in Sources */,
 				F69077211D0D0A7F00BE91FE /* ESRefreshProtocol.swift in Sources */,
+				F69FF8281D7539E200C4A4B6 /* ESRefreshCollectionViewController.swift in Sources */,
 				F6AB6EA51D6AF82100AC33BE /* ESRefreshTableViewCell.swift in Sources */,
 				F6AA6C401CDC80DD00723622 /* WebViewController.swift in Sources */,
 				F690770B1D0D0A7F00BE91FE /* ESRefreshFooterAnimator.swift in Sources */,
 				F6AE47371CE089480006C017 /* WeChatTableHeaderView.swift in Sources */,
 				F6F63A3F1D3C75750017F621 /* ESRefreshDayHeaderAnimator.swift in Sources */,
 				F64456001D65A2F10094D58E /* ESRefreshTableViewController.swift in Sources */,
+				F69FF82B1D753A1300C4A4B6 /* ESRefreshCollectionViewCell.swift in Sources */,
 				F6AE47331CE062F00006C017 /* WCRefreshHeaderAnimator.swift in Sources */,
 				F69077141D0D0A7F00BE91FE /* ESPullToRefresh+Manager.swift in Sources */,
 				F690771E1D0D0A7F00BE91FE /* ESRefreshComponent.swift in Sources */,
@@ -418,6 +430,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = ESPullToRefresh/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.eggswift.ESPullToRefresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -438,6 +451,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = ESPullToRefresh/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.eggswift.ESPullToRefresh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -485,7 +499,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -525,7 +539,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -541,7 +555,7 @@
 				DEVELOPMENT_TEAM = 86WDX5W5SP;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = ESPullToRefreshExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = eggswift.ESPullToRefreshExample;
 				PRODUCT_NAME = ESRefresh;
@@ -557,7 +571,7 @@
 				DEVELOPMENT_TEAM = 86WDX5W5SP;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = ESPullToRefreshExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = eggswift.ESPullToRefreshExample;
 				PRODUCT_NAME = ESRefresh;

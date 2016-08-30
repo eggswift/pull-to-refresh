@@ -79,7 +79,7 @@ open class ESRefreshDataManager {
     }
     
     open func isExpried(forKey key: String, block: ((Bool) -> ())?) {
-        DispatchQueue.global(priority: .high).async {
+        DispatchQueue.global().async {
             [weak self] in
             guard let weakSelf = self else {
                 return

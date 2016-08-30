@@ -106,7 +106,7 @@ open class ESRefreshComponent: UIView {
     
 }
 
-public extension ESRefreshComponent /* KVO methods */ {
+extension ESRefreshComponent /* KVO methods */ {
     
     fileprivate func addObserver(_ view: UIView?) {
         if let scrollView = view as? UIScrollView {

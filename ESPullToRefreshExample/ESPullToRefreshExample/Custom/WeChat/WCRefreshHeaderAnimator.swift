@@ -9,6 +9,7 @@
 import UIKit
 
 public class WCRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol {
+    
     public var insets: UIEdgeInsets = UIEdgeInsets.zero
     public var view: UIView { return self }
     public var trigger: CGFloat = 56.0

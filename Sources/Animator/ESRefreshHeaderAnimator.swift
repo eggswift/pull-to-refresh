@@ -29,9 +29,9 @@ import QuartzCore
 import UIKit
 
 open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol {
-    open var pullToRefreshDescription: String     = "Pull to refresh"
-    open var releaseToRefreshDescription: String  = "Release to refresh"
-    open var loadingDescription: String           = "Loading..."
+    open var pullToRefreshDescription = "Pull to refresh"
+    open var releaseToRefreshDescription = "Release to refresh"
+    open var loadingDescription = "Loading..."
     
     open var insets: UIEdgeInsets = UIEdgeInsets.zero
     open var trigger: CGFloat = 60.0
@@ -43,6 +43,7 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
         imageView.image = UIImage.init(named: "icon_pull_to_refresh_arrow")
         return imageView
     }()
+    
     fileprivate let titleLabel: UILabel = {
         let label = UILabel.init(frame: CGRect.zero)
         label.font = UIFont.systemFont(ofSize: 14.0)

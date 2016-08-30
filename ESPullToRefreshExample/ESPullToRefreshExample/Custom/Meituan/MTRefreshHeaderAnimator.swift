@@ -99,9 +99,7 @@ public class MTRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
             imageView.image = UIImage.init(named: "icon_pull_animation_5")
             imageView.startAnimating()
             break
-        default:
-            
-            break
+        default: break
         }
     }
     
