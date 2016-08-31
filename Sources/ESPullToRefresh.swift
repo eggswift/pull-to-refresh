@@ -408,7 +408,14 @@ open class ESRefreshFooterView: ESRefreshComponent {
         if scrollView.isDecelerating {
             var contentOffset = scrollView.contentOffset
             contentOffset.y = min(contentOffset.y, scrollView.contentSize.height - scrollView.frame.size.height)
-            scrollView.setContentOffset(contentOffset, animated: false)
+            if contentOffset.y < 0.0 {
+                contentOffset.y = 0.0
+                UIView.animate(withDuration: 0.1, animations: { 
+                    scrollView.setContentOffset(contentOffset, animated: false)
+                })
+            } else {
+                scrollView.setContentOffset(contentOffset, animated: false)
+            }
         }
     }
     
