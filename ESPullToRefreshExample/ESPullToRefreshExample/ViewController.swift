@@ -12,58 +12,65 @@ public enum ESRefreshExampleType {
     case defaulttype, meituan, wechat
 }
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+public enum ESRefreshExampleListType {
+    case tableview, collectionview
+}
+
+public class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
-    let dataArray = [
-                        "Default",
-                        "美团网 (Meituan.com)",
-                        "WeChat",
-                        "TextView",
-                        "Day",
-                    ]
+    public var listType: ESRefreshExampleListType = .tableview
     
-    override func viewDidLoad() {
+    public let dataArray = [
+        "Default",
+        "美团网 (Meituan.com)",
+        "WeChat",
+        "TextView",
+        "Day",
+        ]
+    
+    public override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 254/255.0, green: 73/255.0, blue: 42/255.0, alpha: 1.0)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white, NSFontAttributeName: UIFont.init(name: "ChalkboardSE-Bold", size: 17.0)!]
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 250/255.0, green: 250/255.0, blue: 250/255.0, alpha: 0.8)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.init(red: 38/255.0, green: 38/255.0, blue: 38/255.0, alpha: 1.0), NSFontAttributeName: UIFont.systemFont(ofSize: 20.0)]
+        self.navigationController?.navigationBar.tintColor = UIColor.init(red: 38/255.0, green: 38/255.0, blue: 38/255.0, alpha: 1.0)
         self.navigationItem.title = "Example"
-        self.navigationController?.navigationBar.shadowImage = UIImage.init()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "listtype2"), style: .plain, target: self, action: #selector(changeListType(sender:)))
         
-        tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "UITableViewCell")
+        self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "UITableViewCell")
+        self.tableView.isHidden = false
+        self.tableView.contentInset = UIEdgeInsetsMake(64.0, 0, 0, 0)
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(64.0, 0, 0, 0)
+        self.collectionView.register(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "UICollectionViewCell")
+        self.collectionView.isHidden = true
     }
     
-    // MARK: UITableViewDataSource
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataArray.count
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let layout: UICollectionViewFlowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.headerReferenceSize = CGSize.init(width: 0.0, height: 10.0)
+        layout.footerReferenceSize = CGSize.init(width: 0.0, height: 10.0)
+        layout.minimumInteritemSpacing = 10.0
+        layout.minimumLineSpacing = 10.0
+        layout.itemSize = CGSize.init(width: (collectionView.bounds.size.width - layout.minimumInteritemSpacing * 2) / 3.0, height: (collectionView.bounds.size.width - layout.minimumInteritemSpacing * 2) / 3.0)
     }
     
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60.0
+    public func changeListType(sender: Any?) {
+        if self.listType == .tableview {
+            self.listType = .collectionview
+            self.tableView.isHidden = true
+            self.collectionView.isHidden = false
+        } else {
+            self.listType = .tableview
+            self.tableView.isHidden = false
+            self.collectionView.isHidden = true
+        }
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: self.listType == .tableview ? "listtype2" : "listtype1"), style: .plain, target: self, action: #selector(changeListType(sender:)))
     }
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell")
-        cell?.textLabel?.textColor = UIColor.init(white: 0.0, alpha: 0.6)
-        cell?.textLabel?.font = UIFont.init(name: "ChalkboardSE-Bold", size: 18.0)
-        cell?.textLabel?.text = "\(indexPath.row + 1).   " + dataArray[indexPath.row]
-        return cell!
-    }
-    
-    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.5
-    }
-    
-    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.bounds.size.width, height: 0.5))
-        view.backgroundColor = UIColor.lightGray
-        return view
-    }
-    
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+    public func select(indexPath: IndexPath) {
         var vc: UIViewController!
         switch indexPath.row {
         case 0:
@@ -92,31 +99,55 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-}
-
-
-private class HeaderView: UIView {
-    let label: UILabel = {
-        let label = UILabel.init(frame: CGRect.zero)
-        label.text = "pull-to-refresh"
-        label.textAlignment = .center
-        label.font = UIFont.init(name: "ChalkboardSE-Bold", size: 20.0)
-        label.textColor = UIColor.init(white: 0.0, alpha: 0.6)
-        return label
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.addSubview(label)
+    // MARK: UITableViewDataSource
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataArray.count
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60.0
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        label.frame = self.bounds
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell")
+        cell?.textLabel?.textColor = UIColor.init(white: 0.0, alpha: 0.6)
+        cell?.textLabel?.font = UIFont.systemFont(ofSize: 18.0)
+        cell?.textLabel?.text = "\(indexPath.row + 1).   " + dataArray[indexPath.row]
+        return cell!
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.5
+    }
+    
+    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.bounds.size.width, height: 0.5))
+        view.backgroundColor = UIColor.lightGray
+        return view
+    }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+        self.select(indexPath: indexPath)
+    }
+    
+    // MARK: UICollectionViewDataSource
+    public func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return dataArray.count
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UICollectionViewCell", for: indexPath)
+        return cell
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        self.select(indexPath: indexPath)
     }
     
 }

@@ -26,7 +26,7 @@
 import Foundation
 import UIKit
 
-public typealias ESRefreshHandler = () -> ()
+public typealias ESRefreshHandler = (() -> ())
 
 open class ESRefreshComponent: UIView {
     
@@ -54,13 +54,13 @@ open class ESRefreshComponent: UIView {
         autoresizingMask = [.flexibleLeftMargin, .flexibleWidth, .flexibleRightMargin]
     }
     
-    public convenience init(frame: CGRect, handler: ESRefreshHandler) {
+    public convenience init(frame: CGRect, handler: @escaping ESRefreshHandler) {
         self.init(frame: frame)
         self.handler = handler
         self.animator = ESRefreshAnimator.init()
     }
     
-    public convenience init(frame: CGRect, handler: ESRefreshHandler, customAnimator animator: ESRefreshProtocol & ESRefreshAnimatorProtocol) {
+    public convenience init(frame: CGRect, handler: @escaping ESRefreshHandler, customAnimator animator: ESRefreshProtocol & ESRefreshAnimatorProtocol) {
         self.init(frame: frame)
         self.handler = handler
         self.animator = animator

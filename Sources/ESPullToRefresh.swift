@@ -50,7 +50,7 @@ public extension UIScrollView {
     }
     
     /// Add pull-to-refresh
-    public func es_addPullToRefresh(handler: ESRefreshHandler) -> ESRefreshHeaderView {
+    public func es_addPullToRefresh(handler: @escaping ESRefreshHandler) -> ESRefreshHeaderView {
         es_removeRefreshHeader()
         let header = ESRefreshHeaderView(frame: CGRect.zero, handler: handler)
         let headerH = header.animator.executeIncremental
@@ -60,7 +60,7 @@ public extension UIScrollView {
         return header
     }
     
-    public func es_addPullToRefresh(animator: ESRefreshProtocol & ESRefreshAnimatorProtocol, handler: ESRefreshHandler) -> ESRefreshHeaderView {
+    public func es_addPullToRefresh(animator: ESRefreshProtocol & ESRefreshAnimatorProtocol, handler: @escaping ESRefreshHandler) -> ESRefreshHeaderView {
         es_removeRefreshHeader()
         let header = ESRefreshHeaderView(frame: CGRect.zero, handler: handler, customAnimator: animator)
         let headerH = animator.executeIncremental
@@ -71,7 +71,7 @@ public extension UIScrollView {
     }
     
     /// Add infinite-scrolling
-    public func es_addInfiniteScrolling(handler: ESRefreshHandler) -> ESRefreshFooterView {
+    public func es_addInfiniteScrolling(handler: @escaping ESRefreshHandler) -> ESRefreshFooterView {
         es_removeRefreshFooter()
         let footer = ESRefreshFooterView(frame: CGRect.zero, handler: handler)
         let footerH = footer.animator.executeIncremental
@@ -81,7 +81,7 @@ public extension UIScrollView {
         return footer
     }
 
-    public func es_addInfiniteScrolling(animator: ESRefreshProtocol & ESRefreshAnimatorProtocol, handler: ESRefreshHandler) -> ESRefreshFooterView {
+    public func es_addInfiniteScrolling(animator: ESRefreshProtocol & ESRefreshAnimatorProtocol, handler: @escaping ESRefreshHandler) -> ESRefreshFooterView {
         es_removeRefreshFooter()
         let footer = ESRefreshFooterView(frame: CGRect.zero, handler: handler, customAnimator: animator)
         let footerH = footer.animator.executeIncremental
@@ -203,7 +203,7 @@ open class ESRefreshHeaderView: ESRefreshComponent {
     open var lastRefreshTimestamp: TimeInterval?
     open var refreshIdentifier: String?
     
-    public convenience init(frame: CGRect, handler: ESRefreshHandler) {
+    public convenience init(frame: CGRect, handler: @escaping ESRefreshHandler) {
         self.init(frame: frame)
         self.handler = handler
         self.animator = ESRefreshHeaderAnimator.init()
@@ -319,7 +319,7 @@ open class ESRefreshFooterView: ESRefreshComponent {
         }
     }
     
-    public convenience init(frame: CGRect, handler: ESRefreshHandler) {
+    public convenience init(frame: CGRect, handler: @escaping ESRefreshHandler) {
         self.init(frame: frame)
         self.handler = handler
         self.animator = ESRefreshFooterAnimator.init()
