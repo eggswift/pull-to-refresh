@@ -77,9 +77,12 @@ open class ESRefreshComponent: UIView {
     open override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         /// Remove observer from superview
-        removeObserver()
-        /// Add observer to new superview
-        addObserver(newSuperview)
+        self.removeObserver()
+        DispatchQueue.main.async { [weak self, newSuperview] in
+            guard let weakSelf = self else { return }
+            /// Add observer to new superview
+            weakSelf.addObserver(newSuperview)
+        }
     }
     
     open override func didMoveToSuperview() {

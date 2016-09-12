@@ -21,8 +21,10 @@ class TextViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         textView = UITextView.init(frame: self.view.bounds)
         textView.isEditable = false
+        textView.alwaysBounceVertical = true
         textView.textColor = UIColor.init(white: 0.3, alpha: 1.0)
         textView.textAlignment = .justified
         textView.textContainerInset = UIEdgeInsets.init(top: 12, left: 8, bottom: 12, right: 8)
@@ -92,7 +94,9 @@ class TextViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        textView.frame = self.view.bounds
+        if !textView.frame.equalTo(self.view.bounds) {
+            textView.frame = self.view.bounds
+        }
     }
     
 }
