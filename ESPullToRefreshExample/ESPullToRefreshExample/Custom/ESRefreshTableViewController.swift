@@ -27,7 +27,6 @@ public class ESRefreshTableViewController: UITableViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.translatesAutoresizingMaskIntoConstraints = false
         self.view.backgroundColor = UIColor.init(red: 240/255.0, green: 239/255.0, blue: 237/255.0, alpha: 1.0)
         self.tableView.register(UINib.init(nibName: "ESRefreshTableViewCell", bundle: nil), forCellReuseIdentifier: "ESRefreshTableViewCell")
         
@@ -55,8 +54,7 @@ public class ESRefreshTableViewController: UITableViewController {
             self?.loadMore()
         }
         // self.tableView.refreshIdentifier = NSStringFromClass(DefaultTableViewController.self) // Set refresh identifier
-        self.tableView.expriedTimeInterval = 20.0 // 20 second alive.
-        
+        self.tableView.expriedTimeInterval = 20.0 // 20 second alive.    
     }
 
     private func refresh() {

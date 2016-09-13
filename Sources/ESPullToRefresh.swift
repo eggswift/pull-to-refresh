@@ -106,7 +106,15 @@ public extension UIScrollView {
     
     /// Manual refresh
     public func es_startPullToRefresh() {
-        es_header?.loading = true
+        DispatchQueue.main.async {
+            [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            UIView.performWithoutAnimation {
+                weakSelf.es_header?.loading = true
+            }
+        }
     }
     
     /// Auto refresh if expried.
@@ -149,7 +157,7 @@ public extension UIScrollView {
     
 }
 
-extension UIScrollView /* Date Manager */ {
+public extension UIScrollView /* Date Manager */ {
     
     /// Identifier for cache expried timeinterval and last refresh date.
     public var refreshIdentifier: String? {
@@ -209,10 +217,26 @@ open class ESRefreshHeaderView: ESRefreshComponent {
         self.animator = ESRefreshHeaderAnimator.init()
     }
     
+    open override func willMove(toSuperview newSuperview: UIView?) {
+        super.willMove(toSuperview: newSuperview)
+        /*
+         DispatchQueue.main.async {
+            [weak self] in
+            // It's better
+         }
+         */
+    }
+    
     open override func didMoveToSuperview() {
         super.didMoveToSuperview()
-        bounces = scrollView?.bounces ?? false
-        scrollViewInsets = scrollView?.contentInset ?? UIEdgeInsets.zero
+        DispatchQueue.main.async {
+            [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.bounces = weakSelf.scrollView?.bounces ?? false
+            weakSelf.scrollViewInsets = weakSelf.scrollView?.contentInset ?? UIEdgeInsets.zero
+        }
     }
     
     open override func offsetChangeAction(object: AnyObject?, change: [NSKeyValueChangeKey : Any]?) {
@@ -239,7 +263,7 @@ open class ESRefreshHeaderView: ESRefreshComponent {
                 update = true
             }
         } else {
-            
+            // Normal state
         }
         defer {
             previousOffset = scrollView.contentOffset.y
@@ -325,17 +349,33 @@ open class ESRefreshFooterView: ESRefreshComponent {
         self.animator = ESRefreshFooterAnimator.init()
     }
     
+    open override func willMove(toSuperview newSuperview: UIView?) {
+        super.willMove(toSuperview: newSuperview)
+        /*
+        DispatchQueue.main.async {
+            [weak self] in
+            // It's better
+        }
+         */
+    }
+    
     /**
       In didMoveToSuperview, it will cache superview(UIScrollView)'s contentInset and update self's frame.
       It called ESRefreshComponent's didMoveToSuperview.
      */
     open override func didMoveToSuperview() {
         super.didMoveToSuperview()
-        scrollViewInsets = scrollView?.contentInset ?? UIEdgeInsets.zero
-        scrollView?.contentInset.bottom = scrollViewInsets.bottom + self.bounds.size.height
-        var rect = self.frame
-        rect.origin.y = scrollView?.contentSize.height ?? 0.0
-        self.frame = rect
+        DispatchQueue.main.async {
+            [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.scrollViewInsets = weakSelf.scrollView?.contentInset ?? UIEdgeInsets.zero
+            weakSelf.scrollView?.contentInset.bottom = weakSelf.scrollViewInsets.bottom + weakSelf.bounds.size.height
+            var rect = weakSelf.frame
+            rect.origin.y = weakSelf.scrollView?.contentSize.height ?? 0.0
+            weakSelf.frame = rect
+        }
     }
  
     open override func sizeChangeAction(object: AnyObject?, change: [NSKeyValueChangeKey : Any]?) {

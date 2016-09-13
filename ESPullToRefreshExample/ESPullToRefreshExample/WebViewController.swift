@@ -31,13 +31,11 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         self.title = "egg swift"
         let request = NSURLRequest.init(url: NSURL(string: url)! as URL)
         
-        UIView.performWithoutAnimation {
-            let _ = self.webView.scrollView.es_addPullToRefresh {
-                [weak self] in
-                self!.webView.loadRequest(request as URLRequest)
-            }
-            self.webView.scrollView.es_startPullToRefresh()
+        let _ = self.webView.scrollView.es_addPullToRefresh {
+            [weak self] in
+            self!.webView.loadRequest(request as URLRequest)
         }
+        self.webView.scrollView.es_startPullToRefresh()
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
