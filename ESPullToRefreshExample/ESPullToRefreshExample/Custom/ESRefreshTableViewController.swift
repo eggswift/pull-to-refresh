@@ -12,7 +12,7 @@ public class ESRefreshTableViewController: UITableViewController {
 
     public var array = [String]()
     public var page = 1
-    public var type: ESRefreshExampleType = .Default
+    public var type: ESRefreshExampleType = .defaulttype
     
     public override init(style: UITableViewStyle) {
         super.init(style: style)
@@ -27,41 +27,38 @@ public class ESRefreshTableViewController: UITableViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.translatesAutoresizingMaskIntoConstraints = false
         self.view.backgroundColor = UIColor.init(red: 240/255.0, green: 239/255.0, blue: 237/255.0, alpha: 1.0)
-        self.tableView.registerNib(UINib.init(nibName: "DefaultTableViewCell", bundle: nil), forCellReuseIdentifier: "DefaultTableViewCell")
+        self.tableView.register(UINib.init(nibName: "ESRefreshTableViewCell", bundle: nil), forCellReuseIdentifier: "ESRefreshTableViewCell")
         
-        var header: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>!
-        var footer: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>!
+        var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
         switch type {
-        case .Default:
-            header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
-            footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
-        case .Meituan:
+        case .meituan:
             header = MTRefreshHeaderAnimator.init(frame: CGRect.zero)
             footer = MTRefreshFooterAnimator.init(frame: CGRect.zero)
-        case .WeChat: 
+        case .wechat:
             header = WCRefreshHeaderAnimator.init(frame: CGRect.zero)
             footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        default:
+            header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
+            footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+            break
         }
         
-        self.tableView.es_addPullToRefresh(animator: header) {
+        let _ = self.tableView.es_addPullToRefresh(animator: header) {
             [weak self] in
             self?.refresh()
         }
-        self.tableView.es_addInfiniteScrolling(animator: footer) {
+        let _ = self.tableView.es_addInfiniteScrolling(animator: footer) {
             [weak self] in
             self?.loadMore()
         }
-        self.tableView.refreshIdentifier = NSStringFromClass(DefaultTableViewController) // Set refresh identifier
-        self.tableView.expriedTimeInterval = 20.0 // 20 second alive.
-        
+        // self.tableView.refreshIdentifier = NSStringFromClass(DefaultTableViewController.self) // Set refresh identifier
+        self.tableView.expriedTimeInterval = 20.0 // 20 second alive.    
     }
 
     private func refresh() {
-        let minseconds = 3.0 * Double(NSEC_PER_SEC)
-        let dtime = dispatch_time(DISPATCH_TIME_NOW, Int64(minseconds))
-        dispatch_after(dtime, dispatch_get_main_queue() , {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             self.page = 1
             self.array.removeAll()
             for _ in 1...8{
@@ -69,13 +66,11 @@ public class ESRefreshTableViewController: UITableViewController {
             }
             self.tableView.reloadData()
             self.tableView.es_stopPullToRefresh(completion: true)
-        })
+        }
     }
     
     private func loadMore() {
-        let minseconds = 3.0 * Double(NSEC_PER_SEC)
-        let dtime = dispatch_time(DISPATCH_TIME_NOW, Int64(minseconds))
-        dispatch_after(dtime, dispatch_get_main_queue() , {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             self.page += 1
             if self.page <= 3 {
                 for _ in 1...8{
@@ -86,39 +81,39 @@ public class ESRefreshTableViewController: UITableViewController {
             } else {
                 self.tableView.es_noticeNoMoreData()
             }
-        })
+        }
     }
     
-    override public func viewDidAppear(animated: Bool) {
+    public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.tableView.es_autoPullToRefresh()
     }
     
     // MARK: - Table view data source
-    override public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    public override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
-    override public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return array.count
     }
-    
-    override public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 100.0
+
+    public override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 136.0
     }
     
-    override public func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return CGFloat.min
+    public override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
     }
     
-    override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("DefaultTableViewCell", forIndexPath: indexPath)
+    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ESRefreshTableViewCell", for: indexPath as IndexPath)
         cell.backgroundColor = UIColor.init(white: 250.0 / 255.0, alpha: 1.0)
         return cell
     }
     
-    override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         let vc = WebViewController.init()
         self.navigationController?.pushViewController(vc, animated: true)
     }

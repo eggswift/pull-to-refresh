@@ -28,32 +28,33 @@ import Foundation
 import QuartzCore
 import UIKit
 
-public class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol {
-    public var pullToRefreshDescription: String     = "Pull to refresh"
-    public var releaseToRefreshDescription: String  = "Release to refresh"
-    public var loadingDescription: String           = "Loading..."
+open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol {
+    open var pullToRefreshDescription = "Pull to refresh"
+    open var releaseToRefreshDescription = "Release to refresh"
+    open var loadingDescription = "Loading..."
     
-    public var insets: UIEdgeInsets = UIEdgeInsetsZero
-    public var trigger: CGFloat = 60.0
-    public var executeIncremental: CGFloat = 60.0
-    public var view: UIView { return self }
+    open var insets: UIEdgeInsets = UIEdgeInsets.zero
+    open var trigger: CGFloat = 60.0
+    open var executeIncremental: CGFloat = 60.0
+    open var view: UIView { return self }
     
-    private let imageView: UIImageView = {
+    fileprivate let imageView: UIImageView = {
         let imageView = UIImageView.init()
         imageView.image = UIImage.init(named: "icon_pull_to_refresh_arrow")
         return imageView
     }()
-    private let titleLabel: UILabel = {
+    
+    fileprivate let titleLabel: UILabel = {
         let label = UILabel.init(frame: CGRect.zero)
-        label.font = UIFont.systemFontOfSize(14.0)
+        label.font = UIFont.systemFont(ofSize: 14.0)
         label.textColor = UIColor.init(white: 160.0 / 255.0, alpha: 1.0)
-        label.textAlignment = .Left
+        label.textAlignment = .left
         return label
     }()
     
-    private let indicatorView: UIActivityIndicatorView = {
-        let indicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .Gray)
-        indicatorView.hidden = true
+    fileprivate let indicatorView: UIActivityIndicatorView = {
+        let indicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
+        indicatorView.isHidden = true
         return indicatorView
     }()
     
@@ -69,56 +70,56 @@ public class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func refreshAnimationDidBegin(view: ESRefreshComponent) {
+    open func refreshAnimationDidBegin(_ view: ESRefreshComponent) {
         indicatorView.startAnimating()
-        indicatorView.hidden = false
-        imageView.hidden = true
+        indicatorView.isHidden = false
+        imageView.isHidden = true
         titleLabel.text = loadingDescription
-        UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseInOut, animations: { 
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions(), animations: { 
             [weak self] in
-            self?.imageView.transform = CGAffineTransformMakeRotation(0.000001 - CGFloat(M_PI))
+            self?.imageView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(M_PI))
             }) { (animated) in
         }
     }
   
-    public func refreshAnimationDidEnd(view: ESRefreshComponent) {
+    open func refreshAnimationDidEnd(_ view: ESRefreshComponent) {
         indicatorView.stopAnimating()
-        indicatorView.hidden = true
-        imageView.hidden = false
+        indicatorView.isHidden = true
+        imageView.isHidden = false
         titleLabel.text = pullToRefreshDescription
-        imageView.transform = CGAffineTransformIdentity
+        imageView.transform = CGAffineTransform.identity
     }
     
-    public func refresh(view: ESRefreshComponent, progressDidChange progress: CGFloat) {
+    open func refresh(view: ESRefreshComponent, progressDidChange progress: CGFloat) {
         // Do nothing
         
     }
     
-    public func refresh(view: ESRefreshComponent, stateDidChange state: ESRefreshViewState) {
+    open func refresh(view: ESRefreshComponent, stateDidChange state: ESRefreshViewState) {
         switch state {
-        case .Loading:
+        case .loading:
             titleLabel.text = loadingDescription
             break
-        case .ReleaseToRefresh:
+        case .releaseToRefresh:
             titleLabel.text = releaseToRefreshDescription
-            UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseInOut, animations: {
+            UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions(), animations: {
                 [weak self] in
-                self?.imageView.transform = CGAffineTransformMakeRotation(0.000001 - CGFloat(M_PI))
+                self?.imageView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(M_PI))
                 self?.layoutIfNeeded()
             }) { (animated) in }
             break
         default:
             titleLabel.text = pullToRefreshDescription
-            UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseInOut, animations: {
+            UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions(), animations: {
                 [weak self] in
-                self?.imageView.transform = CGAffineTransformIdentity
+                self?.imageView.transform = CGAffineTransform.identity
                 self?.layoutIfNeeded()
             }) { (animated) in }
             break
         }
     }
 
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         let s = self.bounds.size
         let w = s.width

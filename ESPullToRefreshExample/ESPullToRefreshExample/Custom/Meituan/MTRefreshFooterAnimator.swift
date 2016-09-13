@@ -17,7 +17,7 @@ public class MTRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     public var view: UIView {
         return self
     }
-    public var insets: UIEdgeInsets = UIEdgeInsetsZero
+    public var insets: UIEdgeInsets = UIEdgeInsets.zero
     public var trigger: CGFloat = 48.0
     public var executeIncremental: CGFloat = 48.0
     
@@ -33,20 +33,20 @@ public class MTRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     }()
     private let titleLabel: UILabel = {
         let label = UILabel.init(frame: CGRect.zero)
-        label.font = UIFont.systemFontOfSize(14.0)
+        label.font = UIFont.systemFont(ofSize: 14.0)
         label.textColor = UIColor.init(white: 160.0 / 255.0, alpha: 1.0)
-        label.textAlignment = .Center
+        label.textAlignment = .center
         return label
     }()
     private let indicatorView: UIActivityIndicatorView = {
-        let indicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .Gray)
-        indicatorView.hidden = true
+        let indicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
+        indicatorView.isHidden = true
         return indicatorView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.whiteColor()
+        self.backgroundColor = UIColor.white
         titleLabel.text = loadingMoreDescription
         addSubview(titleLabel)
         addSubview(indicatorView)
@@ -58,14 +58,14 @@ public class MTRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func refreshAnimationDidBegin(view: ESRefreshComponent) {
+    public func refreshAnimationDidBegin(_ view: ESRefreshComponent) {
         indicatorView.startAnimating()
-        indicatorView.hidden = false
+        indicatorView.isHidden = false
     }
     
-    public func refreshAnimationDidEnd(view: ESRefreshComponent) {
+    public func refreshAnimationDidEnd(_ view: ESRefreshComponent) {
         indicatorView.stopAnimating()
-        indicatorView.hidden = true
+        indicatorView.isHidden = true
     }
     
     public func refresh(view: ESRefreshComponent, progressDidChange progress: CGFloat) {
@@ -74,10 +74,10 @@ public class MTRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     
     public func refresh(view: ESRefreshComponent, stateDidChange state: ESRefreshViewState) {
         switch state {
-        case .Loading:
+        case .loading:
             titleLabel.text = loadingDescription
             break
-        case .NoMoreData:
+        case .noMoreData:
             titleLabel.text = noMoreDataDescription
             break
         default:

@@ -11,7 +11,7 @@ import UIKit
 class WeChatTableHeaderView: UIView {
     let imageView: UIImageView = {
         let imageView = UIImageView.init(image: UIImage.init(named: "icon_wechat_header"))
-        imageView.contentMode = .ScaleAspectFill
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()

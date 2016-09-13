@@ -38,12 +38,12 @@ public protocol ESRefreshProtocol {
      Refresh operation begins execution method
      You can refresh your animation logic here, it will need to start the animation each time a refresh
     */
-    mutating func refreshAnimationDidBegin(view: ESRefreshComponent)
+    mutating func refreshAnimationDidBegin(_ view: ESRefreshComponent)
     /**
      Refresh operation stop execution method
      Here you can reset your refresh control UI, such as a Stop UIImageView animations or some opened Timer refresh, etc., it will be executed once each time the need to end the animation
      */
-    mutating func refreshAnimationDidEnd(view: ESRefreshComponent)
+    mutating func refreshAnimationDidEnd(_ view: ESRefreshComponent)
     
     /**
      Pulling status callback , progress is the percentage of the current offset with trigger, and avoid doing too many tasks in this process so as not to affect the fluency.

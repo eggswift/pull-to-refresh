@@ -9,12 +9,13 @@
 import UIKit
 
 public class WCRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol {
-    public var insets: UIEdgeInsets = UIEdgeInsetsZero
+    
+    public var insets: UIEdgeInsets = UIEdgeInsets.zero
     public var view: UIView { return self }
     public var trigger: CGFloat = 56.0
     public var executeIncremental: CGFloat = 0.0
-    private var state: ESRefreshViewState = .PullToRefresh
-    private var timer: NSTimer?
+    private var state: ESRefreshViewState = .pullToRefresh
+    private var timer: Timer?
     private var timerProgress: Double = 0.0
     private let imageView: UIImageView = {
         let imageView = UIImageView.init()
@@ -34,9 +35,9 @@ public class WCRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func refreshAnimationDidBegin(view: ESRefreshComponent) {
+    public func refreshAnimationDidBegin(_ view: ESRefreshComponent) {
         self.startAnimating()
-        UIView.animateWithDuration(0.2, delay: 0, options: .CurveLinear, animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
             let size = self.imageView.image?.size ?? CGSize.zero
             self.imageView.center = CGPoint.init(x: 22.0 + size.width / 2.0, y: 16.0 + size.height / 2.0)
             }, completion: { (finished) in
@@ -44,11 +45,11 @@ public class WCRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         })
     }
     
-    public func refreshAnimationDidEnd(view: ESRefreshComponent) {
+    public func refreshAnimationDidEnd(_ view: ESRefreshComponent) {
         self.stopAnimating()
-        UIView.animateWithDuration(0.3, delay: 0, options: .CurveLinear, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear, animations: {
             let size = self.imageView.image?.size ?? CGSize.zero
-            self.imageView.transform = CGAffineTransformIdentity
+            self.imageView.transform = CGAffineTransform.identity
             self.imageView.center = CGPoint.init(x: 22.0 + size.width / 2.0, y: -size.height)
             }, completion: { (finished) in
                 
@@ -58,8 +59,11 @@ public class WCRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     public func refresh(view: ESRefreshComponent, progressDidChange progress: CGFloat) {
         let size = imageView.image?.size ?? CGSize.zero
         let p = min(1.0, max(0.0, progress))
-        self.imageView.center = CGPoint.init(x: 22.0 + size.width / 2.0, y: -self.trigger * progress + 16.0 - (size.height + 16.0) * (1 - p) + size.height / 2.0)
-        self.imageView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI) * progress)
+        let x: CGFloat = 22.0
+        let y = (-self.trigger * progress) + 16.0 - (size.height + 16.0) * (1 - p)
+        let center = CGPoint.init(x: x + (size.width / 2.0), y: y + (size.height / 2.0))
+        self.imageView.center = center
+        self.imageView.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI) * progress)
     }
     
     public func refresh(view: ESRefreshComponent, stateDidChange state: ESRefreshViewState) {
@@ -69,13 +73,13 @@ public class WCRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
 
     func timerAction() {
         timerProgress += 0.01
-        self.imageView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI) * CGFloat(timerProgress))
+        self.imageView.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI) * CGFloat(timerProgress))
     }
     
     func startAnimating() {
         if timer == nil {
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(WCRefreshHeaderAnimator.timerAction), userInfo: nil, repeats: true)
-            NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
+            timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(WCRefreshHeaderAnimator.timerAction), userInfo: nil, repeats: true)
+            RunLoop.current.add(timer!, forMode: RunLoopMode.commonModes)
         }
     }
     

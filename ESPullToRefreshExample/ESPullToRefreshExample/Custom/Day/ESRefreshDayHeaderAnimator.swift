@@ -9,28 +9,28 @@
 import UIKit
 
 public class ESRefreshDayHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol {
-    public var insets: UIEdgeInsets = UIEdgeInsetsZero
+    public var insets: UIEdgeInsets = UIEdgeInsets.zero
     public var view: UIView { return self }
     public var trigger: CGFloat = 120.0
     public var executeIncremental: CGFloat = 120.0
-    private var state: ESRefreshViewState = .PullToRefresh
+    private var state: ESRefreshViewState = .pullToRefresh
     
     private var percent: CGFloat = 0
     private var isDay: Bool = true {
         didSet {
-            self.dayImageView.hidden = !isDay
-            self.nightImageView.hidden = isDay
+            self.dayImageView.isHidden = !isDay
+            self.nightImageView.isHidden = isDay
         }
     }
-    private lazy var timer: NSTimer! = {
-        let timer = NSTimer.scheduledTimerWithTimeInterval(0.002, target: self, selector: #selector(ESRefreshDayHeaderAnimator.timerAction), userInfo: nil, repeats: true)
+    private lazy var timer: Timer! = {
+        let timer = Timer.scheduledTimer(timeInterval: 0.002, target: self, selector: #selector(ESRefreshDayHeaderAnimator.timerAction), userInfo: nil, repeats: true)
         return timer
     }()
     
     private let backImageView: UIImageView = {
         let imageView = UIImageView.init()
         imageView.image = UIImage.init(named: "icon_pull_to_refresh_back")
-        imageView.contentMode = .ScaleAspectFill
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -44,7 +44,7 @@ public class ESRefreshDayHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAni
         let imageView = UIImageView.init()
         imageView.image = UIImage.init(named: "icon_pull_to_refresh_night")
         imageView.sizeToFit()
-        imageView.hidden = true
+        imageView.isHidden = true
         return imageView
     }()
     
@@ -59,12 +59,12 @@ public class ESRefreshDayHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAni
         fatalError("init(coder:) has not been implemented")
     }
 
-    public func refreshAnimationDidBegin(view: ESRefreshComponent) {
+    public func refreshAnimationDidBegin(_ view: ESRefreshComponent) {
         self.timer.fire()
         percent = 0.5
     }
 
-    public func refreshAnimationDidEnd(view: ESRefreshComponent) {
+    public func refreshAnimationDidEnd(_ view: ESRefreshComponent) {
         self.timer.invalidate()
         self.timer = nil
         isDay = true

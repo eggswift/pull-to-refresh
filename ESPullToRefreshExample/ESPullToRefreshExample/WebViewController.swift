@@ -10,7 +10,7 @@ import UIKit
 
 class WebViewController: UIViewController, UIWebViewDelegate {
 
-
+    @IBOutlet weak var networkTipsButton: UIButton!
     @IBOutlet weak var webViewXib: UIWebView!
     var webView: UIWebView!
     
@@ -28,23 +28,31 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         self.webView!.delegate = self
         
         let url = "https://github.com/eggswift"
-        self.title = url
-        let request = NSURLRequest(URL: NSURL(string: url)!)
+        self.title = "egg swift"
+        let request = NSURLRequest.init(url: NSURL(string: url)! as URL)
         
-        self.webView.scrollView.es_addPullToRefresh { [weak self] in
-            self!.webView.loadRequest(request)
+        let _ = self.webView.scrollView.es_addPullToRefresh {
+            [weak self] in
+            self!.webView.loadRequest(request as URLRequest)
         }
         self.webView.scrollView.es_startPullToRefresh()
     }
     
-    func webViewDidFinishLoad(webView: UIWebView) {
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         self.webView.scrollView.es_stopPullToRefresh(completion: true)
         self.webView.scrollView.bounces = true
         self.webView.scrollView.alwaysBounceVertical = true
     }
-    
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         self.webView.scrollView.es_stopPullToRefresh(completion: false)
+        self.networkTipsButton.isHidden = false
     }
 
+    @IBAction func networkRetryAction(_ sender: AnyObject) {
+        self.networkTipsButton.isHidden = true
+        UIView.performWithoutAnimation {
+            self.webView.scrollView.es_startPullToRefresh()
+        }
+    }
 }
