@@ -10,6 +10,10 @@
 		F63613701CDD9CCD00AA9AF7 /* MTRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F636136F1CDD9CCD00AA9AF7 /* MTRefreshHeaderAnimator.swift */; };
 		F63613721CDD9CD900AA9AF7 /* MTRefreshFooterAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63613711CDD9CD900AA9AF7 /* MTRefreshFooterAnimator.swift */; };
 		F64456001D65A2F10094D58E /* ESRefreshTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64455FF1D65A2F10094D58E /* ESRefreshTableViewController.swift */; };
+		F66B80331D86BE36006DDD16 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66B80311D86BE36006DDD16 /* ListTableViewCell.swift */; };
+		F66B80341D86BE36006DDD16 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F66B80321D86BE36006DDD16 /* ListTableViewCell.xib */; };
+		F66B80371D86BE44006DDD16 /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66B80351D86BE44006DDD16 /* ListCollectionViewCell.swift */; };
+		F66B80381D86BE44006DDD16 /* ListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F66B80361D86BE44006DDD16 /* ListCollectionViewCell.xib */; };
 		F690770B1D0D0A7F00BE91FE /* ESRefreshFooterAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69077011D0D0A7F00BE91FE /* ESRefreshFooterAnimator.swift */; };
 		F690770E1D0D0A7F00BE91FE /* ESRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69077021D0D0A7F00BE91FE /* ESRefreshHeaderAnimator.swift */; };
 		F69077111D0D0A7F00BE91FE /* icon_pull_to_refresh_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F69077031D0D0A7F00BE91FE /* icon_pull_to_refresh_arrow@2x.png */; };
@@ -62,6 +66,10 @@
 		F636136F1CDD9CCD00AA9AF7 /* MTRefreshHeaderAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTRefreshHeaderAnimator.swift; sourceTree = "<group>"; };
 		F63613711CDD9CD900AA9AF7 /* MTRefreshFooterAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTRefreshFooterAnimator.swift; sourceTree = "<group>"; };
 		F64455FF1D65A2F10094D58E /* ESRefreshTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshTableViewController.swift; sourceTree = "<group>"; };
+		F66B80311D86BE36006DDD16 /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		F66B80321D86BE36006DDD16 /* ListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
+		F66B80351D86BE44006DDD16 /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
+		F66B80361D86BE44006DDD16 /* ListCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListCollectionViewCell.xib; sourceTree = "<group>"; };
 		F690763F1D0D065300BE91FE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F69077011D0D0A7F00BE91FE /* ESRefreshFooterAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshFooterAnimator.swift; sourceTree = "<group>"; };
 		F69077021D0D0A7F00BE91FE /* ESRefreshHeaderAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshHeaderAnimator.swift; sourceTree = "<group>"; };
@@ -205,6 +213,10 @@
 			children = (
 				F692000F1CDB9A530029EF47 /* AppDelegate.swift */,
 				F69200111CDB9A530029EF47 /* ViewController.swift */,
+				F66B80311D86BE36006DDD16 /* ListTableViewCell.swift */,
+				F66B80321D86BE36006DDD16 /* ListTableViewCell.xib */,
+				F66B80351D86BE44006DDD16 /* ListCollectionViewCell.swift */,
+				F66B80361D86BE44006DDD16 /* ListCollectionViewCell.xib */,
 				F6AA6C3E1CDC80DD00723622 /* WebViewController.swift */,
 				F6AA6C3F1CDC80DD00723622 /* WebViewController.xib */,
 				F636136D1CDD9C9100AA9AF7 /* Custom */,
@@ -348,6 +360,8 @@
 				F69200171CDB9A530029EF47 /* Assets.xcassets in Resources */,
 				F69FF82C1D753A1300C4A4B6 /* ESRefreshCollectionViewCell.xib in Resources */,
 				F69200151CDB9A530029EF47 /* Main.storyboard in Resources */,
+				F66B80381D86BE44006DDD16 /* ListCollectionViewCell.xib in Resources */,
+				F66B80341D86BE36006DDD16 /* ListTableViewCell.xib in Resources */,
 				F6AA6C411CDC80DD00723622 /* WebViewController.xib in Resources */,
 				F69077111D0D0A7F00BE91FE /* icon_pull_to_refresh_arrow@2x.png in Resources */,
 			);
@@ -375,6 +389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F66B80371D86BE44006DDD16 /* ListCollectionViewCell.swift in Sources */,
 				F690771B1D0D0A7F00BE91FE /* ESRefreshAnimator.swift in Sources */,
 				F63613721CDD9CD900AA9AF7 /* MTRefreshFooterAnimator.swift in Sources */,
 				F69077211D0D0A7F00BE91FE /* ESRefreshProtocol.swift in Sources */,
@@ -389,6 +404,7 @@
 				F6AE47331CE062F00006C017 /* WCRefreshHeaderAnimator.swift in Sources */,
 				F69077141D0D0A7F00BE91FE /* ESPullToRefresh+Manager.swift in Sources */,
 				F690771E1D0D0A7F00BE91FE /* ESRefreshComponent.swift in Sources */,
+				F66B80331D86BE36006DDD16 /* ListTableViewCell.swift in Sources */,
 				F69200121CDB9A530029EF47 /* ViewController.swift in Sources */,
 				F63613701CDD9CCD00AA9AF7 /* MTRefreshHeaderAnimator.swift in Sources */,
 				F69077181D0D0A7F00BE91FE /* ESPullToRefresh.swift in Sources */,
