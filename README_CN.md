@@ -11,7 +11,6 @@
 
 **ESPullToRefresh**是一个非常易于开发者使用的下拉刷新和加载更多组件。通过一个UIScrollView的扩展，可以轻松为UIScrollView的所有子类添加下拉刷新功能。 如果你想定制组件的UI样式，只要实现指定的协议方法即可。
 
-感谢：[SVPullToRefresh](https://github.com/samvermette/SVPullToRefresh) 和  [EGOTableViewPullRefresh](https://github.com/enormego/EGOTableViewPullRefresh)，这些开源项目给了我很多灵感。
 
 ## 支持环境
 
