@@ -41,7 +41,7 @@ pod "ESPullToRefresh"
 ### Carthage
 
 ```ruby
-github "eggswift/ESPullToRefresh"
+github "eggswift/pull-to-refresh"
 ```
 
 ### Manually
