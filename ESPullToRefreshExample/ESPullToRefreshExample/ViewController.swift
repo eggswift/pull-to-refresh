@@ -21,6 +21,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                         "WeChat",
                         "TextView",
                         "Day",
+                        "CollectionView"
                     ]
     
     override func viewDidLoad() {
@@ -76,6 +77,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             vc = TextViewController.init()
         case 4:
             vc = ESRefreshDayTableViewController.init()
+        case 5:
+            vc = CollectionViewController.init()
         default:
             break
         }
