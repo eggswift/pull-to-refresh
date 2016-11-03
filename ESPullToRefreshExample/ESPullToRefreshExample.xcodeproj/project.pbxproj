@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB6D99911DC9C2520007B843 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D99901DC9C2520007B843 /* CollectionViewController.swift */; };
 		F63613701CDD9CCD00AA9AF7 /* MTRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F636136F1CDD9CCD00AA9AF7 /* MTRefreshHeaderAnimator.swift */; };
 		F63613721CDD9CD900AA9AF7 /* MTRefreshFooterAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63613711CDD9CD900AA9AF7 /* MTRefreshFooterAnimator.swift */; };
 		F63613761CDEDC5F00AA9AF7 /* MeituanTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63613751CDEDC5F00AA9AF7 /* MeituanTableViewController.swift */; };
@@ -60,6 +61,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BB6D99901DC9C2520007B843 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		F636136F1CDD9CCD00AA9AF7 /* MTRefreshHeaderAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTRefreshHeaderAnimator.swift; sourceTree = "<group>"; };
 		F63613711CDD9CD900AA9AF7 /* MTRefreshFooterAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTRefreshFooterAnimator.swift; sourceTree = "<group>"; };
 		F63613751CDEDC5F00AA9AF7 /* MeituanTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeituanTableViewController.swift; sourceTree = "<group>"; };
@@ -114,9 +116,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BB6D998F1DC9C2440007B843 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				BB6D99901DC9C2520007B843 /* CollectionViewController.swift */,
+			);
+			name = CollectionView;
+			sourceTree = "<group>";
+		};
 		F636136D1CDD9C9100AA9AF7 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				BB6D998F1DC9C2440007B843 /* CollectionView */,
 				F64455FF1D65A2F10094D58E /* ESRefreshTableViewController.swift */,
 				F6F63A3D1D3C75000017F621 /* Day */,
 				F63613771CDEDC8F00AA9AF7 /* Default */,
@@ -390,6 +401,7 @@
 				F63613761CDEDC5F00AA9AF7 /* MeituanTableViewController.swift in Sources */,
 				F69077211D0D0A7F00BE91FE /* ESRefreshProtocol.swift in Sources */,
 				F6AA6C401CDC80DD00723622 /* WebViewController.swift in Sources */,
+				BB6D99911DC9C2520007B843 /* CollectionViewController.swift in Sources */,
 				F690770B1D0D0A7F00BE91FE /* ESRefreshFooterAnimator.swift in Sources */,
 				F6AE47371CE089480006C017 /* WeChatTableHeaderView.swift in Sources */,
 				F6F63A3F1D3C75750017F621 /* ESRefreshDayHeaderAnimator.swift in Sources */,
