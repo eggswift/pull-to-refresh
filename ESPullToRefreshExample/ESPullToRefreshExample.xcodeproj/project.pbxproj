@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB17E6051DCB76AB00D538F5 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB17E6041DCB76AB00D538F5 /* CollectionViewController.swift */; };
 		F63613701CDD9CCD00AA9AF7 /* MTRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F636136F1CDD9CCD00AA9AF7 /* MTRefreshHeaderAnimator.swift */; };
 		F63613721CDD9CD900AA9AF7 /* MTRefreshFooterAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63613711CDD9CD900AA9AF7 /* MTRefreshFooterAnimator.swift */; };
 		F64456001D65A2F10094D58E /* ESRefreshTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64455FF1D65A2F10094D58E /* ESRefreshTableViewController.swift */; };
@@ -63,6 +64,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BB17E6041DCB76AB00D538F5 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		F636136F1CDD9CCD00AA9AF7 /* MTRefreshHeaderAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTRefreshHeaderAnimator.swift; sourceTree = "<group>"; };
 		F63613711CDD9CD900AA9AF7 /* MTRefreshFooterAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTRefreshFooterAnimator.swift; sourceTree = "<group>"; };
 		F64455FF1D65A2F10094D58E /* ESRefreshTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshTableViewController.swift; sourceTree = "<group>"; };
@@ -120,9 +122,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BB17E6031DCB768A00D538F5 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				BB17E6041DCB76AB00D538F5 /* CollectionViewController.swift */,
+			);
+			name = CollectionView;
+			sourceTree = "<group>";
+		};
 		F636136D1CDD9C9100AA9AF7 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				BB17E6031DCB768A00D538F5 /* CollectionView */,
 				F64455FF1D65A2F10094D58E /* ESRefreshTableViewController.swift */,
 				F6AB6EA31D6AF82100AC33BE /* ESRefreshTableViewCell.swift */,
 				F6AB6EA41D6AF82100AC33BE /* ESRefreshTableViewCell.xib */,
@@ -389,6 +400,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB17E6051DCB76AB00D538F5 /* CollectionViewController.swift in Sources */,
 				F66B80371D86BE44006DDD16 /* ListCollectionViewCell.swift in Sources */,
 				F690771B1D0D0A7F00BE91FE /* ESRefreshAnimator.swift in Sources */,
 				F63613721CDD9CD900AA9AF7 /* MTRefreshFooterAnimator.swift in Sources */,

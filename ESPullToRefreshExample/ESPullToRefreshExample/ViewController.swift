@@ -28,6 +28,7 @@ public class ViewController: UIViewController, UITableViewDataSource, UITableVie
         "WeChat",
         "TextView",
         "Day",
+        "CollectionView"
         ]
     
     public override func viewDidLoad() {
@@ -93,6 +94,8 @@ public class ViewController: UIViewController, UITableViewDataSource, UITableVie
             vc = TextViewController.init()
         case 4:
             vc = ESRefreshTableViewController.init(style: .plain)
+        case 5:
+            vc = CollectionViewController()
         default:
             break
         }
