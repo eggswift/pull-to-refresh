@@ -40,7 +40,11 @@ public class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     
     private let imageView: UIImageView = {
         let imageView = UIImageView.init()
-        imageView.image = UIImage.init(named: "icon_pull_to_refresh_arrow")
+        if #available(iOS 8, *) {
+            imageView.image = UIImage(named: "icon_pull_to_refresh_arrow", inBundle: NSBundle(identifier: "com.eggswift.ESPullToRefresh"), compatibleWithTraitCollection: nil)
+        } else {
+            imageView.image = UIImage(named: "icon_pull_to_refresh_arrow")
+        }
         return imageView
     }()
     private let titleLabel: UILabel = {
