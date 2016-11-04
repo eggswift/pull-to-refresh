@@ -97,12 +97,12 @@ open class ESRefreshComponent: UIView {
                                       y: inset.right,
                                       width: self.bounds.size.width - inset.left - inset.right,
                                       height: self.bounds.size.height - inset.top - inset.bottom)
-                v.autoresizingMask = [.flexibleLeftMargin,
-                                      .flexibleWidth,
-                                      .flexibleRightMargin,
-                                      .flexibleTopMargin,
-                                      .flexibleHeight,
-                                      .flexibleBottomMargin]
+                v.autoresizingMask = [
+                    .flexibleWidth,
+                    .flexibleTopMargin,
+                    .flexibleHeight,
+                    .flexibleBottomMargin
+                ]
             }
         }
     }

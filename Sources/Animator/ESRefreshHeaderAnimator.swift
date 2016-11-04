@@ -40,7 +40,7 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
     
     fileprivate let imageView: UIImageView = {
         let imageView = UIImageView.init()
-        imageView.image = UIImage.init(named: "icon_pull_to_refresh_arrow")
+        imageView.image = UIImage(named: "icon_pull_to_refresh_arrow", in: Bundle(identifier: "com.eggswift.ESPullToRefresh"), compatibleWith: nil)
         return imageView
     }()
     
@@ -125,7 +125,7 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
         let w = s.width
         let h = s.height
         
-        titleLabel.frame = CGRect.init(x: w / 2.0 - 36.0, y: 0.0, width: w - (w / 2.0 - 36.0), height: h)
+        titleLabel.frame = CGRect.init(x: w / 2.0 - 36.0, y: 0.0, width: w - (w / 2.0 - 55.0), height: h)
         indicatorView.center = CGPoint.init(x: titleLabel.frame.origin.x - 16.0, y: h / 2.0)
         imageView.frame = CGRect.init(x: titleLabel.frame.origin.x - 28.0, y: (h - 18.0) / 2.0, width: 18.0, height: 18.0)
     }
