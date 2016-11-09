@@ -111,9 +111,11 @@ public extension UIScrollView {
             guard let weakSelf = self else {
                 return
             }
-            UIView.performWithoutAnimation {
-                weakSelf.es_header?.loading = true
-            }
+            // It's not a good effect to disable the animation when auto refresh. 2016/11/09
+            // UIView.performWithoutAnimation {
+            //     weakSelf.es_header?.loading = true
+            // }
+            weakSelf.es_header?.loading = true
         }
     }
     

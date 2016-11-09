@@ -16,8 +16,12 @@ public class ESRefreshTableViewController: UITableViewController {
     
     public override init(style: UITableViewStyle) {
         super.init(style: style)
-        for _ in 1...8{
-            self.array.append(" ")
+        for num in 1...8{
+            if num % 2 == 0 && arc4random() % 4 == 0 {
+                self.array.append("info")
+            } else {
+                self.array.append("photo")
+            }
         }
     }
     
@@ -27,8 +31,15 @@ public class ESRefreshTableViewController: UITableViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.init(red: 240/255.0, green: 239/255.0, blue: 237/255.0, alpha: 1.0)
+        
+        self.tableView.backgroundColor = UIColor.init(red: 244.0 / 255.0, green: 245.0 / 255.0, blue: 245.0 / 255.0, alpha: 1.0)
+        
         self.tableView.register(UINib.init(nibName: "ESRefreshTableViewCell", bundle: nil), forCellReuseIdentifier: "ESRefreshTableViewCell")
+        self.tableView.register(UINib.init(nibName: "ESPhotoTableViewCell", bundle: nil), forCellReuseIdentifier: "ESPhotoTableViewCell")
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 560
+        self.tableView.separatorStyle = .none
+        self.tableView.separatorColor = UIColor.clear
         
         var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
         var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
@@ -45,24 +56,30 @@ public class ESRefreshTableViewController: UITableViewController {
             break
         }
         
-        let _ = self.tableView.es_addPullToRefresh(animator: header) {
-            [weak self] in
+        let _ = self.tableView.es_addPullToRefresh(animator: header) { [weak self] in
             self?.refresh()
         }
-        let _ = self.tableView.es_addInfiniteScrolling(animator: footer) {
-            [weak self] in
+        let _ = self.tableView.es_addInfiniteScrolling(animator: footer) { [weak self] in
             self?.loadMore()
         }
-        // self.tableView.refreshIdentifier = NSStringFromClass(DefaultTableViewController.self) // Set refresh identifier
-        self.tableView.expriedTimeInterval = 20.0 // 20 second alive.    
+        self.tableView.refreshIdentifier = String.init(describing: type)
+        self.tableView.expriedTimeInterval = 60.0
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.tableView.es_autoPullToRefresh()
+        }
     }
 
     private func refresh() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             self.page = 1
             self.array.removeAll()
-            for _ in 1...8{
-                self.array.append(" ")
+            for num in 1...8{
+                if num % 2 == 0 && arc4random() % 4 == 0 {
+                    self.array.append("info")
+                } else {
+                    self.array.append("photo")
+                }
             }
             self.tableView.reloadData()
             self.tableView.es_stopPullToRefresh(completion: true)
@@ -73,8 +90,12 @@ public class ESRefreshTableViewController: UITableViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             self.page += 1
             if self.page <= 3 {
-                for _ in 1...8{
-                    self.array.append(" ")
+                for num in 1...8{
+                    if num % 2 == 0 && arc4random() % 4 == 0 {
+                        self.array.append("info")
+                    } else {
+                        self.array.append("photo")
+                    }
                 }
                 self.tableView.reloadData()
                 self.tableView.es_stopLoadingMore()
@@ -82,11 +103,6 @@ public class ESRefreshTableViewController: UITableViewController {
                 self.tableView.es_noticeNoMoreData()
             }
         }
-    }
-    
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.tableView.es_autoPullToRefresh()
     }
     
     // MARK: - Table view data source
@@ -98,24 +114,29 @@ public class ESRefreshTableViewController: UITableViewController {
         return array.count
     }
 
-    public override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 136.0
-    }
-    
     public override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return CGFloat.leastNormalMagnitude
     }
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ESRefreshTableViewCell", for: indexPath as IndexPath)
-        cell.backgroundColor = UIColor.init(white: 250.0 / 255.0, alpha: 1.0)
+        var cell: UITableViewCell!
+        let string = self.array[indexPath.row]
+        if string == "info" {
+            cell = tableView.dequeueReusableCell(withIdentifier: "ESRefreshTableViewCell", for: indexPath as IndexPath)
+        } else if string == "photo" {
+            cell = tableView.dequeueReusableCell(withIdentifier: "ESPhotoTableViewCell", for: indexPath as IndexPath)
+            if let cell = cell as? ESPhotoTableViewCell {
+                cell.updateContent(indexPath: indexPath)
+            }
+        } else {
+            cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath as IndexPath)
+        }
         return cell
     }
     
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
-        let vc = WebViewController.init()
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.navigationController?.pushViewController(WebViewController.init(), animated: true)
     }
     
 }

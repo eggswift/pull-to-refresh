@@ -7,14 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BB17E6051DCB76AB00D538F5 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB17E6041DCB76AB00D538F5 /* CollectionViewController.swift */; };
 		F63613701CDD9CCD00AA9AF7 /* MTRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F636136F1CDD9CCD00AA9AF7 /* MTRefreshHeaderAnimator.swift */; };
 		F63613721CDD9CD900AA9AF7 /* MTRefreshFooterAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63613711CDD9CD900AA9AF7 /* MTRefreshFooterAnimator.swift */; };
 		F64456001D65A2F10094D58E /* ESRefreshTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64455FF1D65A2F10094D58E /* ESRefreshTableViewController.swift */; };
 		F66B80331D86BE36006DDD16 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66B80311D86BE36006DDD16 /* ListTableViewCell.swift */; };
 		F66B80341D86BE36006DDD16 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F66B80321D86BE36006DDD16 /* ListTableViewCell.xib */; };
-		F66B80371D86BE44006DDD16 /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66B80351D86BE44006DDD16 /* ListCollectionViewCell.swift */; };
-		F66B80381D86BE44006DDD16 /* ListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F66B80361D86BE44006DDD16 /* ListCollectionViewCell.xib */; };
 		F690770B1D0D0A7F00BE91FE /* ESRefreshFooterAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69077011D0D0A7F00BE91FE /* ESRefreshFooterAnimator.swift */; };
 		F690770E1D0D0A7F00BE91FE /* ESRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69077021D0D0A7F00BE91FE /* ESRefreshHeaderAnimator.swift */; };
 		F69077111D0D0A7F00BE91FE /* icon_pull_to_refresh_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F69077031D0D0A7F00BE91FE /* icon_pull_to_refresh_arrow@2x.png */; };
@@ -26,7 +23,6 @@
 		F69077301D0D0AE300BE91FE /* ESPullToRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = F690772F1D0D0AE300BE91FE /* ESPullToRefresh.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F69077351D0D0AF400BE91FE /* ESRefreshFooterAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69077011D0D0A7F00BE91FE /* ESRefreshFooterAnimator.swift */; };
 		F69077361D0D0AF400BE91FE /* ESRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69077021D0D0A7F00BE91FE /* ESRefreshHeaderAnimator.swift */; };
-		F69077371D0D0AF400BE91FE /* icon_pull_to_refresh_arrow@2x.png in Sources */ = {isa = PBXBuildFile; fileRef = F69077031D0D0A7F00BE91FE /* icon_pull_to_refresh_arrow@2x.png */; };
 		F69077381D0D0AF400BE91FE /* ESPullToRefresh+Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69077041D0D0A7F00BE91FE /* ESPullToRefresh+Manager.swift */; };
 		F69077391D0D0AF400BE91FE /* ESPullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69077061D0D0A7F00BE91FE /* ESPullToRefresh.swift */; };
 		F690773A1D0D0AF400BE91FE /* ESRefreshAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69077071D0D0A7F00BE91FE /* ESRefreshAnimator.swift */; };
@@ -37,15 +33,16 @@
 		F69200151CDB9A530029EF47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F69200131CDB9A530029EF47 /* Main.storyboard */; };
 		F69200171CDB9A530029EF47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F69200161CDB9A530029EF47 /* Assets.xcassets */; };
 		F692001A1CDB9A530029EF47 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F69200181CDB9A530029EF47 /* LaunchScreen.storyboard */; };
-		F69FF8281D7539E200C4A4B6 /* ESRefreshCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69FF8271D7539E200C4A4B6 /* ESRefreshCollectionViewController.swift */; };
-		F69FF82B1D753A1300C4A4B6 /* ESRefreshCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69FF8291D753A1300C4A4B6 /* ESRefreshCollectionViewCell.swift */; };
-		F69FF82C1D753A1300C4A4B6 /* ESRefreshCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69FF82A1D753A1300C4A4B6 /* ESRefreshCollectionViewCell.xib */; };
 		F6AA6C401CDC80DD00723622 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AA6C3E1CDC80DD00723622 /* WebViewController.swift */; };
 		F6AA6C411CDC80DD00723622 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6AA6C3F1CDC80DD00723622 /* WebViewController.xib */; };
 		F6AB6EA51D6AF82100AC33BE /* ESRefreshTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AB6EA31D6AF82100AC33BE /* ESRefreshTableViewCell.swift */; };
 		F6AB6EA61D6AF82100AC33BE /* ESRefreshTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6AB6EA41D6AF82100AC33BE /* ESRefreshTableViewCell.xib */; };
 		F6AE47331CE062F00006C017 /* WCRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AE47321CE062F00006C017 /* WCRefreshHeaderAnimator.swift */; };
 		F6AE47371CE089480006C017 /* WeChatTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AE47361CE089480006C017 /* WeChatTableHeaderView.swift */; };
+		F6C5F2F61DD2C8C7001DEA80 /* ESPhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C5F2F41DD2C8C7001DEA80 /* ESPhotoTableViewCell.swift */; };
+		F6C5F2F71DD2C8C7001DEA80 /* ESPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6C5F2F51DD2C8C7001DEA80 /* ESPhotoTableViewCell.xib */; };
+		F6C5F2FB1DD31C1A001DEA80 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C5F2FA1DD31C1A001DEA80 /* CollectionViewController.swift */; };
+		F6C5F2FC1DD32225001DEA80 /* icon_pull_to_refresh_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F69077031D0D0A7F00BE91FE /* icon_pull_to_refresh_arrow@2x.png */; };
 		F6E433C41D1BB36700307E8A /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E433C31D1BB36700307E8A /* TextViewController.swift */; };
 		F6F63A3F1D3C75750017F621 /* ESRefreshDayHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F63A3E1D3C75750017F621 /* ESRefreshDayHeaderAnimator.swift */; };
 /* End PBXBuildFile section */
@@ -64,14 +61,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BB17E6041DCB76AB00D538F5 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		F636136F1CDD9CCD00AA9AF7 /* MTRefreshHeaderAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTRefreshHeaderAnimator.swift; sourceTree = "<group>"; };
 		F63613711CDD9CD900AA9AF7 /* MTRefreshFooterAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTRefreshFooterAnimator.swift; sourceTree = "<group>"; };
 		F64455FF1D65A2F10094D58E /* ESRefreshTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshTableViewController.swift; sourceTree = "<group>"; };
 		F66B80311D86BE36006DDD16 /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		F66B80321D86BE36006DDD16 /* ListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
-		F66B80351D86BE44006DDD16 /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
-		F66B80361D86BE44006DDD16 /* ListCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListCollectionViewCell.xib; sourceTree = "<group>"; };
 		F690763F1D0D065300BE91FE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F69077011D0D0A7F00BE91FE /* ESRefreshFooterAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshFooterAnimator.swift; sourceTree = "<group>"; };
 		F69077021D0D0A7F00BE91FE /* ESRefreshHeaderAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshHeaderAnimator.swift; sourceTree = "<group>"; };
@@ -91,15 +85,15 @@
 		F69200161CDB9A530029EF47 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F69200191CDB9A530029EF47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F692001B1CDB9A530029EF47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F69FF8271D7539E200C4A4B6 /* ESRefreshCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshCollectionViewController.swift; sourceTree = "<group>"; };
-		F69FF8291D753A1300C4A4B6 /* ESRefreshCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshCollectionViewCell.swift; sourceTree = "<group>"; };
-		F69FF82A1D753A1300C4A4B6 /* ESRefreshCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ESRefreshCollectionViewCell.xib; sourceTree = "<group>"; };
 		F6AA6C3E1CDC80DD00723622 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		F6AA6C3F1CDC80DD00723622 /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 		F6AB6EA31D6AF82100AC33BE /* ESRefreshTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshTableViewCell.swift; sourceTree = "<group>"; };
 		F6AB6EA41D6AF82100AC33BE /* ESRefreshTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ESRefreshTableViewCell.xib; sourceTree = "<group>"; };
 		F6AE47321CE062F00006C017 /* WCRefreshHeaderAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WCRefreshHeaderAnimator.swift; sourceTree = "<group>"; };
 		F6AE47361CE089480006C017 /* WeChatTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeChatTableHeaderView.swift; sourceTree = "<group>"; };
+		F6C5F2F41DD2C8C7001DEA80 /* ESPhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESPhotoTableViewCell.swift; sourceTree = "<group>"; };
+		F6C5F2F51DD2C8C7001DEA80 /* ESPhotoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ESPhotoTableViewCell.xib; sourceTree = "<group>"; };
+		F6C5F2FA1DD31C1A001DEA80 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		F6E433C31D1BB36700307E8A /* TextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 		F6F63A3E1D3C75750017F621 /* ESRefreshDayHeaderAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ESRefreshDayHeaderAnimator.swift; path = Day/ESRefreshDayHeaderAnimator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,28 +116,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BB17E6031DCB768A00D538F5 /* CollectionView */ = {
-			isa = PBXGroup;
-			children = (
-				BB17E6041DCB76AB00D538F5 /* CollectionViewController.swift */,
-			);
-			name = CollectionView;
-			sourceTree = "<group>";
-		};
 		F636136D1CDD9C9100AA9AF7 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				BB17E6031DCB768A00D538F5 /* CollectionView */,
 				F64455FF1D65A2F10094D58E /* ESRefreshTableViewController.swift */,
 				F6AB6EA31D6AF82100AC33BE /* ESRefreshTableViewCell.swift */,
 				F6AB6EA41D6AF82100AC33BE /* ESRefreshTableViewCell.xib */,
-				F69FF8271D7539E200C4A4B6 /* ESRefreshCollectionViewController.swift */,
-				F69FF8291D753A1300C4A4B6 /* ESRefreshCollectionViewCell.swift */,
-				F69FF82A1D753A1300C4A4B6 /* ESRefreshCollectionViewCell.xib */,
+				F6C5F2F41DD2C8C7001DEA80 /* ESPhotoTableViewCell.swift */,
+				F6C5F2F51DD2C8C7001DEA80 /* ESPhotoTableViewCell.xib */,
 				F6F63A3D1D3C75000017F621 /* Day */,
 				F636136E1CDD9CA000AA9AF7 /* Meituan */,
 				F6AE472F1CE0628B0006C017 /* WeChat */,
 				F6E433C21D1BB34800307E8A /* TextView */,
+				F6C5F2F91DD31C1A001DEA80 /* CollectionView */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -226,8 +211,6 @@
 				F69200111CDB9A530029EF47 /* ViewController.swift */,
 				F66B80311D86BE36006DDD16 /* ListTableViewCell.swift */,
 				F66B80321D86BE36006DDD16 /* ListTableViewCell.xib */,
-				F66B80351D86BE44006DDD16 /* ListCollectionViewCell.swift */,
-				F66B80361D86BE44006DDD16 /* ListCollectionViewCell.xib */,
 				F6AA6C3E1CDC80DD00723622 /* WebViewController.swift */,
 				F6AA6C3F1CDC80DD00723622 /* WebViewController.xib */,
 				F636136D1CDD9C9100AA9AF7 /* Custom */,
@@ -246,6 +229,14 @@
 				F6AE47361CE089480006C017 /* WeChatTableHeaderView.swift */,
 			);
 			path = WeChat;
+			sourceTree = "<group>";
+		};
+		F6C5F2F91DD31C1A001DEA80 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				F6C5F2FA1DD31C1A001DEA80 /* CollectionViewController.swift */,
+			);
+			path = CollectionView;
 			sourceTree = "<group>";
 		};
 		F6E433C21D1BB34800307E8A /* TextView */ = {
@@ -359,6 +350,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6C5F2FC1DD32225001DEA80 /* icon_pull_to_refresh_arrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,11 +361,10 @@
 				F692001A1CDB9A530029EF47 /* LaunchScreen.storyboard in Resources */,
 				F6AB6EA61D6AF82100AC33BE /* ESRefreshTableViewCell.xib in Resources */,
 				F69200171CDB9A530029EF47 /* Assets.xcassets in Resources */,
-				F69FF82C1D753A1300C4A4B6 /* ESRefreshCollectionViewCell.xib in Resources */,
 				F69200151CDB9A530029EF47 /* Main.storyboard in Resources */,
-				F66B80381D86BE44006DDD16 /* ListCollectionViewCell.xib in Resources */,
 				F66B80341D86BE36006DDD16 /* ListTableViewCell.xib in Resources */,
 				F6AA6C411CDC80DD00723622 /* WebViewController.xib in Resources */,
+				F6C5F2F71DD2C8C7001DEA80 /* ESPhotoTableViewCell.xib in Resources */,
 				F69077111D0D0A7F00BE91FE /* icon_pull_to_refresh_arrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,7 +378,6 @@
 			files = (
 				F69077351D0D0AF400BE91FE /* ESRefreshFooterAnimator.swift in Sources */,
 				F69077361D0D0AF400BE91FE /* ESRefreshHeaderAnimator.swift in Sources */,
-				F69077371D0D0AF400BE91FE /* icon_pull_to_refresh_arrow@2x.png in Sources */,
 				F69077381D0D0AF400BE91FE /* ESPullToRefresh+Manager.swift in Sources */,
 				F69077391D0D0AF400BE91FE /* ESPullToRefresh.swift in Sources */,
 				F690773A1D0D0AF400BE91FE /* ESRefreshAnimator.swift in Sources */,
@@ -400,19 +390,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB17E6051DCB76AB00D538F5 /* CollectionViewController.swift in Sources */,
-				F66B80371D86BE44006DDD16 /* ListCollectionViewCell.swift in Sources */,
+				F6C5F2F61DD2C8C7001DEA80 /* ESPhotoTableViewCell.swift in Sources */,
 				F690771B1D0D0A7F00BE91FE /* ESRefreshAnimator.swift in Sources */,
 				F63613721CDD9CD900AA9AF7 /* MTRefreshFooterAnimator.swift in Sources */,
 				F69077211D0D0A7F00BE91FE /* ESRefreshProtocol.swift in Sources */,
-				F69FF8281D7539E200C4A4B6 /* ESRefreshCollectionViewController.swift in Sources */,
 				F6AB6EA51D6AF82100AC33BE /* ESRefreshTableViewCell.swift in Sources */,
 				F6AA6C401CDC80DD00723622 /* WebViewController.swift in Sources */,
 				F690770B1D0D0A7F00BE91FE /* ESRefreshFooterAnimator.swift in Sources */,
 				F6AE47371CE089480006C017 /* WeChatTableHeaderView.swift in Sources */,
 				F6F63A3F1D3C75750017F621 /* ESRefreshDayHeaderAnimator.swift in Sources */,
 				F64456001D65A2F10094D58E /* ESRefreshTableViewController.swift in Sources */,
-				F69FF82B1D753A1300C4A4B6 /* ESRefreshCollectionViewCell.swift in Sources */,
+				F6C5F2FB1DD31C1A001DEA80 /* CollectionViewController.swift in Sources */,
 				F6AE47331CE062F00006C017 /* WCRefreshHeaderAnimator.swift in Sources */,
 				F69077141D0D0A7F00BE91FE /* ESPullToRefresh+Manager.swift in Sources */,
 				F690771E1D0D0A7F00BE91FE /* ESRefreshComponent.swift in Sources */,
