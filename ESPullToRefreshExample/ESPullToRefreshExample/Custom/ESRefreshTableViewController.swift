@@ -50,6 +50,9 @@ public class ESRefreshTableViewController: UITableViewController {
         case .wechat:
             header = WCRefreshHeaderAnimator.init(frame: CGRect.zero)
             footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        case .day:
+            header = ESRefreshDayHeaderAnimator.init(frame: CGRect.zero)
+            footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
         default:
             header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
             footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
