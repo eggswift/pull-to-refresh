@@ -9,7 +9,7 @@
 import UIKit
 
 public enum ESRefreshExampleType {
-    case defaulttype, meituan, wechat
+    case defaulttype, meituan, wechat, day
 }
 
 public enum ESRefreshExampleListType {
@@ -66,6 +66,9 @@ public class ViewController: UIViewController, UITableViewDataSource, UITableVie
             vc = TextViewController.init()
         case 4:
             vc = ESRefreshTableViewController.init(style: .plain)
+            if let vc = vc as? ESRefreshTableViewController {
+                vc.type = .day
+            }
         case 5:
             vc = CollectionViewController()
         default:
