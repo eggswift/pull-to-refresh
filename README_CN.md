@@ -4,7 +4,7 @@
 <!--[![Travis](https://img.shields.io/travis/eggwift/ESPullToRefresh.svg)](https://travis-ci.org/eggswift/pull-to-refresh)-->
 [![CocoaPods](https://img.shields.io/cocoapods/v/ESPullToRefresh.svg)](http://cocoapods.org/pods/pull-to-refresh)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Swift v2.2 v2.3 v3](https://img.shields.io/badge/Swift-v2.2 v2.3 v3-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![Swift v2.3 v3](https://img.shields.io/badge/Swift-v2.3 v3-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![Twitter](https://img.shields.io/badge/Twitter-@lihao_iOS-blue.svg?style=flat)](https://twitter.com/lihao_iOS)
 [![Twitter](https://img.shields.io/badge/Weibo-@李昊_____-orange.svg?style=flat)](http://weibo.com/5120522686/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1)
 
@@ -14,10 +14,10 @@
 
 ## 支持环境
 
-* Xcode 7 or later
-* iOS 7.0 or later
+* Xcode 8 or later
+* iOS 8.0 or later
 * ARC
-* Swift 2.0
+* Swift 2.3 or later
 
 ## 特性
 
@@ -142,15 +142,15 @@ func es_removeRefreshFooter()
 ```
 
 
-## Contribution
+## 贡献
 
 欢迎提交 issue 和 pull request，有任何疑问可以随时交流。
 
-## License
+## 使用许可
 
 The MIT License (MIT)
 
-Copyright (c) 2013-2015 eggswift (https://github.com/eggswift/pull-to-refresh)
+Copyright (c) 2013-2016 eggswift (https://github.com/eggswift/pull-to-refresh)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
