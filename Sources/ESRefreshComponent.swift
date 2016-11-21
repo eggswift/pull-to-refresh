@@ -33,7 +33,8 @@ open class ESRefreshComponent: UIView {
     fileprivate static var context = "ESRefreshKVOContext"
     fileprivate static let offsetKeyPath = "contentOffset"
     fileprivate static let contentSizeKeyPath = "contentSize"
-    
+
+    fileprivate var isObservingScrollView = false
     open weak var scrollView: UIScrollView?
     /// @param handler Refresh callback method
     open var handler: ESRefreshHandler?
@@ -112,16 +113,18 @@ open class ESRefreshComponent: UIView {
 extension ESRefreshComponent /* KVO methods */ {
     
     fileprivate func addObserver(_ view: UIView?) {
-        if let scrollView = view as? UIScrollView {
+        if let scrollView = view as? UIScrollView, !isObservingScrollView {
             scrollView.addObserver(self, forKeyPath: ESRefreshComponent.offsetKeyPath, options: [.initial, .new], context: &ESRefreshComponent.context)
             scrollView.addObserver(self, forKeyPath: ESRefreshComponent.contentSizeKeyPath, options: [.initial, .new], context: &ESRefreshComponent.context)
+            isObservingScrollView = true
         }
     }
     
     fileprivate func removeObserver() {
-        if let scrollView = superview as? UIScrollView {
+        if let scrollView = superview as? UIScrollView, isObservingScrollView {
             scrollView.removeObserver(self, forKeyPath: ESRefreshComponent.offsetKeyPath, context: &ESRefreshComponent.context)
             scrollView.removeObserver(self, forKeyPath: ESRefreshComponent.contentSizeKeyPath, context: &ESRefreshComponent.context)
+            isObservingScrollView = false
         }
     }
     
