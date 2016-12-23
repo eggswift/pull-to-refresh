@@ -41,7 +41,7 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
     fileprivate let imageView: UIImageView = {
         let imageView = UIImageView.init()
         if #available(iOS 8, *) {
-            imageView.image = UIImage(named: "icon_pull_to_refresh_arrow", in: Bundle(identifier: "com.eggswift.ESPullToRefresh"), compatibleWith: nil)
+            imageView.image = UIImage(named: "icon_pull_to_refresh_arrow", in: Bundle(for: ESRefreshHeaderAnimator.self), compatibleWith: nil)
         } else {
             imageView.image = UIImage(named: "icon_pull_to_refresh_arrow")
         }
