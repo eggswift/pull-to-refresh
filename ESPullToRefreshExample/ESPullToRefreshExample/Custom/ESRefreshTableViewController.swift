@@ -63,7 +63,7 @@ public class ESRefreshTableViewController: UITableViewController {
             self?.loadMore()
         }
         self.tableView.refreshIdentifier = String.init(describing: type)
-        self.tableView.expriedTimeInterval = 0.0
+        self.tableView.expriedTimeInterval = 20.0
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.tableView.es_autoPullToRefresh()
