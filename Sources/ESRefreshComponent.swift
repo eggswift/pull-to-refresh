@@ -30,25 +30,32 @@ public typealias ESRefreshHandler = (() -> ())
 
 open class ESRefreshComponent: UIView {
     
-    fileprivate static var context = "ESRefreshKVOContext"
-    fileprivate static let offsetKeyPath = "contentOffset"
-    fileprivate static let contentSizeKeyPath = "contentSize"
-
-    fileprivate var isObservingScrollView = false
     open weak var scrollView: UIScrollView?
+    
     /// @param handler Refresh callback method
     open var handler: ESRefreshHandler?
+    
     /// @param animator Animated view refresh controls, custom must comply with the following two protocol
     open var animator: (ESRefreshProtocol & ESRefreshAnimatorProtocol)!
-    open var animating: Bool = false
-    open var loading: Bool = false {
-        didSet {
-            if loading != oldValue {
-                if loading { startAnimating() }
-                else { stopAnimating() }
-            }
+    
+    /// @param refreshing or not
+    fileprivate var _isRefreshing = false
+    open var isRefreshing: Bool {
+        get {
+            return self._isRefreshing
         }
     }
+    
+    /// @param auto refreshing or not
+    fileprivate var _isAutoRefreshing = false
+    open var isAutoRefreshing: Bool {
+        get {
+            return self._isAutoRefreshing
+        }
+    }
+    
+    /// @param tag observing
+    fileprivate var isObservingScrollView = false
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -61,7 +68,7 @@ open class ESRefreshComponent: UIView {
         self.animator = ESRefreshAnimator.init()
     }
     
-    public convenience init(frame: CGRect, handler: @escaping ESRefreshHandler, customAnimator animator: ESRefreshProtocol & ESRefreshAnimatorProtocol) {
+    public convenience init(frame: CGRect, handler: @escaping ESRefreshHandler, animator: ESRefreshProtocol & ESRefreshAnimatorProtocol) {
         self.init(frame: frame)
         self.handler = handler
         self.animator = animator
@@ -112,6 +119,10 @@ open class ESRefreshComponent: UIView {
 
 extension ESRefreshComponent /* KVO methods */ {
     
+    fileprivate static var context = "ESRefreshKVOContext"
+    fileprivate static let offsetKeyPath = "contentOffset"
+    fileprivate static let contentSizeKeyPath = "contentSize"
+    
     fileprivate func addObserver(_ view: UIView?) {
         if let scrollView = view as? UIScrollView, !isObservingScrollView {
             scrollView.addObserver(self, forKeyPath: ESRefreshComponent.offsetKeyPath, options: [.initial, .new], context: &ESRefreshComponent.context)
@@ -147,14 +158,34 @@ extension ESRefreshComponent /* KVO methods */ {
 
 public extension ESRefreshComponent /* Action */ {
 
-    public func startAnimating() -> Void {
-        animating = true
+    public final func startRefreshing(isAuto: Bool = false) -> Void {
+        guard isRefreshing == false && isAutoRefreshing == false else {
+            return
+        }
+        
+        _isRefreshing = !isAuto
+        _isAutoRefreshing = isAuto
+        self.start()
     }
     
-    public func stopAnimating() -> Void {
-        animating = false
+    public final func stopRefreshing() -> Void {
+        guard isRefreshing == true || isAutoRefreshing == true else {
+            return
+        }
+        
+        self.stop()
+        _isRefreshing = false
+        _isAutoRefreshing = false
     }
 
+    public func start() {
+        
+    }
+    
+    public func stop() {
+    
+    }
+    
     //  ScrollView contentSize change action
     public func sizeChangeAction(object: AnyObject?, change: [NSKeyValueChangeKey : Any]?) {
         

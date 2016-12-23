@@ -26,14 +26,17 @@
 import UIKit
 
 open class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol {
+
     open var loadingMoreDescription: String = "Loading more"
     open var noMoreDataDescription: String  = "No more data"
     open var loadingDescription: String     = "Loading..."
 
     open var view: UIView { return self }
+    open var duration: TimeInterval = 0.3
     open var insets: UIEdgeInsets = UIEdgeInsets.zero
     open var trigger: CGFloat = 42.0
     open var executeIncremental: CGFloat = 42.0
+    open var state: ESRefreshViewState = .pullToRefresh
     
     fileprivate let titleLabel: UILabel = {
         let label = UILabel.init(frame: CGRect.zero)
@@ -60,13 +63,13 @@ open class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
         fatalError("init(coder:) has not been implemented")
     }
     
-    open func refreshAnimationDidBegin(_ view: ESRefreshComponent) {
+    open func refreshAnimationBegin(view: ESRefreshComponent) {
         indicatorView.startAnimating()
         titleLabel.text = loadingDescription
         indicatorView.isHidden = false
     }
     
-    open func refreshAnimationDidEnd(_ view: ESRefreshComponent) {
+    open func refreshAnimationEnd(view: ESRefreshComponent) {
         indicatorView.stopAnimating()
         titleLabel.text = loadingMoreDescription
         indicatorView.isHidden = true
@@ -77,17 +80,25 @@ open class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
     }
     
     open func refresh(view: ESRefreshComponent, stateDidChange state: ESRefreshViewState) {
+        guard self.state != state else {
+            return
+        }
+        self.state = state
+        
         switch state {
-        case .loading:
+        case .refreshing, .autoRefreshing :
             titleLabel.text = loadingDescription
             break
         case .noMoreData:
             titleLabel.text = noMoreDataDescription
             break
-        default:
+        case .pullToRefresh:
             titleLabel.text = loadingMoreDescription
             break
+        default:
+            break
         }
+        self.setNeedsLayout()
     }
     
     open override func layoutSubviews() {
@@ -95,9 +106,9 @@ open class ESRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
         let s = self.bounds.size
         let w = s.width
         let h = s.height
-        let s1 = titleLabel.sizeThatFits(self.bounds.size)
         
-        titleLabel.frame = CGRect.init(x: (w - s1.width) / 2.0 + 8.0, y: (h - s1.height) / 2.0, width: s1.width, height: s1.height)
-        indicatorView.center = CGPoint.init(x: titleLabel.frame.origin.x - 18.0, y: h / 2.0)
+        titleLabel.sizeToFit()
+        titleLabel.center = CGPoint.init(x: w / 2.0, y: h / 2.0 - 5.0)
+        indicatorView.center = CGPoint.init(x: titleLabel.frame.origin.x - 18.0, y: titleLabel.center.y)
     }
 }

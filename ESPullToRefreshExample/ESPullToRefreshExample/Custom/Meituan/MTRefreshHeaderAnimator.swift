@@ -12,11 +12,13 @@
 import UIKit
 
 public class MTRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol {
+    
     public var insets: UIEdgeInsets = UIEdgeInsets.zero
     public var view: UIView { return self }
+    public var duration: TimeInterval = 0.3
     public var trigger: CGFloat = 56.0
     public var executeIncremental: CGFloat = 56.0
-    private var state: ESRefreshViewState = .pullToRefresh
+    public var state: ESRefreshViewState = .pullToRefresh
     
     private let imageView: UIImageView = {
         let imageView = UIImageView.init()
@@ -33,7 +35,7 @@ public class MTRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func refreshAnimationDidBegin(_ view: ESRefreshComponent) {
+    public func refreshAnimationBegin(view: ESRefreshComponent) {
         imageView.center = self.center
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
             self.imageView.frame = CGRect.init(x: (self.bounds.size.width - 39.0) / 2.0,
@@ -56,9 +58,9 @@ public class MTRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         })
     }
     
-    public func refreshAnimationDidEnd(_ view: ESRefreshComponent) {
-        imageView.image = UIImage.init(named: "icon_pull_animation_1")
+    public func refreshAnimationEnd(view: ESRefreshComponent) {
         imageView.stopAnimating()
+        imageView.image = UIImage.init(named: "icon_pull_animation_1")
     }
     
     public func refresh(view: ESRefreshComponent, progressDidChange progress: CGFloat) {
@@ -70,8 +72,11 @@ public class MTRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     }
     
     public func refresh(view: ESRefreshComponent, stateDidChange state: ESRefreshViewState) {
-        if self.state == state { return }
+        guard self.state != state else {
+            return
+        }
         self.state = state
+        
         switch state {
         case .pullToRefresh:
             var images = [UIImage]()
@@ -99,7 +104,8 @@ public class MTRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
             imageView.image = UIImage.init(named: "icon_pull_animation_5")
             imageView.startAnimating()
             break
-        default: break
+        default:
+            break
         }
     }
     

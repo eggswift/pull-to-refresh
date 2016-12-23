@@ -148,8 +148,8 @@
 				F69077001D0D0A7F00BE91FE /* Animator */,
 				F69077041D0D0A7F00BE91FE /* ESPullToRefresh+Manager.swift */,
 				F69077061D0D0A7F00BE91FE /* ESPullToRefresh.swift */,
-				F69077071D0D0A7F00BE91FE /* ESRefreshAnimator.swift */,
 				F69077081D0D0A7F00BE91FE /* ESRefreshComponent.swift */,
+				F69077071D0D0A7F00BE91FE /* ESRefreshAnimator.swift */,
 				F69077091D0D0A7F00BE91FE /* ESRefreshProtocol.swift */,
 			);
 			name = Sources;
@@ -318,6 +318,7 @@
 					F690772C1D0D0AE300BE91FE = {
 						CreatedOnToolsVersion = 7.3.1;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 					F692000B1CDB9A530029EF47 = {
 						CreatedOnToolsVersion = 7.3;
@@ -439,7 +440,7 @@
 		F69077331D0D0AE300BE91FE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -461,7 +462,7 @@
 		F69077341D0D0AE300BE91FE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -580,7 +581,7 @@
 				INFOPLIST_FILE = ESPullToRefreshExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = eggswift.ESPullToRefreshExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eggswift.ESPullToRefreshExample;
 				PRODUCT_NAME = ESRefresh;
 				SWIFT_VERSION = 3.0;
 			};
@@ -596,7 +597,7 @@
 				INFOPLIST_FILE = ESPullToRefreshExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = eggswift.ESPullToRefreshExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eggswift.ESPullToRefreshExample;
 				PRODUCT_NAME = ESRefresh;
 				SWIFT_VERSION = 3.0;
 			};

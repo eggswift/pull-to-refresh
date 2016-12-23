@@ -39,13 +39,13 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        self.webView.scrollView.es_stopPullToRefresh(completion: true)
+        self.webView.scrollView.es_stopPullToRefresh()
         self.webView.scrollView.bounces = true
         self.webView.scrollView.alwaysBounceVertical = true
     }
 
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
-        self.webView.scrollView.es_stopPullToRefresh(completion: false)
+        self.webView.scrollView.es_stopPullToRefresh(ignoreDate: true)
         self.networkTipsButton.isHidden = false
     }
 

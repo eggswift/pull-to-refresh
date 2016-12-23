@@ -14,15 +14,17 @@ public class WCRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     public var view: UIView { return self }
     public var trigger: CGFloat = 56.0
     public var executeIncremental: CGFloat = 0.0
-    private var state: ESRefreshViewState = .pullToRefresh
+    public var state: ESRefreshViewState = .pullToRefresh
+    
     private var timer: Timer?
     private var timerProgress: Double = 0.0
+
     private let imageView: UIImageView = {
         let imageView = UIImageView.init()
         imageView.image = UIImage.init(named: "icon_wechat")
         imageView.sizeToFit()
         let size = imageView.image?.size ?? CGSize.zero
-        imageView.center = CGPoint.init(x: 22.0 + size.width / 2.0, y: -size.height)
+        imageView.center = CGPoint.init(x: UIScreen.main.bounds.size.width / 2.0, y: -size.height)
         return imageView
     }()
     
@@ -35,39 +37,42 @@ public class WCRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func refreshAnimationDidBegin(_ view: ESRefreshComponent) {
+    public func refreshAnimationBegin(view: ESRefreshComponent) {
         self.startAnimating()
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
             let size = self.imageView.image?.size ?? CGSize.zero
-            self.imageView.center = CGPoint.init(x: 22.0 + size.width / 2.0, y: 16.0 + size.height / 2.0)
-            }, completion: { (finished) in
-
-        })
+            self.imageView.center = CGPoint.init(x: UIScreen.main.bounds.size.width / 2.0, y: 16.0 + size.height / 2.0)
+            }, completion: { (finished) in })
     }
     
-    public func refreshAnimationDidEnd(_ view: ESRefreshComponent) {
-        self.stopAnimating()
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear, animations: {
-            let size = self.imageView.image?.size ?? CGSize.zero
+    public func refreshAnimationEnd(view: ESRefreshComponent) {
+        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: {
             self.imageView.transform = CGAffineTransform.identity
-            self.imageView.center = CGPoint.init(x: 22.0 + size.width / 2.0, y: -size.height)
+            self.imageView.center = CGPoint.init(x: UIScreen.main.bounds.size.width / 2.0, y: self.imageView.center.y + 10.0)
+        }, completion: { (finished) in
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+                let size = self.imageView.image?.size ?? CGSize.zero
+                self.imageView.transform = CGAffineTransform.identity
+                self.imageView.center = CGPoint.init(x: UIScreen.main.bounds.size.width / 2.0, y: -size.height)
             }, completion: { (finished) in
-                
+                self.stopAnimating()
+            })
         })
     }
     
     public func refresh(view: ESRefreshComponent, progressDidChange progress: CGFloat) {
         let size = imageView.image?.size ?? CGSize.zero
         let p = min(1.0, max(0.0, progress))
-        let x: CGFloat = 22.0
         let y = (-self.trigger * progress) + 16.0 - (size.height + 16.0) * (1 - p)
-        let center = CGPoint.init(x: x + (size.width / 2.0), y: y + (size.height / 2.0))
+        let center = CGPoint.init(x: UIScreen.main.bounds.size.width / 2.0, y: y + (size.height / 2.0))
         self.imageView.center = center
         self.imageView.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI) * progress)
     }
     
     public func refresh(view: ESRefreshComponent, stateDidChange state: ESRefreshViewState) {
-        if self.state == state { return }
+        guard self.state != state else {
+            return
+        }
         self.state = state
     }
 

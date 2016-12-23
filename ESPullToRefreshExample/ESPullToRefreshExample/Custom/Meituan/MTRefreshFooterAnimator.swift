@@ -9,7 +9,6 @@
 import UIKit
 
 public class MTRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol {
-    
     public let loadingMoreDescription: String = "Loading more"
     public let noMoreDataDescription: String  = "No more data"
     public let loadingDescription: String     = "Loading..."
@@ -20,6 +19,7 @@ public class MTRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     public var insets: UIEdgeInsets = UIEdgeInsets.zero
     public var trigger: CGFloat = 48.0
     public var executeIncremental: CGFloat = 48.0
+    public var state: ESRefreshViewState = .pullToRefresh
     
     private let topLine: UIView = {
         let topLine = UIView.init(frame: CGRect.zero)
@@ -58,12 +58,12 @@ public class MTRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func refreshAnimationDidBegin(_ view: ESRefreshComponent) {
+    public func refreshAnimationBegin(view: ESRefreshComponent) {
         indicatorView.startAnimating()
         indicatorView.isHidden = false
     }
     
-    public func refreshAnimationDidEnd(_ view: ESRefreshComponent) {
+    public func refreshAnimationEnd(view: ESRefreshComponent) {
         indicatorView.stopAnimating()
         indicatorView.isHidden = true
     }
@@ -74,7 +74,10 @@ public class MTRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     
     public func refresh(view: ESRefreshComponent, stateDidChange state: ESRefreshViewState) {
         switch state {
-        case .loading:
+        case .refreshing :
+            titleLabel.text = loadingDescription
+            break
+        case .autoRefreshing :
             titleLabel.text = loadingDescription
             break
         case .noMoreData:

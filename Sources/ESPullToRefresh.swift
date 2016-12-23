@@ -26,13 +26,6 @@
 import Foundation
 import UIKit
 
-public enum ESRefreshViewState {
-    case loading
-    case pullToRefresh
-    case releaseToRefresh
-    case noMoreData
-}
-
 private var kESRefreshHeaderKey: String = ""
 private var kESRefreshFooterKey: String = ""
 
@@ -43,6 +36,7 @@ public extension UIScrollView {
         get { return (objc_getAssociatedObject(self, &kESRefreshHeaderKey) as? ESRefreshHeaderView) }
         set(newValue) { objc_setAssociatedObject(self, &kESRefreshHeaderKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN) }
     }
+    
     /// Infinitiy scroll associated property
     public var es_footer: ESRefreshFooterView? {
         get { return (objc_getAssociatedObject(self, &kESRefreshFooterKey) as? ESRefreshFooterView) }
@@ -62,7 +56,7 @@ public extension UIScrollView {
     
     public func es_addPullToRefresh(animator: ESRefreshProtocol & ESRefreshAnimatorProtocol, handler: @escaping ESRefreshHandler) -> ESRefreshHeaderView {
         es_removeRefreshHeader()
-        let header = ESRefreshHeaderView(frame: CGRect.zero, handler: handler, customAnimator: animator)
+        let header = ESRefreshHeaderView(frame: CGRect.zero, handler: handler, animator: animator)
         let headerH = animator.executeIncremental
         header.frame = CGRect.init(x: 0.0, y: -headerH /* - contentInset.top */, width: bounds.size.width, height: headerH)
         addSubview(header)
@@ -83,7 +77,7 @@ public extension UIScrollView {
 
     public func es_addInfiniteScrolling(animator: ESRefreshProtocol & ESRefreshAnimatorProtocol, handler: @escaping ESRefreshHandler) -> ESRefreshFooterView {
         es_removeRefreshFooter()
-        let footer = ESRefreshFooterView(frame: CGRect.zero, handler: handler, customAnimator: animator)
+        let footer = ESRefreshFooterView(frame: CGRect.zero, handler: handler, animator: animator)
         let footerH = footer.animator.executeIncremental
         footer.frame = CGRect.init(x: 0.0, y: contentSize.height + contentInset.bottom, width: bounds.size.width, height: footerH)
         es_footer = footer
@@ -93,45 +87,44 @@ public extension UIScrollView {
     
     /// Remove
     public func es_removeRefreshHeader() {
-        es_header?.loading = false
+        es_header?.stopRefreshing()
         es_header?.removeFromSuperview()
         es_header = nil
     }
     
     public func es_removeRefreshFooter() {
-        es_footer?.loading = false
+        es_footer?.stopRefreshing()
         es_footer?.removeFromSuperview()
         es_footer = nil
     }
     
     /// Manual refresh
     public func es_startPullToRefresh() {
-        DispatchQueue.main.async {
-            [weak self] in
+        DispatchQueue.main.async { [weak self] in
             guard let weakSelf = self else {
                 return
             }
-            // It's not a good effect to disable the animation when auto refresh. 2016/11/09
-            // UIView.performWithoutAnimation {
-            //     weakSelf.es_header?.loading = true
-            // }
-            weakSelf.es_header?.loading = true
+            weakSelf.es_header?.startRefreshing(isAuto: false)
         }
     }
     
     /// Auto refresh if expried.
     public func es_autoPullToRefresh() {
         if self.expried == true {
-            es_startPullToRefresh()
+            DispatchQueue.main.async { [weak self] in
+                guard let weakSelf = self else {
+                    return
+                }
+                weakSelf.es_header?.startRefreshing(isAuto: true)
+            }
         }
     }
     
     /// Stop pull to refresh
-    public func es_stopPullToRefresh(completion: Bool, ignoreFooter: Bool) {
-        es_header?.loading = false
-        if completion {
-            // Refresh succeed
-            if let key = self.es_header?.refreshIdentifier {
+    public func es_stopPullToRefresh(ignoreDate: Bool = false, ignoreFooter: Bool = false) {
+        es_header?.stopRefreshing()
+        if ignoreDate == false {
+            if let key = es_header?.refreshIdentifier {
                 ESRefreshDataManager.sharedManager.setDate(Date(), forKey: key)
             }
             es_footer?.resetNoMoreData()
@@ -139,13 +132,9 @@ public extension UIScrollView {
         es_footer?.isHidden = ignoreFooter
     }
     
-    public func es_stopPullToRefresh(completion: Bool) {
-        es_stopPullToRefresh(completion: completion, ignoreFooter: false)
-    }
-    
     /// Footer notice method
     public func  es_noticeNoMoreData() {
-        es_footer?.loading = false
+        es_footer?.stopRefreshing()
         es_footer?.noMoreData = true
     }
     
@@ -154,7 +143,7 @@ public extension UIScrollView {
     }
     
     public func es_stopLoadingMore() {
-        es_footer?.loading = false
+        es_footer?.stopRefreshing()
     }
     
 }
@@ -242,44 +231,52 @@ open class ESRefreshHeaderView: ESRefreshComponent {
     }
     
     open override func offsetChangeAction(object: AnyObject?, change: [NSKeyValueChangeKey : Any]?) {
-        guard let scrollView = scrollView else { return }
+        guard let scrollView = scrollView else {
+            return
+        }
         super.offsetChangeAction(object: object, change: change)
-        var update = false // Check needs re-set animator's progress or not.
-        let offsetWithoutInsets = previousOffset + scrollViewInsets.top
-        if offsetWithoutInsets < -self.animator.trigger {
+        
+        // Check needs re-set animator's progress or not.
+        var isRecording = false
+        let offsets = previousOffset + scrollViewInsets.top
+        if offsets < -self.animator.trigger {
             // Reached critical
-            if loading == false && animating == false {
+            if isRefreshing == false && isAutoRefreshing == false {
                 if scrollView.isDragging == false {
                     // Start to refresh!
-                    self.loading = true
+                    self.animator.refresh(view: self, stateDidChange: .refreshing)
+                    self.startRefreshing(isAuto: false)
                 } else {
                     // Release to refresh! Please drop down hard...
                     self.animator.refresh(view: self, stateDidChange: .releaseToRefresh)
-                    update = true
+                    isRecording = true
                 }
             }
-        } else if offsetWithoutInsets < 0 {
+        } else if offsets < 0 {
             // Pull to refresh!
-            if loading == false && animating == false {
+            if isRefreshing == false && isAutoRefreshing == false {
                 self.animator.refresh(view: self, stateDidChange: .pullToRefresh)
-                update = true
+                isRecording = true
             }
         } else {
             // Normal state
         }
         defer {
             previousOffset = scrollView.contentOffset.y
-            if update == true {
+            if isRecording == true {
                 let percent = -(previousOffset + scrollViewInsets.top) / self.animator.trigger
                 self.animator.refresh(view: self, progressDidChange: percent)
             }
         }
     }
     
-    open override func startAnimating() {
-        guard let scrollView = scrollView else { return }
-        super.startAnimating()
-        self.animator.refreshAnimationDidBegin(self)
+    open override func start() {
+        guard let scrollView = scrollView else {
+            return
+        }
+        super.start()
+        
+        self.animator.refreshAnimationBegin(view: self)
         
         // 缓存scrollview当前的contentInset, 并根据animator的executeIncremental属性计算刷新时所需要的contentInset，它将在接下来的动画中应用。
         // Tips: 这里将self.scrollViewInsets.top更新，也可以将scrollViewInsets整个更新，因为left、right、bottom属性都没有用到，如果接下来的迭代需要使用这三个属性的话，这里可能需要额外的处理。
@@ -290,27 +287,30 @@ open class ESRefreshHeaderView: ESRefreshComponent {
         // We need to restore previous offset because we will animate scroll view insets and regular scroll view animating is not applied then.
         scrollView.contentOffset.y = previousOffset
         scrollView.bounces = false
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
+        
+        // Call handler
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveLinear, animations: {
             scrollView.contentInset = insets
             scrollView.contentOffset = CGPoint.init(x: scrollView.contentOffset.x, y: -insets.top)
             }, completion: { (finished) in
-                self.animator.refresh(view: self, stateDidChange: .loading) // Loading state
                 self.handler?()
         })
     }
     
-    open override func stopAnimating() {
+    open override func stop() {
         guard let scrollView = scrollView else {
             return
         }
-        self.animator.refreshAnimationDidEnd(self)
-        self.animator.refresh(view: self, stateDidChange: .pullToRefresh)
-        scrollView.bounces = self.bounces
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear, animations: {
+        
+        animator.refreshAnimationEnd(view: self)
+        scrollView.bounces = bounces
+        
+        // Back state
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
             scrollView.contentInset.top = self.scrollViewInsets.top
-            self.animator.refresh(view: self, progressDidChange: 0.0) // If you need to complete with animation
             }, completion: { (finished) in
-                super.stopAnimating()
+                self.animator.refresh(view: self, stateDidChange: .pullToRefresh)
+                super.stop()
         })
     }
     
@@ -392,60 +392,73 @@ open class ESRefreshFooterView: ESRefreshComponent {
     }
     
     open override func offsetChangeAction(object: AnyObject?, change: [NSKeyValueChangeKey : Any]?) {
-        guard let scrollView = scrollView else { return }
+        guard let scrollView = scrollView else {
+            return
+        }
+        
         super.offsetChangeAction(object: object, change: change)
-        if self.loading == true  || self.noMoreData == true || animating == true || isHidden == true {
+        
+        guard isRefreshing == false && isAutoRefreshing == false && noMoreData == false && isHidden == false else {
             // 正在loading more或者内容为空时不相应变化
             return
         }
+
         if scrollView.contentSize.height <= 0.0 || scrollView.contentOffset.y + scrollView.contentInset.top <= 0.0 {
             self.alpha = 0.0
             return
         } else {
             self.alpha = 1.0
         }
+        
         if scrollView.contentSize.height + scrollView.contentInset.top > scrollView.bounds.size.height {
             // 内容超过一个屏幕 计算公式，判断是不是在拖在到了底部
             if scrollView.contentSize.height - scrollView.contentOffset.y + scrollView.contentInset.bottom  <= scrollView.bounds.size.height {
-                self.loading = true
+                self.animator.refresh(view: self, stateDidChange: .refreshing)
+                self.startRefreshing()
             }
         } else {
             //内容没有超过一个屏幕，这时拖拽高度大于1/2footer的高度就表示请求上拉
             if scrollView.contentOffset.y + scrollView.contentInset.top >= animator.trigger / 2.0 {
-                self.loading = true
+                self.animator.refresh(view: self, stateDidChange: .refreshing)
+                self.startRefreshing()
             }
         }
     }
     
-    open override func startAnimating() {
-        if let _ = scrollView {
-            super.startAnimating()
-            self.animator.refreshAnimationDidBegin(self)
-            UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveLinear, animations: {
-                if let scrollView = self.scrollView {
-                    let x = scrollView.contentOffset.x
-                    let y = max(0.0, scrollView.contentSize.height - scrollView.bounds.size.height + scrollView.contentInset.bottom)
-                    scrollView.contentOffset = CGPoint.init(x: x, y: y)
-                }
-                }, completion: { (animated) in
-                    self.animator.refresh(view: self, stateDidChange: .loading)
-                    self.handler?()
-            })
-        }
-    }
-    
-    open override func stopAnimating() {
+    open override func start() {
         guard let scrollView = scrollView else {
             return
         }
-        self.animator.refreshAnimationDidEnd(self)
-        self.animator.refresh(view: self, stateDidChange: .pullToRefresh)
-        UIView .animate(withDuration: 0.3, delay: 0, options: .curveLinear, animations: { 
-            self.animator.refresh(view: self, progressDidChange: 0.0)
-            }) { (finished) in
-                super.stopAnimating()
+        super.start()
+        
+        self.animator.refreshAnimationBegin(view: self)
+        
+        let x = scrollView.contentOffset.x
+        let y = max(0.0, scrollView.contentSize.height - scrollView.bounds.size.height + scrollView.contentInset.bottom)
+        
+        // Call handler
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveLinear, animations: {
+            scrollView.contentOffset = CGPoint.init(x: x, y: y)
+        }, completion: { (animated) in
+            self.handler?()
+        })
+    }
+    
+    open override func stop() {
+        guard let scrollView = scrollView else {
+            return
         }
-        // Stop deceleration of UIScrollView. When the button tap event is caught, you read what the [scrollView contentOffset].x is, and set the offset to this value with animation OFF. 
+        
+        self.animator.refreshAnimationEnd(view: self)
+        
+        // Back state
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear, animations: {
+        }, completion: { (finished) in
+            self.animator.refresh(view: self, stateDidChange: .pullToRefresh)
+            super.stop()
+        })
+
+        // Stop deceleration of UIScrollView. When the button tap event is caught, you read what the [scrollView contentOffset].x is, and set the offset to this value with animation OFF.
         // http://stackoverflow.com/questions/2037892/stop-deceleration-of-uiscrollview
         if scrollView.isDecelerating {
             var contentOffset = scrollView.contentOffset
@@ -459,6 +472,7 @@ open class ESRefreshFooterView: ESRefreshComponent {
                 scrollView.setContentOffset(contentOffset, animated: false)
             }
         }
+        
     }
     
     /// Change to no-more-data status.

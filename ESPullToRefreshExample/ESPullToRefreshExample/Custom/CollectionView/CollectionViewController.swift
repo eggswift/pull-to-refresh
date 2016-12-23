@@ -40,7 +40,7 @@ class CollectionViewController: UIViewController {
         layout.scrollDirection = .vertical
         
         let viewsDict = [
-            "collectionView" : collectionView
+            "collectionView": collectionView
         ]
         let vflDict = [
             "H:|-0-[collectionView]-0-|",
@@ -77,7 +77,7 @@ class CollectionViewController: UIViewController {
             for item in 0...20 {
                 self.list.append(String(item))
             }
-            self.collectionView.es_stopPullToRefresh(completion: true)
+            self.collectionView.es_stopPullToRefresh()
             self.collectionView.reloadData()
         }
     }

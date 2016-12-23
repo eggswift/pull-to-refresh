@@ -13,7 +13,7 @@ public class ESRefreshDayHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAni
     public var view: UIView { return self }
     public var trigger: CGFloat = 120.0
     public var executeIncremental: CGFloat = 120.0
-    private var state: ESRefreshViewState = .pullToRefresh
+    public var state: ESRefreshViewState = .pullToRefresh
     
     private var percent: CGFloat = 0
     private var isDay: Bool = true {
@@ -59,12 +59,12 @@ public class ESRefreshDayHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAni
         fatalError("init(coder:) has not been implemented")
     }
 
-    public func refreshAnimationDidBegin(_ view: ESRefreshComponent) {
+    public func refreshAnimationBegin(view: ESRefreshComponent) {
         self.timer.fire()
         percent = 0.5
     }
 
-    public func refreshAnimationDidEnd(_ view: ESRefreshComponent) {
+    public func refreshAnimationEnd(view: ESRefreshComponent) {
         self.timer.invalidate()
         self.timer = nil
         isDay = true

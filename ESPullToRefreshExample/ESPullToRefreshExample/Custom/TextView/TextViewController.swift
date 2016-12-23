@@ -42,7 +42,7 @@ class TextViewController: UIViewController {
                 style.firstLineHeadIndent = 10.0
                 style.alignment = .justified
                 weakSelf.textView.attributedText = NSAttributedString.init(string: weakSelf.text1, attributes: [NSParagraphStyleAttributeName : style, NSFontAttributeName: UIFont.init(name: "ChalkboardSE-Bold", size: 16.0)!, NSForegroundColorAttributeName: UIColor.init(white: 0.3, alpha: 1.0)])
-                weakSelf.textView.es_stopPullToRefresh(completion: true)
+                weakSelf.textView.es_stopPullToRefresh()
             }
         }
         

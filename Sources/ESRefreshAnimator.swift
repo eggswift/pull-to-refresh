@@ -35,17 +35,23 @@ open class ESRefreshAnimator: ESRefreshProtocol, ESRefreshAnimatorProtocol {
     open var trigger: CGFloat = 60.0
     // Offset y refresh event executed by this parameter you can customize the animation to perform when you refresh the view of reservations height
     open var executeIncremental: CGFloat = 60.0
-        
+    // Current refresh state, default is .pullToRefresh
+    open var state: ESRefreshViewState = .pullToRefresh
+    
     public init() {
         view = UIView()
         insets = UIEdgeInsets.zero
     }
     
-    open func refreshAnimationDidBegin(_ view: ESRefreshComponent) {
+    open func refreshAnimationBegin(view: ESRefreshComponent) {
         /// Do nothing!
     }
     
-    open func refreshAnimationDidEnd(_ view: ESRefreshComponent) {
+    open func refreshAnimationWillEnd(view: ESRefreshComponent) {
+        /// Do nothing!
+    }
+    
+    open func refreshAnimationEnd(view: ESRefreshComponent) {
         /// Do nothing!
     }
     
@@ -56,5 +62,4 @@ open class ESRefreshAnimator: ESRefreshProtocol, ESRefreshAnimatorProtocol {
     open func refresh(view: ESRefreshComponent, stateDidChange state: ESRefreshViewState) {
         /// Do nothing!
     }
-    
 }
