@@ -2,6 +2,7 @@
 <center>![logo](logo.png)</center>
 
 <center>
+[![Travis](https://travis-ci.org/eggswift/pull-to-refresh.svg?branch=master)](https://travis-ci.org/eggswift/pull-to-refresh)
 [![CocoaPods](https://img.shields.io/cocoapods/v/ESPullToRefresh.svg)](http://cocoapods.org/pods/pull-to-refresh)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Swift v2.3 v3](https://img.shields.io/badge/Swift-v2.3 v3-orange.svg?style=flat)](https://developer.apple.com/swift/)
