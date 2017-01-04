@@ -29,7 +29,13 @@ import QuartzCore
 import UIKit
 
 open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol, ESRefreshImpactProtocol {
-    open var pullToRefreshDescription = "Pull to refresh"
+    open var pullToRefreshDescription = "Pull to refresh" {
+        didSet {
+            if pullToRefreshDescription != oldValue {
+                titleLabel.text = pullToRefreshDescription;
+            }
+        }
+    }
     open var releaseToRefreshDescription = "Release to refresh"
     open var loadingDescription = "Loading..."
 
@@ -110,7 +116,7 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
         case .releaseToRefresh:
             titleLabel.text = releaseToRefreshDescription
             self.setNeedsLayout()
-            impact()
+            self.impact()
             UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions(), animations: {
                 [weak self] in
                 self?.imageView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(M_PI))
