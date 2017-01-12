@@ -165,6 +165,7 @@ public extension ESRefreshComponent /* Action */ {
         
         _isRefreshing = !isAuto
         _isAutoRefreshing = isAuto
+        
         self.start()
     }
     
@@ -174,8 +175,6 @@ public extension ESRefreshComponent /* Action */ {
         }
         
         self.stop()
-        _isRefreshing = false
-        _isAutoRefreshing = false
     }
 
     public func start() {
@@ -183,7 +182,8 @@ public extension ESRefreshComponent /* Action */ {
     }
     
     public func stop() {
-    
+        _isRefreshing = false
+        _isAutoRefreshing = false
     }
     
     //  ScrollView contentSize change action

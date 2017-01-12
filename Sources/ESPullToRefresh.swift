@@ -196,7 +196,6 @@ public extension UIScrollView /* Date Manager */ {
 
 open class ESRefreshHeaderView: ESRefreshComponent {
     fileprivate var previousOffset: CGFloat = 0.0
-    fileprivate var bounces: Bool = false
     fileprivate var scrollViewInsets: UIEdgeInsets = UIEdgeInsets.zero
     
     open var lastRefreshTimestamp: TimeInterval?
@@ -225,7 +224,6 @@ open class ESRefreshHeaderView: ESRefreshComponent {
             guard let weakSelf = self else {
                 return
             }
-            weakSelf.bounces = weakSelf.scrollView?.bounces ?? false
             weakSelf.scrollViewInsets = weakSelf.scrollView?.contentInset ?? UIEdgeInsets.zero
         }
     }
@@ -234,7 +232,20 @@ open class ESRefreshHeaderView: ESRefreshComponent {
         guard let scrollView = scrollView else {
             return
         }
+        
         super.offsetChangeAction(object: object, change: change)
+        
+        guard self.isRefreshing == false && self.isAutoRefreshing == false else {
+            let top = scrollViewInsets.top
+            let offsetY = scrollView.contentOffset.y
+            let height = self.frame.size.height
+            var scrollingTop = -offsetY > top ? -offsetY : top
+            scrollingTop = (scrollingTop > height + top) ? (height + top) : scrollingTop
+            
+            scrollView.contentInset.top = scrollingTop
+            
+            return
+        }
         
         // Check needs re-set animator's progress or not.
         var isRecording = false
@@ -286,7 +297,6 @@ open class ESRefreshHeaderView: ESRefreshComponent {
         
         // We need to restore previous offset because we will animate scroll view insets and regular scroll view animating is not applied then.
         scrollView.contentOffset.y = previousOffset
-        scrollView.bounces = false
         
         // Call handler
         UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveLinear, animations: {
@@ -303,7 +313,6 @@ open class ESRefreshHeaderView: ESRefreshComponent {
         }
         
         animator.refreshAnimationEnd(view: self)
-        scrollView.bounces = bounces
         
         // Back state
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {

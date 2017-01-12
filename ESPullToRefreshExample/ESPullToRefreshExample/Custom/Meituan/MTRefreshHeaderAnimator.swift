@@ -61,6 +61,11 @@ public class MTRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     public func refreshAnimationEnd(view: ESRefreshComponent) {
         imageView.stopAnimating()
         imageView.image = UIImage.init(named: "icon_pull_animation_1")
+        
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
+            self.refresh(view: view, progressDidChange: 0.0)
+        }, completion: { (finished) in
+        })
     }
     
     public func refresh(view: ESRefreshComponent, progressDidChange progress: CGFloat) {
