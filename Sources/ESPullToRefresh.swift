@@ -232,14 +232,14 @@ open class ESRefreshHeaderView: ESRefreshComponent {
         guard let scrollView = scrollView else {
             return
         }
-        
+            
         super.offsetChangeAction(object: object, change: change)
         
         guard self.isRefreshing == false && self.isAutoRefreshing == false else {
             let top = scrollViewInsets.top
             let offsetY = scrollView.contentOffset.y
             let height = self.frame.size.height
-            var scrollingTop = -offsetY > top ? -offsetY : top
+            var scrollingTop = (-offsetY > top) ? -offsetY : top
             scrollingTop = (scrollingTop > height + top) ? (height + top) : scrollingTop
             
             scrollView.contentInset.top = scrollingTop
@@ -248,43 +248,51 @@ open class ESRefreshHeaderView: ESRefreshComponent {
         }
         
         // Check needs re-set animator's progress or not.
-        var isRecording = false
+        var isRecordingProgress = false
+        defer {
+            if isRecordingProgress == true {
+                let percent = -(previousOffset + scrollViewInsets.top) / self.animator.trigger
+                self.animator.refresh(view: self, progressDidChange: percent)
+            }
+        }
+        
         let offsets = previousOffset + scrollViewInsets.top
         if offsets < -self.animator.trigger {
             // Reached critical
             if isRefreshing == false && isAutoRefreshing == false {
                 if scrollView.isDragging == false {
-                    // Start to refresh!
-                    self.animator.refresh(view: self, stateDidChange: .refreshing)
+                    // Start to refresh...
                     self.startRefreshing(isAuto: false)
+                    self.animator.refresh(view: self, stateDidChange: .refreshing)
                 } else {
                     // Release to refresh! Please drop down hard...
                     self.animator.refresh(view: self, stateDidChange: .releaseToRefresh)
-                    isRecording = true
+                    isRecordingProgress = true
                 }
             }
         } else if offsets < 0 {
             // Pull to refresh!
             if isRefreshing == false && isAutoRefreshing == false {
                 self.animator.refresh(view: self, stateDidChange: .pullToRefresh)
-                isRecording = true
+                isRecordingProgress = true
             }
         } else {
             // Normal state
         }
-        defer {
-            previousOffset = scrollView.contentOffset.y
-            if isRecording == true {
-                let percent = -(previousOffset + scrollViewInsets.top) / self.animator.trigger
-                self.animator.refresh(view: self, progressDidChange: percent)
-            }
-        }
+        
+        previousOffset = scrollView.contentOffset.y
+        
     }
     
     open override func start() {
         guard let scrollView = scrollView else {
             return
         }
+        
+        // ignore observer
+        self.ignoreObserver(true)
+        
+        // call super start
         super.start()
         
         self.animator.refreshAnimationBegin(view: self)
@@ -296,15 +304,15 @@ open class ESRefreshHeaderView: ESRefreshComponent {
         insets.top += animator.executeIncremental
         
         // We need to restore previous offset because we will animate scroll view insets and regular scroll view animating is not applied then.
-        scrollView.contentOffset.y = previousOffset
-        
-        // Call handler
         UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveLinear, animations: {
             scrollView.contentInset = insets
-            scrollView.contentOffset = CGPoint.init(x: scrollView.contentOffset.x, y: -insets.top)
-            }, completion: { (finished) in
-                self.handler?()
+            scrollView.contentOffset.y = -insets.top
+        }, completion: { (finished) in
+            self.handler?()
+            // un-ignore observer
+            self.ignoreObserver(false)
         })
+        
     }
     
     open override func stop() {
@@ -312,7 +320,10 @@ open class ESRefreshHeaderView: ESRefreshComponent {
             return
         }
         
-        animator.refreshAnimationEnd(view: self)
+        // ignore observer
+        self.ignoreObserver(true)
+        
+        self.animator.refreshAnimationEnd(view: self)
         
         // Back state
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
@@ -320,6 +331,9 @@ open class ESRefreshHeaderView: ESRefreshComponent {
             }, completion: { (finished) in
                 self.animator.refresh(view: self, stateDidChange: .pullToRefresh)
                 super.stop()
+                scrollView.contentInset.top = self.scrollViewInsets.top
+                // un-ignore observer
+                self.ignoreObserver(false)
         })
     }
     
