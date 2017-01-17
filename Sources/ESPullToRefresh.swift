@@ -197,7 +197,8 @@ public extension UIScrollView /* Date Manager */ {
 open class ESRefreshHeaderView: ESRefreshComponent {
     fileprivate var previousOffset: CGFloat = 0.0
     fileprivate var scrollViewInsets: UIEdgeInsets = UIEdgeInsets.zero
-    
+    fileprivate var scrollViewBounces: Bool = true
+
     open var lastRefreshTimestamp: TimeInterval?
     open var refreshIdentifier: String?
     
@@ -224,6 +225,7 @@ open class ESRefreshHeaderView: ESRefreshComponent {
             guard let weakSelf = self else {
                 return
             }
+            weakSelf.scrollViewBounces = weakSelf.scrollView?.bounces ?? true
             weakSelf.scrollViewInsets = weakSelf.scrollView?.contentInset ?? UIEdgeInsets.zero
         }
     }
@@ -292,6 +294,9 @@ open class ESRefreshHeaderView: ESRefreshComponent {
         // ignore observer
         self.ignoreObserver(true)
         
+        // stop scroll view bounces for animation
+        scrollView.bounces = false
+        
         // call super start
         super.start()
         
@@ -304,6 +309,8 @@ open class ESRefreshHeaderView: ESRefreshComponent {
         insets.top += animator.executeIncremental
         
         // We need to restore previous offset because we will animate scroll view insets and regular scroll view animating is not applied then.
+        scrollView.contentOffset.y = previousOffset
+
         UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveLinear, animations: {
             scrollView.contentInset = insets
             scrollView.contentOffset.y = -insets.top
@@ -311,6 +318,7 @@ open class ESRefreshHeaderView: ESRefreshComponent {
             self.handler?()
             // un-ignore observer
             self.ignoreObserver(false)
+            scrollView.bounces = self.scrollViewBounces
         })
         
     }
