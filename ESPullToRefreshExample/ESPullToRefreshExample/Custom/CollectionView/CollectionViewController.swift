@@ -50,11 +50,11 @@ class CollectionViewController: UIViewController {
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: vflDict[1] as String, options: [], metrics: nil, views: viewsDict))
         
         //  add pull to refresh
-        _ = self.collectionView.es_addPullToRefresh {
+        self.collectionView.es_addPullToRefresh {
             self.loadData()
         }
         self.collectionView.es_startPullToRefresh()
-        _ = self.collectionView.es_addInfiniteScrolling {
+        self.collectionView.es_addInfiniteScrolling {
             self.delay(time: 2) {
                 for item in 21...40 {
                     self.list.append(String(item))

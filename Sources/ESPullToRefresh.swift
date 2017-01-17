@@ -44,6 +44,7 @@ public extension UIScrollView {
     }
     
     /// Add pull-to-refresh
+    @discardableResult
     public func es_addPullToRefresh(handler: @escaping ESRefreshHandler) -> ESRefreshHeaderView {
         es_removeRefreshHeader()
         let header = ESRefreshHeaderView(frame: CGRect.zero, handler: handler)
@@ -54,6 +55,7 @@ public extension UIScrollView {
         return header
     }
     
+    @discardableResult
     public func es_addPullToRefresh(animator: ESRefreshProtocol & ESRefreshAnimatorProtocol, handler: @escaping ESRefreshHandler) -> ESRefreshHeaderView {
         es_removeRefreshHeader()
         let header = ESRefreshHeaderView(frame: CGRect.zero, handler: handler, animator: animator)
@@ -65,6 +67,7 @@ public extension UIScrollView {
     }
     
     /// Add infinite-scrolling
+    @discardableResult
     public func es_addInfiniteScrolling(handler: @escaping ESRefreshHandler) -> ESRefreshFooterView {
         es_removeRefreshFooter()
         let footer = ESRefreshFooterView(frame: CGRect.zero, handler: handler)
@@ -75,6 +78,7 @@ public extension UIScrollView {
         return footer
     }
 
+    @discardableResult
     public func es_addInfiniteScrolling(animator: ESRefreshProtocol & ESRefreshAnimatorProtocol, handler: @escaping ESRefreshHandler) -> ESRefreshFooterView {
         es_removeRefreshFooter()
         let footer = ESRefreshFooterView(frame: CGRect.zero, handler: handler, animator: animator)
