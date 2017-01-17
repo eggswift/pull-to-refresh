@@ -56,10 +56,10 @@ public class ESRefreshTableViewController: UITableViewController {
             break
         }
         
-        let _ = self.tableView.es_addPullToRefresh(animator: header) { [weak self] in
+        self.tableView.es_addPullToRefresh(animator: header) { [weak self] in
             self?.refresh()
         }
-        let _ = self.tableView.es_addInfiniteScrolling(animator: footer) { [weak self] in
+        self.tableView.es_addInfiniteScrolling(animator: footer) { [weak self] in
             self?.loadMore()
         }
         self.tableView.refreshIdentifier = String.init(describing: type)

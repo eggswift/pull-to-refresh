@@ -30,7 +30,7 @@ class TextViewController: UIViewController {
         textView.textContainerInset = UIEdgeInsets.init(top: 12, left: 8, bottom: 12, right: 8)
         self.view.addSubview(textView)
         
-        let _ = textView.es_addPullToRefresh {
+        textView.es_addPullToRefresh {
             [weak self] in
             guard let weakSelf = self else {
                 return
@@ -46,7 +46,7 @@ class TextViewController: UIViewController {
             }
         }
         
-        let _ = textView.es_addInfiniteScrolling {
+        textView.es_addInfiniteScrolling {
             [weak self] in
             guard let weakSelf = self else {
                 return
