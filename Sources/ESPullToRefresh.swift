@@ -356,14 +356,11 @@ open class ESRefreshFooterView: ESRefreshComponent {
     open var noMoreData = false {
         didSet {
             if noMoreData != oldValue {
-                if noMoreData {
-                    self.animator.refresh(view: self, stateDidChange: .noMoreData)
-                } else {
-                    self.animator.refresh(view: self, stateDidChange: .pullToRefresh)
-                }
+                self.animator.refresh(view: self, stateDidChange: noMoreData ? .noMoreData : .pullToRefresh)
             }
         }
     }
+    
     open override var isHidden: Bool {
         didSet {
             if isHidden == true {
@@ -489,7 +486,9 @@ open class ESRefreshFooterView: ESRefreshComponent {
         // Back state
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear, animations: {
         }, completion: { (finished) in
-            self.animator.refresh(view: self, stateDidChange: .pullToRefresh)
+            if self.noMoreData == false {
+                self.animator.refresh(view: self, stateDidChange: .pullToRefresh)
+            }
             super.stop()
         })
 
