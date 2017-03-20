@@ -112,9 +112,9 @@ public extension UIScrollView {
         }
     }
     
-    /// Auto refresh if expried.
+    /// Auto refresh if expired.
     public func es_autoPullToRefresh() {
-        if self.expried == true {
+        if self.expired == true {
             DispatchQueue.main.async { [weak self] in
                 guard let weakSelf = self else {
                     return
@@ -154,33 +154,33 @@ public extension UIScrollView {
 
 public extension UIScrollView /* Date Manager */ {
     
-    /// Identifier for cache expried timeinterval and last refresh date.
+    /// Identifier for cache expired timeinterval and last refresh date.
     public var refreshIdentifier: String? {
         get { return self.es_header?.refreshIdentifier }
         set { self.es_header?.refreshIdentifier = newValue }
     }
     
-    /// If you setted refreshIdentifier and expriedTimeInterval, return nearest refresh expried or not. Default is false.
-    public var expried: Bool {
+    /// If you setted refreshIdentifier and expiredTimeInterval, return nearest refresh expired or not. Default is false.
+    public var expired: Bool {
         get {
             if let key = self.es_header?.refreshIdentifier {
-                return ESRefreshDataManager.sharedManager.isExpried(forKey: key)
+                return ESRefreshDataManager.sharedManager.isExpired(forKey: key)
             }
             return false
         }
     }
     
-    public var expriedTimeInterval: TimeInterval? {
+    public var expiredTimeInterval: TimeInterval? {
         get {
             if let key = self.es_header?.refreshIdentifier {
-                let interval = ESRefreshDataManager.sharedManager.expriedTimeInterval(forKey: key)
+                let interval = ESRefreshDataManager.sharedManager.expiredTimeInterval(forKey: key)
                 return interval
             }
             return nil
         }
         set {
             if let key = self.es_header?.refreshIdentifier {
-                ESRefreshDataManager.sharedManager.setExpriedTimeInterval(newValue, forKey: key)
+                ESRefreshDataManager.sharedManager.setExpiredTimeInterval(newValue, forKey: key)
             }
         }
     }

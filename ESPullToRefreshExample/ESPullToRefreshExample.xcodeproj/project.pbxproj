@@ -78,7 +78,7 @@
 		F690772D1D0D0AE300BE91FE /* ESPullToRefresh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ESPullToRefresh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F690772F1D0D0AE300BE91FE /* ESPullToRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ESPullToRefresh.h; sourceTree = "<group>"; };
 		F69077311D0D0AE300BE91FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F692000C1CDB9A530029EF47 /* ESRefresh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ESRefresh.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F692000C1CDB9A530029EF47 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F692000F1CDB9A530029EF47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F69200111CDB9A530029EF47 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F69200141CDB9A530029EF47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -198,7 +198,7 @@
 		F692000D1CDB9A530029EF47 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F692000C1CDB9A530029EF47 /* ESRefresh.app */,
+				F692000C1CDB9A530029EF47 /* Example.app */,
 				F690772D1D0D0AE300BE91FE /* ESPullToRefresh.framework */,
 			);
 			name = Products;
@@ -302,7 +302,7 @@
 			);
 			name = ESPullToRefreshExample;
 			productName = ESPullToRefreshExample;
-			productReference = F692000C1CDB9A530029EF47 /* ESRefresh.app */;
+			productReference = F692000C1CDB9A530029EF47 /* Example.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -322,7 +322,7 @@
 					};
 					F692000B1CDB9A530029EF47 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 86WDX5W5SP;
+						DevelopmentTeam = A367N9R36B;
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -577,12 +577,12 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 86WDX5W5SP;
+				DEVELOPMENT_TEAM = A367N9R36B;
 				INFOPLIST_FILE = ESPullToRefreshExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.eggswift.ESPullToRefreshExample;
-				PRODUCT_NAME = ESRefresh;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eggswift.ESPullToRefreshExample11;
+				PRODUCT_NAME = Example;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -593,12 +593,12 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 86WDX5W5SP;
+				DEVELOPMENT_TEAM = A367N9R36B;
 				INFOPLIST_FILE = ESPullToRefreshExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.eggswift.ESPullToRefreshExample;
-				PRODUCT_NAME = ESRefresh;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eggswift.ESPullToRefreshExample11;
+				PRODUCT_NAME = Example;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

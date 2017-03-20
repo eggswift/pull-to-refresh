@@ -54,37 +54,37 @@ open class ESRefreshDataManager {
         UserDefaults.standard.synchronize()
     }
     
-    open func expriedTimeInterval(forKey key: String) -> TimeInterval? {
+    open func expiredTimeInterval(forKey key: String) -> TimeInterval? {
         let interval = expiredTimeIntervalInfo[key]
         return interval
     }
     
-    open func setExpriedTimeInterval(_ interval: TimeInterval?, forKey key: String) {
+    open func setExpiredTimeInterval(_ interval: TimeInterval?, forKey key: String) {
         expiredTimeIntervalInfo[key] = interval
         UserDefaults.standard.set(expiredTimeIntervalInfo, forKey: ESRefreshDataManager.expiredTimeIntervalKey)
         UserDefaults.standard.synchronize()
     }
     
-    open func isExpried(forKey key: String) -> Bool {
+    open func isExpired(forKey key: String) -> Bool {
         guard let date = date(forKey: key) else {
             return true
         }
-        guard let interval = expriedTimeInterval(forKey: key) else {
+        guard let interval = expiredTimeInterval(forKey: key) else {
             return false
         }
         if date.timeIntervalSinceNow < -interval {
-            return true // Expried
+            return true // Expired
         }
         return false
     }
     
-    open func isExpried(forKey key: String, block: ((Bool) -> ())?) {
+    open func isExpired(forKey key: String, block: ((Bool) -> ())?) {
         DispatchQueue.global().async {
             [weak self] in
             guard let weakSelf = self else {
                 return
             }
-            let result = weakSelf.isExpried(forKey: key)
+            let result = weakSelf.isExpired(forKey: key)
             DispatchQueue.main.async(execute: {
                 block?(result)
             })
@@ -93,14 +93,14 @@ open class ESRefreshDataManager {
     
     open static func clearAll() {
         self.clearLastRefreshInfo()
-        self.clearExpriedTimeIntervalInfo()
+        self.clearExpiredTimeIntervalInfo()
     }
     
     open static func clearLastRefreshInfo() {
         UserDefaults.standard.set(nil, forKey: ESRefreshDataManager.lastRefreshKey)
     }
     
-    open static func clearExpriedTimeIntervalInfo() {
+    open static func clearExpiredTimeIntervalInfo() {
         UserDefaults.standard.set(nil, forKey: ESRefreshDataManager.expiredTimeIntervalKey)
     }
     
