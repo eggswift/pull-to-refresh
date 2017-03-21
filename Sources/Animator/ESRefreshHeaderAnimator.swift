@@ -29,15 +29,15 @@ import QuartzCore
 import UIKit
 
 open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol, ESRefreshImpactProtocol {
-    open var pullToRefreshDescription = "Pull to refresh" {
+    open var pullToRefreshDescription = NSLocalizedString("Pull to refresh", comment: "") {
         didSet {
             if pullToRefreshDescription != oldValue {
                 titleLabel.text = pullToRefreshDescription;
             }
         }
     }
-    open var releaseToRefreshDescription = "Release to refresh"
-    open var loadingDescription = "Loading..."
+    open var releaseToRefreshDescription = NSLocalizedString("Release to refresh", comment: "")
+    open var loadingDescription = NSLocalizedString("Loading...", comment: "")
 
     open var view: UIView { return self }
     open var insets: UIEdgeInsets = UIEdgeInsets.zero
