@@ -66,7 +66,7 @@ public class WCRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         let y = (-self.trigger * progress) + 16.0 - (size.height + 16.0) * (1 - p)
         let center = CGPoint.init(x: UIScreen.main.bounds.size.width / 2.0, y: y + (size.height / 2.0))
         self.imageView.center = center
-        self.imageView.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI) * progress)
+        self.imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi) * progress)
     }
     
     public func refresh(view: ESRefreshComponent, stateDidChange state: ESRefreshViewState) {
@@ -78,7 +78,7 @@ public class WCRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
 
     func timerAction() {
         timerProgress += 0.01
-        self.imageView.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI) * CGFloat(timerProgress))
+        self.imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi) * CGFloat(timerProgress))
     }
     
     func startAnimating() {

@@ -103,7 +103,7 @@ public class ESRefreshDayHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAni
         let w = self.bounds.size.width
         let h = self.bounds.size.height
         let x = p * w
-        let y = top + (size.height / 2.0) + (h - top - buttom - size.height) * (1 - CGFloat(sin(CGFloat(M_PI) * p)))
+        let y = top + (size.height / 2.0) + (h - top - buttom - size.height) * (1 - CGFloat(sin(CGFloat(Double.pi) * p)))
         if isDay {
             let colorP = p < 0.5 ? (0.5 + p) : (p == 0.5 ? 1.0 : (0.5 + 1.0 - p))
             self.backgroundColor = UIColor.init(white: colorP, alpha: 1.0)
