@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2869905B1EAF382C005B3E3E /* ES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2869905A1EAF382C005B3E3E /* ES.swift */; };
 		5A180DBC1E80112D00F9EE1A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5A180DBE1E80112D00F9EE1A /* Localizable.strings */; };
 		F63613701CDD9CCD00AA9AF7 /* MTRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F636136F1CDD9CCD00AA9AF7 /* MTRefreshHeaderAnimator.swift */; };
 		F63613721CDD9CD900AA9AF7 /* MTRefreshFooterAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63613711CDD9CD900AA9AF7 /* MTRefreshFooterAnimator.swift */; };
@@ -62,6 +63,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2869905A1EAF382C005B3E3E /* ES.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ES.swift; sourceTree = "<group>"; };
 		5A180DBD1E80112D00F9EE1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5A180DBF1E80113B00F9EE1A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5A180DC01E80114200F9EE1A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				F69077081D0D0A7F00BE91FE /* ESRefreshComponent.swift */,
 				F69077071D0D0A7F00BE91FE /* ESRefreshAnimator.swift */,
 				F69077091D0D0A7F00BE91FE /* ESRefreshProtocol.swift */,
+				2869905A1EAF382C005B3E3E /* ES.swift */,
 				5A180DBE1E80112D00F9EE1A /* Localizable.strings */,
 			);
 			name = Sources;
@@ -420,6 +423,7 @@
 				F690770E1D0D0A7F00BE91FE /* ESRefreshHeaderAnimator.swift in Sources */,
 				F6E433C41D1BB36700307E8A /* TextViewController.swift in Sources */,
 				F69200101CDB9A530029EF47 /* AppDelegate.swift in Sources */,
+				2869905B1EAF382C005B3E3E /* ES.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

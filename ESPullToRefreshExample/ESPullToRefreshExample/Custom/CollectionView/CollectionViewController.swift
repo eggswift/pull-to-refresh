@@ -50,16 +50,16 @@ class CollectionViewController: UIViewController {
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: vflDict[1] as String, options: [], metrics: nil, views: viewsDict))
         
         //  add pull to refresh
-        self.collectionView.es_addPullToRefresh {
+        self.collectionView.es.addPullToRefresh {
             self.loadData()
         }
-        self.collectionView.es_startPullToRefresh()
-        self.collectionView.es_addInfiniteScrolling {
+        self.collectionView.es.startPullToRefresh()
+        self.collectionView.es.addInfiniteScrolling {
             self.delay(time: 2) {
                 for item in 21...40 {
                     self.list.append(String(item))
                 }
-                self.collectionView.es_stopLoadingMore()
+                self.collectionView.es.stopLoadingMore()
                 self.collectionView.reloadData()
             }
         }
@@ -77,7 +77,7 @@ class CollectionViewController: UIViewController {
             for item in 0...20 {
                 self.list.append(String(item))
             }
-            self.collectionView.es_stopPullToRefresh()
+            self.collectionView.es.stopPullToRefresh()
             self.collectionView.reloadData()
         }
     }
