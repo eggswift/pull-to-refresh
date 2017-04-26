@@ -56,17 +56,17 @@ public class ESRefreshTableViewController: UITableViewController {
             break
         }
         
-        self.tableView.es_addPullToRefresh(animator: header) { [weak self] in
+        self.tableView.es.addPullToRefresh(animator: header) { [weak self] in
             self?.refresh()
         }
-        self.tableView.es_addInfiniteScrolling(animator: footer) { [weak self] in
+        self.tableView.es.addInfiniteScrolling(animator: footer) { [weak self] in
             self?.loadMore()
         }
         self.tableView.refreshIdentifier = String.init(describing: type)
         self.tableView.expiredTimeInterval = 20.0
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.tableView.es_autoPullToRefresh()
+            self.tableView.es.autoPullToRefresh()
         }
     }
 
@@ -82,7 +82,7 @@ public class ESRefreshTableViewController: UITableViewController {
                 }
             }
             self.tableView.reloadData()
-            self.tableView.es_stopPullToRefresh()
+            self.tableView.es.stopPullToRefresh()
         }
     }
     
@@ -98,9 +98,9 @@ public class ESRefreshTableViewController: UITableViewController {
                     }
                 }
                 self.tableView.reloadData()
-                self.tableView.es_stopLoadingMore()
+                self.tableView.es.stopLoadingMore()
             } else {
-                self.tableView.es_noticeNoMoreData()
+                self.tableView.es.noticeNoMoreData()
             }
         }
     }

@@ -31,28 +31,28 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         self.title = "egg swift"
         let request = NSURLRequest.init(url: NSURL(string: url)! as URL)
         
-        self.webView.scrollView.es_addPullToRefresh {
+        self.webView.scrollView.es.addPullToRefresh {
             [weak self] in
             self!.webView.loadRequest(request as URLRequest)
         }
-        self.webView.scrollView.es_startPullToRefresh()
+        self.webView.scrollView.es.startPullToRefresh()
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        self.webView.scrollView.es_stopPullToRefresh()
+        self.webView.scrollView.es.stopPullToRefresh()
         self.webView.scrollView.bounces = true
         self.webView.scrollView.alwaysBounceVertical = true
     }
 
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
-        self.webView.scrollView.es_stopPullToRefresh(ignoreDate: true)
+        self.webView.scrollView.es.stopPullToRefresh(ignoreDate: true)
         self.networkTipsButton.isHidden = false
     }
 
     @IBAction func networkRetryAction(_ sender: AnyObject) {
         self.networkTipsButton.isHidden = true
         UIView.performWithoutAnimation {
-            self.webView.scrollView.es_startPullToRefresh()
+            self.webView.scrollView.es.startPullToRefresh()
         }
     }
 }
