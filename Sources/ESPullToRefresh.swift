@@ -316,9 +316,8 @@ open class ESRefreshHeaderView: ESRefreshComponent {
         
         // We need to restore previous offset because we will animate scroll view insets and regular scroll view animating is not applied then.
         scrollView.contentOffset.y = previousOffset
-
+        scrollView.contentInset = insets
         UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveLinear, animations: {
-            scrollView.contentInset = insets
             scrollView.contentOffset.y = -insets.top
         }, completion: { (finished) in
             self.handler?()
@@ -341,7 +340,7 @@ open class ESRefreshHeaderView: ESRefreshComponent {
         
         // Back state
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
-            scrollView.contentInset.top = self.scrollViewInsets.top
+            scrollView.contentOffset.y = previousOffset
             }, completion: { (finished) in
                 self.animator.refresh(view: self, stateDidChange: .pullToRefresh)
                 super.stop()
