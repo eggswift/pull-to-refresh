@@ -348,6 +348,7 @@ open class ESRefreshHeaderView: ESRefreshComponent {
                 self.animator.refresh(view: self, stateDidChange: .pullToRefresh)
                 super.stop()
                 scrollView.contentInset.top = self.scrollViewInsets.top
+                self.previousOffset = scrollView.contentOffset.y
                 // un-ignore observer
                 self.ignoreObserver(false)
         })
