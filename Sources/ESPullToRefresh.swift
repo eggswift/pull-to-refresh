@@ -315,10 +315,10 @@ open class ESRefreshHeaderView: ESRefreshComponent {
         insets.top += animator.executeIncremental
         
         // We need to restore previous offset because we will animate scroll view insets and regular scroll view animating is not applied then.
+        scrollView.contentInset = insets
         scrollView.contentOffset.y = previousOffset
-
+        previousOffset -= animator.executeIncremental
         UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveLinear, animations: {
-            scrollView.contentInset = insets
             scrollView.contentOffset.y = -insets.top
         }, completion: { (finished) in
             self.handler?()
@@ -340,12 +340,15 @@ open class ESRefreshHeaderView: ESRefreshComponent {
         self.animator.refreshAnimationEnd(view: self)
         
         // Back state
+        scrollView.contentInset.top = self.scrollViewInsets.top
+        scrollView.contentOffset.y =  self.scrollViewInsets.top + self.previousOffset
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
-            scrollView.contentInset.top = self.scrollViewInsets.top
+            scrollView.contentOffset.y = -self.scrollViewInsets.top
             }, completion: { (finished) in
                 self.animator.refresh(view: self, stateDidChange: .pullToRefresh)
                 super.stop()
                 scrollView.contentInset.top = self.scrollViewInsets.top
+                self.previousOffset = scrollView.contentOffset.y
                 // un-ignore observer
                 self.ignoreObserver(false)
         })
