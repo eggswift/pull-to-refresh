@@ -120,16 +120,16 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
             self.setNeedsLayout()
             self.impact()
             UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions(), animations: {
-                [weak self] in
-                self?.imageView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat.pi)
+                [unowned self] in
+                self.imageView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat.pi)
             }) { (animated) in }
             break
         case .pullToRefresh:
             titleLabel.text = pullToRefreshDescription
             self.setNeedsLayout()
             UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions(), animations: {
-                [weak self] in
-                self?.imageView.transform = CGAffineTransform.identity
+                [unowned self] in
+                self.imageView.transform = CGAffineTransform.identity
             }) { (animated) in }
             break
         default:

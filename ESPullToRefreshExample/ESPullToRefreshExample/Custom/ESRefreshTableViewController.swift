@@ -56,11 +56,11 @@ public class ESRefreshTableViewController: UITableViewController {
             break
         }
         
-        self.tableView.es.addPullToRefresh(animator: header) { [weak self] in
-            self?.refresh()
+        self.tableView.es.addPullToRefresh(animator: header) { [unowned self] in
+            self.refresh()
         }
-        self.tableView.es.addInfiniteScrolling(animator: footer) { [weak self] in
-            self?.loadMore()
+        self.tableView.es.addInfiniteScrolling(animator: footer) { [unowned self] in
+            self.loadMore()
         }
         self.tableView.refreshIdentifier = String.init(describing: type)
         self.tableView.expiredTimeInterval = 20.0
