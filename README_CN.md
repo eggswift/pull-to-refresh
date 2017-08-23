@@ -43,7 +43,7 @@ pod "ESPullToRefresh"
 ### Carthage
 
 ```ruby
-github "eggswift/ESPullToRefresh"
+github "eggswift/pull-to-refresh"
 ```
 
 ### 手动安装
