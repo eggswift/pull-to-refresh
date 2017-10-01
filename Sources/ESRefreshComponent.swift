@@ -114,7 +114,25 @@ open class ESRefreshComponent: UIView {
             }
         }
     }
+   
+    public func start() {
+        
+    }
     
+    public func stop() {
+        _isRefreshing = false
+        _isAutoRefreshing = false
+    }
+    
+    //  ScrollView contentSize change action
+    public func sizeChangeAction(object: AnyObject?, change: [NSKeyValueChangeKey : Any]?) {
+        
+    }
+    
+    //  ScrollView offset change action
+    public func offsetChangeAction(object: AnyObject?, change: [NSKeyValueChangeKey : Any]?) {
+        
+    }
 }
 
 extension ESRefreshComponent /* KVO methods */ {
@@ -186,26 +204,6 @@ public extension ESRefreshComponent /* Action */ {
         }
         
         self.stop()
-    }
-
-    public func start() {
-        
-    }
-    
-    public func stop() {
-        _isRefreshing = false
-        _isAutoRefreshing = false
-    }
-    
-    //  ScrollView contentSize change action
-    public func sizeChangeAction(object: AnyObject?, change: [NSKeyValueChangeKey : Any]?) {
-        
-    }
-    
-    //  ScrollView offset change action
-    public func offsetChangeAction(object: AnyObject?, change: [NSKeyValueChangeKey : Any]?) {
-        
-    }
-    
+    }    
 }
 
