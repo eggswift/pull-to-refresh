@@ -76,7 +76,7 @@ public class WCRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         self.state = state
     }
 
-    func timerAction() {
+    @objc func timerAction() {
         timerProgress += 0.01
         self.imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi) * CGFloat(timerProgress))
     }

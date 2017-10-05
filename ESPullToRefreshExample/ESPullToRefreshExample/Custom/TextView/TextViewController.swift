@@ -38,7 +38,7 @@ class TextViewController: UIViewController {
                     style.lineSpacing = 0.0
                     style.firstLineHeadIndent = 10.0
                     style.alignment = .justified
-                    weakSelf.textView.attributedText = NSAttributedString(string: weakSelf.text1, attributes: [NSParagraphStyleAttributeName : style, NSFontAttributeName: UIFont(name: "ChalkboardSE-Bold", size: 16.0)!, NSForegroundColorAttributeName: UIColor(white: 0.3, alpha: 1.0)])
+                    weakSelf.textView.attributedText = NSAttributedString(string: weakSelf.text1, attributes: [NSAttributedStringKey.paragraphStyle : style, NSAttributedStringKey.font: UIFont(name: "ChalkboardSE-Bold", size: 16.0)!, NSAttributedStringKey.foregroundColor: UIColor(white: 0.3, alpha: 1.0)])
                     weakSelf.textView.es.stopPullToRefresh()
                 }
             }
@@ -75,7 +75,7 @@ class TextViewController: UIViewController {
                         style.lineSpacing = 0.0
                         style.firstLineHeadIndent = 10.0
                         style.alignment = .justified
-                        weakSelf.textView.attributedText = NSAttributedString(string: str, attributes: [NSParagraphStyleAttributeName : style, NSFontAttributeName: UIFont.init(name: "ChalkboardSE-Bold", size: 16.0)!, NSForegroundColorAttributeName: UIColor.init(white: 0.3, alpha: 1.0)])
+                        weakSelf.textView.attributedText = NSAttributedString(string: str, attributes: [NSAttributedStringKey.paragraphStyle : style, NSAttributedStringKey.font: UIFont.init(name: "ChalkboardSE-Bold", size: 16.0)!, NSAttributedStringKey.foregroundColor: UIColor.init(white: 0.3, alpha: 1.0)])
                         weakSelf.textView.es.stopLoadingMore()
                     }
                 }
