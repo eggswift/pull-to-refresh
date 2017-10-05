@@ -29,53 +29,55 @@ class TextViewController: UIViewController {
         textView.textAlignment = .justified
         textView.textContainerInset = UIEdgeInsets.init(top: 12, left: 8, bottom: 12, right: 8)
         self.view.addSubview(textView)
-        
+        weak var weakSelf = self
         textView.es.addPullToRefresh {
-            [unowned self] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                self.num = 0
-                let style = NSMutableParagraphStyle.init()
-                style.lineSpacing = 0.0
-                style.firstLineHeadIndent = 10.0
-                style.alignment = .justified
-                self.textView.attributedText = NSAttributedString.init(string: self.text1, attributes: [NSParagraphStyleAttributeName : style, NSFontAttributeName: UIFont.init(name: "ChalkboardSE-Bold", size: 16.0)!, NSForegroundColorAttributeName: UIColor.init(white: 0.3, alpha: 1.0)])
-                self.textView.es.stopPullToRefresh()
-            }
-        }
-        
-        textView.es.addInfiniteScrolling {
-            [unowned self] in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                self.num += 1
-                var str: String = self.text1
-                if self.num >= 1 {
-                    str += self.text2
-                }
-                if self.num >= 2 {
-                    str += self.text3
-                }
-                if self.num >= 3 {
-                    str += self.text4
-                }
-                if self.num >= 4 {
-                    str += self.text5
-                }
-                if self.num >= 5 {
-                    str += self.text6
-                }
-                if self.num >= 6 {
-                    str += self.text7
-                }
-                if self.num >= 7 {
-                    self.textView.es.noticeNoMoreData()
-                } else {
+                if let weakSelf = weakSelf {
+                    weakSelf.num = 0
                     let style = NSMutableParagraphStyle.init()
                     style.lineSpacing = 0.0
                     style.firstLineHeadIndent = 10.0
                     style.alignment = .justified
-                    self.textView.attributedText = NSAttributedString.init(string: str, attributes: [NSParagraphStyleAttributeName : style, NSFontAttributeName: UIFont.init(name: "ChalkboardSE-Bold", size: 16.0)!, NSForegroundColorAttributeName: UIColor.init(white: 0.3, alpha: 1.0)])
-
-                    self.textView.es.stopLoadingMore()
+                    weakSelf.textView.attributedText = NSAttributedString(string: weakSelf.text1, attributes: [NSParagraphStyleAttributeName : style, NSFontAttributeName: UIFont(name: "ChalkboardSE-Bold", size: 16.0)!, NSForegroundColorAttributeName: UIColor(white: 0.3, alpha: 1.0)])
+                    weakSelf.textView.es.stopPullToRefresh()
+                }
+            }
+        }
+        
+        textView.es.addInfiniteScrolling {
+            weak var weakSelf = self
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                if let weakSelf = weakSelf {
+                    weakSelf.num += 1
+                    var str: String = weakSelf.text1
+                    if weakSelf.num >= 1 {
+                        str += weakSelf.text2
+                    }
+                    if weakSelf.num >= 2 {
+                        str += weakSelf.text3
+                    }
+                    if weakSelf.num >= 3 {
+                        str += weakSelf.text4
+                    }
+                    if weakSelf.num >= 4 {
+                        str += weakSelf.text5
+                    }
+                    if weakSelf.num >= 5 {
+                        str += weakSelf.text6
+                    }
+                    if weakSelf.num >= 6 {
+                        str += weakSelf.text7
+                    }
+                    if weakSelf.num >= 7 {
+                        weakSelf.textView.es.noticeNoMoreData()
+                    } else {
+                        let style = NSMutableParagraphStyle.init()
+                        style.lineSpacing = 0.0
+                        style.firstLineHeadIndent = 10.0
+                        style.alignment = .justified
+                        weakSelf.textView.attributedText = NSAttributedString(string: str, attributes: [NSParagraphStyleAttributeName : style, NSFontAttributeName: UIFont.init(name: "ChalkboardSE-Bold", size: 16.0)!, NSForegroundColorAttributeName: UIColor.init(white: 0.3, alpha: 1.0)])
+                        weakSelf.textView.es.stopLoadingMore()
+                    }
                 }
             }
         }

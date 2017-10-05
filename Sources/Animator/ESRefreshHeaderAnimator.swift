@@ -29,6 +29,7 @@ import QuartzCore
 import UIKit
 
 open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol, ESRefreshImpactProtocol {
+    
     open var pullToRefreshDescription = NSLocalizedString("Pull to refresh", comment: "") {
         didSet {
             if pullToRefreshDescription != oldValue {
@@ -110,6 +111,8 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
         }
         self.state = state
         
+        weak var weakSelf = self
+        
         switch state {
         case .refreshing, .autoRefreshing:
             titleLabel.text = loadingDescription
@@ -120,16 +123,14 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
             self.setNeedsLayout()
             self.impact()
             UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions(), animations: {
-                [unowned self] in
-                self.imageView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat.pi)
+                weakSelf?.imageView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat.pi)
             }) { (animated) in }
             break
         case .pullToRefresh:
             titleLabel.text = pullToRefreshDescription
             self.setNeedsLayout()
             UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions(), animations: {
-                [unowned self] in
-                self.imageView.transform = CGAffineTransform.identity
+                weakSelf?.imageView.transform = CGAffineTransform.identity
             }) { (animated) in }
             break
         default:

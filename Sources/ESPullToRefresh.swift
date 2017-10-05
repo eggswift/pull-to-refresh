@@ -106,16 +106,18 @@ public extension ES where Base: UIScrollView {
     
     /// Manual refresh
     public func startPullToRefresh() {
-        DispatchQueue.main.async { [unowned base] in
-            base.header?.startRefreshing(isAuto: false)
+        weak var weakBase = base
+        DispatchQueue.main.async {
+            weakBase?.header?.startRefreshing(isAuto: false)
         }
     }
     
     /// Auto refresh if expired.
     public func autoPullToRefresh() {
         if self.base.expired == true {
-            DispatchQueue.main.async { [unowned base] in
-                base.header?.startRefreshing(isAuto: true)
+            weak var weakBase = base
+            DispatchQueue.main.async {
+                weakBase?.header?.startRefreshing(isAuto: true)
             }
         }
     }
@@ -210,20 +212,14 @@ open class ESRefreshHeaderView: ESRefreshComponent {
     
     open override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
-        /*
-         DispatchQueue.main.async {
-            [unowned self] in
-            // It's better
-         }
-         */
     }
     
     open override func didMoveToSuperview() {
         super.didMoveToSuperview()
+        weak var weakSelf = self
         DispatchQueue.main.async {
-            [unowned self] in
-            self.scrollViewBounces = self.scrollView?.bounces ?? true
-            self.scrollViewInsets = self.scrollView?.contentInset ?? UIEdgeInsets.zero
+            weakSelf?.scrollViewBounces = weakSelf?.scrollView?.bounces ?? true
+            weakSelf?.scrollViewInsets = weakSelf?.scrollView?.contentInset ?? UIEdgeInsets.zero
         }
     }
     
@@ -381,12 +377,6 @@ open class ESRefreshFooterView: ESRefreshComponent {
     
     open override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
-        /*
-        DispatchQueue.main.async {
-            [unowned self] in
-            // It's better
-        }
-         */
     }
     
     /**
@@ -395,13 +385,15 @@ open class ESRefreshFooterView: ESRefreshComponent {
      */
     open override func didMoveToSuperview() {
         super.didMoveToSuperview()
+        weak var weakSelf = self
         DispatchQueue.main.async {
-            [unowned self] in
-            self.scrollViewInsets = self.scrollView?.contentInset ?? UIEdgeInsets.zero
-            self.scrollView?.contentInset.bottom = self.scrollViewInsets.bottom + self.bounds.size.height
-            var rect = self.frame
-            rect.origin.y = self.scrollView?.contentSize.height ?? 0.0
-            self.frame = rect
+            if let weakSelf = weakSelf {
+                weakSelf.scrollViewInsets = weakSelf.scrollView?.contentInset ?? UIEdgeInsets.zero
+                weakSelf.scrollView?.contentInset.bottom = weakSelf.scrollViewInsets.bottom + weakSelf.bounds.size.height
+                var rect = weakSelf.frame
+                rect.origin.y = weakSelf.scrollView?.contentSize.height ?? 0.0
+                weakSelf.frame = rect
+            }
         }
     }
  
