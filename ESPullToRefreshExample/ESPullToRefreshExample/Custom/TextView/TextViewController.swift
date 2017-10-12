@@ -31,51 +31,52 @@ class TextViewController: UIViewController {
         self.view.addSubview(textView)
         
         textView.es.addPullToRefresh {
-            [unowned self] in
+            [weak self] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 self.num = 0
                 let style = NSMutableParagraphStyle.init()
                 style.lineSpacing = 0.0
                 style.firstLineHeadIndent = 10.0
                 style.alignment = .justified
-                self.textView.attributedText = NSAttributedString.init(string: self.text1, attributes: [NSParagraphStyleAttributeName : style, NSFontAttributeName: UIFont.init(name: "ChalkboardSE-Bold", size: 16.0)!, NSForegroundColorAttributeName: UIColor.init(white: 0.3, alpha: 1.0)])
-                self.textView.es.stopPullToRefresh()
+                self?.textView.attributedText = NSAttributedString.init(string: self.text1, attributes: [NSParagraphStyleAttributeName : style, NSFontAttributeName: UIFont.init(name: "ChalkboardSE-Bold", size: 16.0)!, NSForegroundColorAttributeName: UIColor.init(white: 0.3, alpha: 1.0)])
+                self?.textView.es.stopPullToRefresh()
             }
         }
         
         textView.es.addInfiniteScrolling {
-            [unowned self] in
+            [weak self] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                self.num += 1
-                var str: String = self.text1
-                if self.num >= 1 {
-                    str += self.text2
+                var i = self?.num ?? 0
+                i += 1
+                var str: String = self?.text1 ?? ""
+                if i >= 1 {
+                    str += self?.text2 ?? ""
                 }
-                if self.num >= 2 {
-                    str += self.text3
+                if i >= 2 {
+                    str += self?.text3 ?? ""
                 }
-                if self.num >= 3 {
-                    str += self.text4
+                if i >= 3 {
+                    str += self?.text4 ?? ""
                 }
-                if self.num >= 4 {
-                    str += self.text5
+                if i >= 4 {
+                    str += self?.text5 ?? ""
                 }
-                if self.num >= 5 {
-                    str += self.text6
+                if i >= 5 {
+                    str += self?.text6 ?? ""
                 }
-                if self.num >= 6 {
-                    str += self.text7
+                if i >= 6 {
+                    str += self?.text7 ?? ""
                 }
-                if self.num >= 7 {
-                    self.textView.es.noticeNoMoreData()
+                if i >= 7 {
+                    self?.textView.es.noticeNoMoreData()
                 } else {
                     let style = NSMutableParagraphStyle.init()
                     style.lineSpacing = 0.0
                     style.firstLineHeadIndent = 10.0
                     style.alignment = .justified
-                    self.textView.attributedText = NSAttributedString.init(string: str, attributes: [NSParagraphStyleAttributeName : style, NSFontAttributeName: UIFont.init(name: "ChalkboardSE-Bold", size: 16.0)!, NSForegroundColorAttributeName: UIColor.init(white: 0.3, alpha: 1.0)])
+                    self?.textView.attributedText = NSAttributedString.init(string: str, attributes: [NSParagraphStyleAttributeName : style, NSFontAttributeName: UIFont.init(name: "ChalkboardSE-Bold", size: 16.0)!, NSForegroundColorAttributeName: UIColor.init(white: 0.3, alpha: 1.0)])
 
-                    self.textView.es.stopLoadingMore()
+                    self?.textView.es.stopLoadingMore()
                 }
             }
         }
