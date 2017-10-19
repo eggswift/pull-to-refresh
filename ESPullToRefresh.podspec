@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
     s.name              = 'ESPullToRefresh'
-    s.version           = '2.6'
+    s.version           = '2.7'
     s.summary           = 'An easy way to use pull-to-refresh and loading-more'
     s.description       = 'An easiest way to give pull-to-refresh and loading-more to any UIScrollView. Using swift!'
     s.homepage          = 'https://github.com/eggswift/pull-to-refresh'
