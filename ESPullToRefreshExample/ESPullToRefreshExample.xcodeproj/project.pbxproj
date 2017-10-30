@@ -65,6 +65,7 @@
 
 /* Begin PBXFileReference section */
 		2869905A1EAF382C005B3E3E /* ES.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ES.swift; sourceTree = "<group>"; };
+		28F0A8011FA7641000A0639F /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5A180DBD1E80112D00F9EE1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5A180DBF1E80113B00F9EE1A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5A180DC01E80114200F9EE1A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -345,6 +346,7 @@
 				Base,
 				"zh-Hans",
 				"zh-Hant",
+				"pt-BR",
 			);
 			mainGroup = F69200031CDB9A530029EF47;
 			productRefGroup = F692000D1CDB9A530029EF47 /* Products */;
@@ -438,6 +440,7 @@
 				5A180DBD1E80112D00F9EE1A /* Base */,
 				5A180DBF1E80113B00F9EE1A /* zh-Hans */,
 				5A180DC01E80114200F9EE1A /* zh-Hant */,
+				28F0A8011FA7641000A0639F /* pt-BR */,
 			);
 			name = Localizable.strings;
 			path = Animator;
