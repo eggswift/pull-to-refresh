@@ -145,7 +145,7 @@ func es.removeRefreshFooter()
 
 After adding pull to refresh / infinite scroll you can customize the labels with the following methods:
 
-```
+``` swift
 self.scrollView.es.addPullToRefresh {
     //do something..
 }
