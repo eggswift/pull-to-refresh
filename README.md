@@ -141,7 +141,28 @@ let expried = scrollView.espried // expired or not
 func es.removeRefreshHeader()
 func es.removeRefreshFooter()
 ```
+### Customizing header and footer texts
 
+After adding pull to refresh / infinite scroll you can customize the labels with the following methods:
+
+```
+self.scrollView.es.addPullToRefresh {
+    //do something..
+}
+
+self.scrollView.es.customizeHeaderLoadingText(with: "Something different for your app!")
+self.webView.scrollView.es.customizeHeaderPullToRefreshText(with: "Something different for your app!")
+self.scrollView.es.customizeHeaderReleaseToRefreshText(with: "Something different for your app!")
+
+self.scrollView.es.addInfiniteScrolling {
+    //do something...
+}
+
+self.scrollView.es.customizeFooterLoadingText(with: "Something different for your app!")
+self.webView.scrollView.es.customizeFooterPullToRefreshText(with: "Something different for your app!")
+self.scrollView.es.customizeHeaderFooterToRefreshText(with: "Something different for your app!")
+
+```
 
 ## Contribution
 
