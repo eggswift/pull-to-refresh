@@ -164,18 +164,18 @@ public extension ES where Base: UIScrollView {
     }
 
     public func customizeFooterLoadingText(with text: String) {
-        guard let animator = self.base.footer?.animator as? ESRefreshHeaderAnimator else { return }
+        guard let animator = self.base.footer?.animator as? ESRefreshFooterAnimator else { return }
         animator.loadingDescription = text
     }
 
-    public func customizeFooterPullToRefreshText(with text: String) {
-        guard let animator = self.base.footer?.animator as? ESRefreshHeaderAnimator else { return }
-        animator.pullToRefreshDescription = text
+    public func customizeFooterLoadingMoreText(with text: String) {
+        guard let animator = self.base.footer?.animator as? ESRefreshFooterAnimator else { return }
+        animator.loadingMoreDescription = text
     }
 
-    public func customizeFooterReleaseToRefreshText(with text: String) {
-        guard let animator = self.base.footer?.animator as? ESRefreshHeaderAnimator else { return }
-        animator.releaseToRefreshDescription = text
+    public func customizeFooterNoMoreDataText(with text: String) {
+        guard let animator = self.base.footer?.animator as? ESRefreshFooterAnimator else { return }
+        animator.noMoreDataDescription = text
     }
 }
 

@@ -151,7 +151,7 @@ self.scrollView.es.addPullToRefresh {
 }
 
 self.scrollView.es.customizeHeaderLoadingText(with: "Something different for your app!")
-self.webView.scrollView.es.customizeHeaderPullToRefreshText(with: "Something different for your app!")
+self.scrollView.es.customizeHeaderPullToRefreshText(with: "Something different for your app!")
 self.scrollView.es.customizeHeaderReleaseToRefreshText(with: "Something different for your app!")
 
 self.scrollView.es.addInfiniteScrolling {
@@ -159,8 +159,8 @@ self.scrollView.es.addInfiniteScrolling {
 }
 
 self.scrollView.es.customizeFooterLoadingText(with: "Something different for your app!")
-self.webView.scrollView.es.customizeFooterPullToRefreshText(with: "Something different for your app!")
-self.scrollView.es.customizeHeaderFooterToRefreshText(with: "Something different for your app!")
+self.scrollView.es.customizeFooterLoadingMoreText(with: "Something different for your app!")
+self.scrollView.es.customizeFooterNoMoreDataText(with: "Something different for your app!")
 
 ```
 
