@@ -85,7 +85,7 @@ public class ESRefreshDayHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAni
         
     }
     
-    public func timerAction() {
+    @objc public func timerAction() {
         percent += 0.001
         if percent >= 1.0 {
             percent = 0.0
