@@ -36,8 +36,20 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
             }
         }
     }
-    open var releaseToRefreshDescription = NSLocalizedString("Release to refresh", comment: "")
-    open var loadingDescription = NSLocalizedString("Loading...", comment: "")
+    open var releaseToRefreshDescription = NSLocalizedString("Release to refresh", comment: "") {
+        didSet {
+        if pullToRefreshDescription != oldValue {
+            titleLabel.text = releaseToRefreshDescription;
+            }
+        }
+    }
+    open var loadingDescription = NSLocalizedString("Loading...", comment: "") {
+        didSet {
+            if loadingDescription != oldValue {
+                titleLabel.text = loadingDescription;
+            }
+        }
+    }
 
     open var view: UIView { return self }
     open var insets: UIEdgeInsets = UIEdgeInsets.zero

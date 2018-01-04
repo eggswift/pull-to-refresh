@@ -145,7 +145,38 @@ public extension ES where Base: UIScrollView {
     public func stopLoadingMore() {
         self.base.footer?.stopRefreshing()
     }
-    
+
+    // Customizing strings
+
+    public func customizeHeaderLoadingText(with text: String) {
+        guard let animator = self.base.header?.animator as? ESRefreshHeaderAnimator else { return }
+        animator.loadingDescription = text
+    }
+
+    public func customizeHeaderPullToRefreshText(with text: String) {
+        guard let animator = self.base.header?.animator as? ESRefreshHeaderAnimator else { return }
+        animator.pullToRefreshDescription = text
+    }
+
+    public func customizeHeaderReleaseToRefreshText(with text: String) {
+        guard let animator = self.base.header?.animator as? ESRefreshHeaderAnimator else { return }
+        animator.releaseToRefreshDescription = text
+    }
+
+    public func customizeFooterLoadingText(with text: String) {
+        guard let animator = self.base.footer?.animator as? ESRefreshFooterAnimator else { return }
+        animator.loadingDescription = text
+    }
+
+    public func customizeFooterLoadingMoreText(with text: String) {
+        guard let animator = self.base.footer?.animator as? ESRefreshFooterAnimator else { return }
+        animator.loadingMoreDescription = text
+    }
+
+    public func customizeFooterNoMoreDataText(with text: String) {
+        guard let animator = self.base.footer?.animator as? ESRefreshFooterAnimator else { return }
+        animator.noMoreDataDescription = text
+    }
 }
 
 public extension UIScrollView /* Date Manager */ {
