@@ -14,7 +14,7 @@ public class ESRefreshTableViewController: UITableViewController {
     public var page = 1
     public var type: ESRefreshExampleType = .defaulttype
     
-    public override init(style: UITableViewStyle) {
+    public override init(style: UITableView.Style) {
         super.init(style: style)
         for num in 1...8{
             if num % 2 == 0 && arc4random() % 4 == 0 {
@@ -36,7 +36,7 @@ public class ESRefreshTableViewController: UITableViewController {
         
         self.tableView.register(UINib.init(nibName: "ESRefreshTableViewCell", bundle: nil), forCellReuseIdentifier: "ESRefreshTableViewCell")
         self.tableView.register(UINib.init(nibName: "ESPhotoTableViewCell", bundle: nil), forCellReuseIdentifier: "ESPhotoTableViewCell")
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 560
         self.tableView.separatorStyle = .none
         self.tableView.separatorColor = UIColor.clear

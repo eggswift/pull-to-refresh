@@ -16,7 +16,7 @@ class CollectionViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.alwaysBounceVertical = true
         collectionView.register(DemoCollectionViewCell.self, forCellWithReuseIdentifier: "DemoCell")
-        collectionView.contentInset = UIEdgeInsetsMake(12.0, 15.0, 0, 15.0)
+        collectionView.contentInset = UIEdgeInsets(top: 12.0, left: 15.0, bottom: 0, right: 15.0)
         collectionView.backgroundColor = .white
         return collectionView
     }()
