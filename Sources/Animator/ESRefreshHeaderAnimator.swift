@@ -66,7 +66,7 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
     }()
     
     fileprivate let indicatorView: UIActivityIndicatorView = {
-        let indicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
+        let indicatorView = UIActivityIndicatorView.init(style: .gray)
         indicatorView.isHidden = true
         return indicatorView
     }()
@@ -119,7 +119,7 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
             titleLabel.text = releaseToRefreshDescription
             self.setNeedsLayout()
             self.impact()
-            UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions(), animations: {
+            UIView.animate(withDuration: 0.2, delay: 0.0, options: UIView.AnimationOptions(), animations: {
                 [weak self] in
                 self?.imageView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat.pi)
             }) { (animated) in }
@@ -127,7 +127,7 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
         case .pullToRefresh:
             titleLabel.text = pullToRefreshDescription
             self.setNeedsLayout()
-            UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions(), animations: {
+            UIView.animate(withDuration: 0.2, delay: 0.0, options: UIView.AnimationOptions(), animations: {
                 [weak self] in
                 self?.imageView.transform = CGAffineTransform.identity
             }) { (animated) in }

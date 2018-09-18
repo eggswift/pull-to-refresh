@@ -38,7 +38,7 @@ class TextViewController: UIViewController {
                 style.lineSpacing = 0.0
                 style.firstLineHeadIndent = 10.0
                 style.alignment = .justified
-                self?.textView.attributedText = NSAttributedString.init(string: (self?.text1)!, attributes: [NSAttributedStringKey.paragraphStyle : style, NSAttributedStringKey.font: UIFont.init(name: "ChalkboardSE-Bold", size: 16.0)!, NSAttributedStringKey.foregroundColor: UIColor.init(white: 0.3, alpha: 1.0)])
+                self?.textView.attributedText = NSAttributedString.init(string: (self?.text1)!, attributes: [NSAttributedString.Key.paragraphStyle : style, NSAttributedString.Key.font: UIFont.init(name: "ChalkboardSE-Bold", size: 16.0)!, NSAttributedString.Key.foregroundColor: UIColor.init(white: 0.3, alpha: 1.0)])
                 self?.textView.es.stopPullToRefresh()
             }
         }
@@ -74,7 +74,7 @@ class TextViewController: UIViewController {
                     style.lineSpacing = 0.0
                     style.firstLineHeadIndent = 10.0
                     style.alignment = .justified
-                    self?.textView.attributedText = NSAttributedString.init(string: str, attributes: [NSAttributedStringKey.paragraphStyle : style, NSAttributedStringKey.font: UIFont.init(name: "ChalkboardSE-Bold", size: 16.0)!, NSAttributedStringKey.foregroundColor: UIColor.init(white: 0.3, alpha: 1.0)])
+                    self?.textView.attributedText = NSAttributedString.init(string: str, attributes: [NSAttributedString.Key.paragraphStyle : style, NSAttributedString.Key.font: UIFont.init(name: "ChalkboardSE-Bold", size: 16.0)!, NSAttributedString.Key.foregroundColor: UIColor.init(white: 0.3, alpha: 1.0)])
 
                     self?.textView.es.stopLoadingMore()
                 }
