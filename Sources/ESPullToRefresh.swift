@@ -217,13 +217,8 @@ open class ESRefreshHeaderView: ESRefreshComponent {
         }
     }
     
-    open override func offsetChangeAction(object: AnyObject?, change: [NSKeyValueChangeKey : Any]?) {
-        guard let scrollView = scrollView else {
-            return
-        }
-            
-        super.offsetChangeAction(object: object, change: change)
-        
+    open override func offsetChangeAction(scrollView: UIScrollView, value: NSKeyValueObservedChange<CGPoint>) {
+        super.offsetChangeAction(scrollView: scrollView, value: value)
         guard self.isRefreshing == false && self.isAutoRefreshing == false else {
             let top = scrollViewInsets.top
             let offsetY = scrollView.contentOffset.y
@@ -385,9 +380,8 @@ open class ESRefreshFooterView: ESRefreshComponent {
         }
     }
  
-    open override func sizeChangeAction(object: AnyObject?, change: [NSKeyValueChangeKey : Any]?) {
-        guard let scrollView = scrollView else { return }
-        super.sizeChangeAction(object: object, change: change)
+    open override func sizeChangeAction(scrollView: UIScrollView, value: NSKeyValueObservedChange<CGSize>) {
+        super.sizeChangeAction(scrollView: scrollView, value: value)
         let targetY = scrollView.contentSize.height + scrollViewInsets.bottom
         if self.frame.origin.y != targetY {
             var rect = self.frame
@@ -396,12 +390,8 @@ open class ESRefreshFooterView: ESRefreshComponent {
         }
     }
     
-    open override func offsetChangeAction(object: AnyObject?, change: [NSKeyValueChangeKey : Any]?) {
-        guard let scrollView = scrollView else {
-            return
-        }
-        
-        super.offsetChangeAction(object: object, change: change)
+    open override func offsetChangeAction(scrollView: UIScrollView, value: NSKeyValueObservedChange<CGPoint>) {
+        super.offsetChangeAction(scrollView: scrollView, value: value)
         
         guard isRefreshing == false && isAutoRefreshing == false && noMoreData == false && isHidden == false else {
             // 正在loading more或者内容为空时不相应变化
