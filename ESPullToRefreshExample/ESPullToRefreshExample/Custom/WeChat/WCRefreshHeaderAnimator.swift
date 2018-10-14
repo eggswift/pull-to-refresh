@@ -84,7 +84,7 @@ public class WCRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     func startAnimating() {
         if timer == nil {
             timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(WCRefreshHeaderAnimator.timerAction), userInfo: nil, repeats: true)
-            RunLoop.current.add(timer!, forMode: RunLoopMode.commonModes)
+            RunLoop.current.add(timer!, forMode: RunLoop.Mode.common)
         }
     }
     
