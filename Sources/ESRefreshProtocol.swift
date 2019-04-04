@@ -111,7 +111,7 @@ fileprivate class ESRefreshImpacter {
 public protocol ESRefreshImpactProtocol {}
 public extension ESRefreshImpactProtocol {
     
-    public func impact() -> Void {
+    func impact() -> Void {
         ESRefreshImpacter.impact()
     }
     
