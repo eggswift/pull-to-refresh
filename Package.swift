@@ -1,3 +1,4 @@
+// swift-tools-version:5.0
 //
 //  Package.swift
 //
@@ -25,5 +26,17 @@
 import PackageDescription
 
 let package = Package(
-    name: "ESPullToRefresh"
+    name: "ESPullToRefresh",
+    platforms: [.iOS(.v8)],
+    products: [
+        .library(
+            name: "ESPullToRefresh",
+            targets: ["ESPullToRefresh"])
+    ],
+    targets: [
+        .target(
+            name: "ESPullToRefresh",
+            dependencies: [],
+            path: "./Sources")
+    ]
 )
