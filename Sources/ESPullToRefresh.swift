@@ -403,7 +403,7 @@ open class ESRefreshFooterView: ESRefreshComponent {
         
         super.offsetChangeAction(object: object, change: change)
         
-        guard isRefreshing == false && isAutoRefreshing == false && noMoreData == false && isHidden == false else {
+        guard isRefreshing == false && isAutoRefreshing == false && isHidden == false else {
             // 正在loading more或者内容为空时不相应变化
             return
         }
@@ -413,6 +413,12 @@ open class ESRefreshFooterView: ESRefreshComponent {
             return
         } else {
             self.alpha = 1.0
+        }
+        
+        if noMoreData == true {
+            // noMoreData 判断移到 scrollView alpha 之后
+            // 避免因 alpha = 0.0 在 PullToRefresh 下调用 noticeNoMoreData 不显示
+            return
         }
         
         if scrollView.contentSize.height + scrollView.contentInset.top > scrollView.bounds.size.height {
