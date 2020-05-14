@@ -232,7 +232,7 @@ open class ESRefreshHeaderView: ESRefreshComponent {
             scrollingTop = (scrollingTop > height + top) ? (height + top) : scrollingTop
             
             scrollView.contentInset.top = scrollingTop
-            
+            previousOffset = scrollView.contentOffset.y
             return
         }
         
@@ -319,20 +319,27 @@ open class ESRefreshHeaderView: ESRefreshComponent {
         self.ignoreObserver(true)
         
         self.animator.refreshAnimationEnd(view: self)
+        let execute = {
+            self.animator.refresh(view: self, stateDidChange: .pullToRefresh)
+            super.stop()
+            scrollView.contentInset.top = self.scrollViewInsets.top
+            self.previousOffset = scrollView.contentOffset.y
+            // un-ignore observer
+            self.ignoreObserver(false)
+        }
         
         // Back state
         scrollView.contentInset.top = self.scrollViewInsets.top
-        scrollView.contentOffset.y =  self.previousOffset
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
-            scrollView.contentOffset.y = -self.scrollViewInsets.top
-            }, completion: { (finished) in
-                self.animator.refresh(view: self, stateDidChange: .pullToRefresh)
-                super.stop()
-                scrollView.contentInset.top = self.scrollViewInsets.top
-                self.previousOffset = scrollView.contentOffset.y
-                // un-ignore observer
-                self.ignoreObserver(false)
-        })
+        if previousOffset < 0 {
+            scrollView.contentOffset.y =  self.previousOffset
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
+                scrollView.contentOffset.y = -self.scrollViewInsets.top
+                }, completion: { (finished) in
+                    execute()
+            })
+        } else {
+            execute()
+        }   
     }
     
 }
