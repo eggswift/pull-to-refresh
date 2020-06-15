@@ -1,4 +1,5 @@
 > Fork from https://github.com/eggswift/pull-to-refresh.
+> 
 > fix: 当下拉刷新时，将UIScrollView滚动到 contentOffset.y > 0 结束刷新时有个抖动的bug
 
 ![logo](logo.png)
