@@ -1,3 +1,5 @@
+Fork from https://github.com/eggswift/pull-to-refresh. </r>
+fix: 当下拉刷新时，将UIScrollView滚动到 contentOffset.y > 0 结束刷新时有个抖动的bug
 
 ![logo](logo.png)
 
@@ -36,19 +38,19 @@ Download and run the ESPullToRefreshExample project in Xcode to see ESPullToRefr
 ### CocoaPods
 
 ``` ruby
-pod "ESPullToRefresh"
+pod "Eddid-ESPullToRefresh"
 ```
 
 ### Carthage
 
 ```ruby
-github "eggswift/pull-to-refresh"
+github "chenfanfang/pull-to-refresh"
 ```
 
 ### Manually
 
 ``` ruby
-git clone https://github.com/eggswift/pull-to-refresh.git
+git clone https://github.com/chenfanfang/pull-to-refresh.git
 open ESPullToRefresh
 ```
 
