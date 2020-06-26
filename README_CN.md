@@ -1,5 +1,5 @@
 
-![logo](logo.png)
+<!-- ![logo](logo.png) -->
 
 [![Travis](https://travis-ci.org/eggswift/pull-to-refresh.svg?branch=master)](https://travis-ci.org/eggswift/pull-to-refresh)
 [![CocoaPods](https://img.shields.io/cocoapods/v/ESPullToRefresh.svg)](http://cocoapods.org/pods/pull-to-refresh)
@@ -143,15 +143,28 @@ func es.removeRefreshFooter()
 ```
 
 
-## 贡献
+## 赞助
 
-欢迎提交 issue 和 pull request，有任何疑问可以随时交流。
+您可以通过查看我们的赞助商页面来支持该项目。 只需单击一下即可：
+
+<a href='https://tracking.gitads.io/?repo=pull-to-refresh'><img src="https://images.gitads.io/pull-to-refresh" alt="git-ad"/></a>
+<br><i>这则广告来自 <a href="https://tracking.gitads.io/?campaign=gitads&repo=pull-to-refresh&redirect=gitads.io">GitAds</a> </i>
+
+
+## 关于
+
+ESPullToRefresh[lihao](mailto:lihao_iOS@hotmail.com)开发和维护。如果你在使用过程中遇到什么疑问或任何问题，欢迎提交 [issue](https://github.com/eggswift/pull-to-refresh/issues) 随时交流。</br>
+如果你想为ESPullToRefresh输出代码，请提交 [Pull Request](https://github.com/eggswift/pull-to-refresh/pulls)，我会尽可能快的去处理。</br>
+
+[![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=https://github.com/eggswift/pull-to-refresh)
+[![Twitter Follow](https://img.shields.io/twitter/follow/lihao_ios.svg?style=social)](https://twitter.com/lihao_iOS)
+
 
 ## 使用许可
 
 The MIT License (MIT)
 
-Copyright (c) 2013-2016 eggswift (https://github.com/eggswift/pull-to-refresh)
+Copyright (c) 2013-2020 eggswift (https://github.com/eggswift/pull-to-refresh)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
