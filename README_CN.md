@@ -18,7 +18,7 @@
 * Xcode 8 or later
 * iOS 8.0 or later
 * ARC
-* Swift 2.3 or later
+* Swift 5.0 or later
 
 ## 特性
 
