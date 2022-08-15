@@ -1,4 +1,5 @@
 
+
 <!-- ![logo](logo.png) -->
 
 [![Travis](https://travis-ci.org/eggswift/pull-to-refresh.svg?branch=master)](https://travis-ci.org/eggswift/pull-to-refresh)
@@ -10,7 +11,7 @@
 
 ### [中文介绍](README_CN.md)
 
-**ESPullToRefresh** is an easy-to-use component that give **pull-to-refresh** and **infinite-scrolling** implemention for developers. By extension to UIScrollView, you can easily add pull-to-refresh and infinite-scrolling for any subclass of UIScrollView. If you want to customize its UI style, you just need conform the specified protocol.
+**ESPullToRefresh** is an easy-to-use component that give **pull-to-refresh** and **infinite-scrolling** implementation for developers. By extension to UIScrollView, you can easily add pull-to-refresh and infinite-scrolling for any subclass of UIScrollView. If you want to customize its UI style, you just need to conform to the specified protocol.
 
 
 ## Requirements
@@ -24,7 +25,7 @@
 
 * Support `UIScrollView` and its subclasses `UICollectionView` `UITableView` `UITextView`
 * Pull-Down to refresh and Pull-Up to load more
-* Support customize your own style(s)
+* Support customizing your own style(s)
 
 ## Demo
 
@@ -74,7 +75,7 @@ self.tableView.es.addPullToRefresh {
 	[unowned self] in
 	/// Do anything you want...
 	/// ...
-	/// Stop refresh when your job finished, it will reset refresh footer if completion is true
+	/// Stop refresh when your job is finished, it will reset the refresh footer if completion is true
 	self.tableView.es.stopPullToRefresh(completion: true)
 	/// Set ignore footer or not
 	self.tableView.es.stopPullToRefresh(completion: true, ignoreFooter: false)
@@ -106,7 +107,7 @@ self.tableView.es.addInfiniteScrolling {
 ![](example_wechat.gif)
 
 
-Customize refresh need conform the **ESRefreshProtocol** and **ESRefreshAnimatorProtocol** protocol.
+Customize refresh needs to conform to the **ESRefreshProtocol** and **ESRefreshAnimatorProtocol** protocol.
 
 Add customize pull-to-refresh
 
@@ -120,9 +121,9 @@ Add customize infinite-scrolling
 func es.addInfiniteScrolling(animator animator: protocol<ESRefreshProtocol, ESRefreshAnimatorProtocol>, handler: ESRefreshHandler)
 ```
 
-### Espried and auto refresh
+### Espried and auto-refresh
 
-ESPullToRefresh support for the latest expiration time and the cache refresh time, You need set an `refreshIdentifier` to your UIScrollView.
+ESPullToRefresh support for the latest expiration time and the cache refresh time, You need set a `refreshIdentifier` to your UIScrollView.
 ``` swift
 scrollView.refreshIdentifier = "Your Identifier" // Set refresh identifier
 scrollView.expriedTimeInterval = 20.0 // Set the expiration interval
@@ -183,4 +184,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
