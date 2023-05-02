@@ -29,7 +29,9 @@ import UIKit
 public typealias ESRefreshHandler = (() -> ())
 
 open class ESRefreshComponent: UIView {
-    
+
+    private var observer: UIView?
+
     open weak var scrollView: UIScrollView?
     
     /// @param handler Refresh callback method
@@ -55,7 +57,6 @@ open class ESRefreshComponent: UIView {
     }
     
     /// @param tag observing
-    fileprivate var isObservingScrollView = false
     fileprivate var isIgnoreObserving = false
 
     public override init(frame: CGRect) {
@@ -171,18 +172,18 @@ extension ESRefreshComponent /* KVO methods */ {
     }
     
     fileprivate func addObserver(_ view: UIView?) {
-        if let scrollView = view as? UIScrollView, !isObservingScrollView {
+        if let scrollView = view as? UIScrollView, observer == nil {
+            observer = scrollView
             scrollView.addObserver(self, forKeyPath: ESRefreshComponent.offsetKeyPath, options: [.initial, .new], context: &ESRefreshComponent.context)
             scrollView.addObserver(self, forKeyPath: ESRefreshComponent.contentSizeKeyPath, options: [.initial, .new], context: &ESRefreshComponent.context)
-            isObservingScrollView = true
         }
     }
-    
+
     fileprivate func removeObserver() {
-        if let scrollView = superview as? UIScrollView, isObservingScrollView {
+        if let scrollView = observer {
             scrollView.removeObserver(self, forKeyPath: ESRefreshComponent.offsetKeyPath, context: &ESRefreshComponent.context)
             scrollView.removeObserver(self, forKeyPath: ESRefreshComponent.contentSizeKeyPath, context: &ESRefreshComponent.context)
-            isObservingScrollView = false
+            observer = nil
         }
     }
     
