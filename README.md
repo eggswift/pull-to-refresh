@@ -125,7 +125,7 @@ func es.addInfiniteScrolling(animator animator: protocol<ESRefreshProtocol, ESRe
 ESPullToRefresh support for the latest expiration time and the cache refresh time, You need set an `refreshIdentifier` to your UIScrollView.
 ``` swift
 scrollView.refreshIdentifier = "Your Identifier" // Set refresh identifier
-scrollView.expriedTimeInterval = 20.0 // Set the expiration interval
+scrollView.expiredTimeInterval = 20.0 // Set the expiration interval
 ```
 You can use `es.autoPullToRefresh()` method, when the time over the last refresh interval expires automatically refreshed.
 ``` swift
