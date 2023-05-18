@@ -125,7 +125,7 @@ func es.addInfiniteScrolling(animator animator: protocol<ESRefreshProtocol, ESRe
 ESPullToRefresh支持最近刷新时间和过期时间缓存，您需要为UIScrollView子类设置`refreshIdentifier`标示。
 ``` swift
 scrollView.refreshIdentifier = "Your Identifier" // 设置当前ScrollView的标识
-scrollView.expriedTimeInterval = 20.0 // 设置过期时间间隔
+scrollView.expiredTimeInterval = 20.0 // 设置过期时间间隔
 ```
 你可以通过`es.autoPullToRefresh()` 方法，当上次刷新时间超过过期时间间隔时自动刷新。
 ``` swift
