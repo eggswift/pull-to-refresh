@@ -417,7 +417,10 @@ open class ESRefreshFooterView: ESRefreshComponent {
         
         if scrollView.contentSize.height + scrollView.contentInset.top > scrollView.bounds.size.height {
             // 内容超过一个屏幕 计算公式，判断是不是在拖在到了底部
-            if scrollView.contentSize.height - scrollView.contentOffset.y + scrollView.contentInset.bottom  <= scrollView.bounds.size.height {
+            let scrollHeight = scrollView.contentSize.height - scrollView.contentOffset.y + scrollView.contentInset.bottom
+            let scrollTrigger = scrollView.bounds.size.height + animator.trigger
+            
+            if scrollHeight <= scrollTrigger {
                 self.animator.refresh(view: self, stateDidChange: .refreshing)
                 self.startRefreshing()
             }
